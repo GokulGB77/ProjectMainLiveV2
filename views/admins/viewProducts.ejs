@@ -1,0 +1,464 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/admin/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/admin/css/main.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="/admin/css1/main.css" rel="stylesheet" type="text/css" /> -->
+
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="#" class="brand-wrap">
+                <img src="/admin/imgs/theme/logo.png" class="logo" alt="Admin Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/dashboard"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/sales-report"> <i class="icon material-icons md-assignment"></i>
+                        <span class="text">Sales Report</span>
+                    </a>
+                </li>
+                <li class="menu-item  ">
+                    <a class="menu-link" href="/admin/user-details?page=1"> <i class="icon material-icons md-person"></i>
+                        <span class="text">User Details</span>
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a class="menu-link" href="/admin/products"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/categories"> <i class="icon material-icons md-category"></i>
+                        <span class="text">Categories</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/orders"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/coupons?page=1"> <i
+                            class="icon material-icons material-icons md-card_giftcard"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/offers?page=1"> <i
+                            class="icon material-icons material-icons md-local_offer"></i>
+                        <span class="text">Offers</span>
+                    </a>
+
+                </li>
+                <!--                 
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-sellers-cards.html"> <i class="icon material-icons md-store"></i>
+                        <span class="text">Sales</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-sellers-cards.html">Sellers cards</a>
+                        <a href="page-sellers-list.html">Sellers list</a>
+                        <a href="page-seller-detail.html">Seller profile</a>
+                    </div>
+                </li>
+            
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Banners</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-form-product-1.html">Add product 1</a>
+                        <a href="page-form-product-2.html">Add product 2</a>
+                        <a href="page-form-product-3.html">Add product 3</a>
+                        <a href="page-form-product-4.html">Add product 4</a>
+                    </div>
+                </li>
+                  -->
+            </ul>
+            <hr>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/logout"> <i class="icon material-icons md-settings"></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <br>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i
+                                class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
+                        class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="/admin/imgs/people/avatar2.jpg" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                    class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <section class="content-main">
+            <!-- <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Products List</h2>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-light rounded font-md">Export</a>
+                    <a href="#" class="btn btn-light rounded  font-md">Import</a>
+                    <a href="/admin/products/add-product" class="btn btn-primary btn-sm rounded">Create new</a>
+                </div>
+            </div> -->
+            <div class="card mb-4" style="height: 750px;">
+                <header class="card-header">
+                    <div class="row align-items-center">
+                        <!-- <div class="col col-check flex-grow-0">
+                            <div class="form-check ms-2">
+                                <input class="form-check-input" type="checkbox" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 me-auto mb-md-0 mb-3">
+                            <select class="form-select">
+                                <option selected>All category</option>
+                                <option>Home</option>
+                                <option>Office</option>
+                                <option>Kitchen</option>
+                            </select>
+                        </div> -->
+                        <div class="content-header">
+                            <div>
+                                <h2 class="content-title card-title">Products List</h2>
+                            </div>
+                            <div>
+                                <!-- <a href="#" class="btn btn-light rounded font-md">Export</a>
+                                <a href="#" class="btn btn-light rounded  font-md">Import</a> -->
+                                <a href="/admin/products/add-product" class="btn btn-primary btn-sm rounded">Create
+                                    New</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <!-- <input type="date" value="02.05.2022" class="form-control"> -->
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <!-- <select class="form-select">
+                                <option selected>Status</option>
+                                <option>Active</option>
+                                <option>Disabled</option>
+                                <option>Show all</option>
+                            </select> -->
+                        </div>
+                    </div>
+                </header> <!-- card-header end// -->
+                <div class="card-body" style="height: fit-content;">
+                    <% for (let i=0; i < products.length; i++) { %>
+                        <article class="itemlist">
+                            <div class="row align-items-center">
+                                <div class="col col-check flex-grow-0">
+                                </div>
+                                <div class="col-lg-4 col-sm-4 col-8 flex-grow-1 col-name">
+                                    <a class="itemside" href="#">
+                                        <div class="left">
+                                            <img src="/productAssets/<%=products[i].images[0] %>"
+                                                class="img-sm img-thumbnail" alt="Item">
+                                        </div>
+                                        <div class="info">
+                                            <h6 class="mb-0">
+                                                <%= products[i].productName %>
+                                            </h6>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-lg-2 col-sm-2 col-4 col-price">
+                                    <span>
+                                        &#8377 <%= products[i].productPrice %>
+                                    </span>
+                                </div>
+                                <div class="col-lg-1 col-sm-1 col-1 col-status text-center">
+                                    <span
+                                        class="badge rounded-pill alert-<%=products[i].stock===0 ? 'danger' : 'success' %>">
+                                        <%= products[i].stock>0 ? 'In Stock' : 'Out Of Stock' %>
+                                    </span>
+                                </div>
+                                <div class="col-lg-1 col-sm-1 col-1 col-status">
+                                    <span
+                                        class="badge rounded-pill alert-<%=products[i].status === 1 ? 'success' : 'danger' %>">
+                                        <%= products[i].status===1 ? 'Active' : 'Disabled' %>
+                                    </span>
+                                </div>
+                                <!-- <div class="col-lg-1 col-sm-2 col-4 col-date">
+                                    <span>
+                                        <%= products[i].createdAt %>
+                                    </span>
+                                </div> -->
+                                <div class="col-lg-2 col-sm-2 col-4 col-action text-left">
+                                    <a href="/admin/products/edit-product?id=<%=products[i]._id %>"
+                                        class="btn btn-sm font-sm rounded btn-brand">
+                                        <i class="material-icons md-edit"></i> Edit
+                                    </a>
+                                   
+                                    <div class="dropdown">
+                                        <a href="#" data-bs-toggle="dropdown"
+                                            class="btn btn-light rounded btn-sm font-sm">
+                                            <i class="material-icons md-more_horiz"></i> </a>
+                                        <div class="dropdown-menu">
+                                            <!-- <a class="dropdown-item"
+                                                    href="/admin/products/edit-product?id=<%=products[i]._id %>">Edit info</a> -->
+                                            <!--Edit button in drop down-->
+
+                                            <% if (products[i].status===1) { %>
+                                                <a class="dropdown-item text-danger" id="archiveBtn<%=i%>"
+                                                    href="/admin/products/change-status?id=<%= products[i]._id %>&page=<%= currentPage  %>&status=1">Archive</a>
+                                                <% } else { %>
+                                                    <a class="dropdown-item text-success"
+                                                        href="/admin/products/change-status?id=<%= products[i]._id %>&page=<%= currentPage %>&status=0">Unarchive</a>
+                                                    <% } %>
+                                                        <div class="dropdown-divider"></div>
+
+
+                                        </div>
+                                    </div> <!-- dropdown //end -->
+                                </div>
+                            </div> 
+                        </article> 
+                       
+                        <% } %>
+                </div> <!-- card-body end// -->
+
+            </div> <!-- card end// -->
+            <div class="pagination-area mt-30 mb-50">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-start">
+                        <% if (currentPage> 1) { %>
+                            <li class="page-item">
+                                <a class="page-link" href="#" data-page="<%= currentPage - 1 %>" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <% } %>
+
+                                <% for (let i=1; i <=totalPages; i++) { %>
+                                    <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+                                        <a class="page-link" href="#" data-page="<%= i %>">
+                                            <%= i %>
+                                        </a>
+                                    </li>
+                                    <% } %>
+
+                                        <% if (currentPage < totalPages) { %>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" data-page="<%= currentPage + 1 %>"
+                                                    aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                    </ul>
+                </nav>
+            </div>
+        </section> <!-- content-main end// -->
+
+        <script>
+            const paginationLinks = document.querySelectorAll('.pagination .page-link');
+            paginationLinks.forEach((link) => {
+                link.addEventListener('click', async (event) => {
+                    event.preventDefault();
+                    const page = event.target.dataset.page;
+                    await fetchProducts(page);
+                    updatePaginationActive(page);
+                });
+            });
+
+            // Function to update the active class on the pagination links
+            function updatePaginationActive(currentPage) {
+                const paginationLinks = document.querySelectorAll('.pagination .page-link');
+                paginationLinks.forEach((link) => {
+                    const pageNum = parseInt(link.dataset.page);
+                    link.classList.toggle('active', pageNum === currentPage);
+                });
+            }
+
+            // Function to fetch products and update the UI
+            async function fetchProducts(page = 1) {
+                try {
+                    const response = await fetch(`/admin/products1?page=${page}`);
+                    const data = await response.json();
+
+                    // Update the product list
+                    const productList = document.querySelector('.card-body');
+                    productList.innerHTML = '';
+
+                    data.products.forEach((product) => {
+                        // Render the product list items
+                        const productItem = document.createElement('article');
+                        productItem.classList.add('itemlist');
+
+                        productItem.innerHTML = `
+                <div class="row align-items-center">
+                  <div class="col col-check flex-grow-0">
+                  </div>
+                  <div class="col-lg-4 col-sm-4 col-8 flex-grow-1 col-name">
+                    <a class="itemside" href="#">
+                      <div class="left">
+                        <img src="/productAssets/${product.images[0]}" class="img-sm img-thumbnail" alt="Item">
+                      </div>
+                      <div class="info">
+                        <h6 class="mb-0">${product.productName}</h6>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-2 col-sm-2 col-4 col-price">
+                    <span>
+                      &#8377 ${product.productPrice}
+                    </span>
+                  </div>
+                  <div class="col-lg-1 col-sm-1 col-1 col-status text-center">
+                    <span class="badge rounded-pill alert-${product.stock === 0 ? 'danger' : 'success'}">
+                      ${product.stock > 0 ? 'In Stock' : 'Out Of Stock'}
+                    </span>
+                  </div>
+                  <div class="col-lg-1 col-sm-1 col-1 col-status">
+                    <span class="badge rounded-pill alert-${product.status === 1 ? 'success' : 'danger'}">
+                      ${product.status === 1 ? 'Active' : 'Disabled'}
+                    </span>
+                  </div>
+                  <div class="col-lg-2 col-sm-2 col-4 col-action text-left">
+                    <a href="/admin/products/edit-product?id=${product._id}" class="btn btn-sm font-sm rounded btn-brand">
+                      <i class="material-icons md-edit"></i> Edit
+                    </a>
+                    <div class="dropdown">
+                      <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm">
+                        <i class="material-icons md-more_horiz"></i>
+                      </a>
+                      <div class="dropdown-menu">
+                        ${product.status === 1 ? `
+                          <a class="dropdown-item text-danger" href="/admin/products/unarchive-product?id=${product._id}">Archive</a>
+                        ` : `
+                          <a class="dropdown-item text-success" href="/admin/products/archive-product?id=${product._id}">Unarchive</a>
+                        `}
+                        <div class="dropdown-divider"></div>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+              `;
+
+                        productList.appendChild(productItem);
+                    });
+
+                    // Update the pagination buttons
+                    const paginationLinks = document.querySelectorAll('.pagination .page-link');
+                    paginationLinks.forEach((link) => {
+                        const pageNum = parseInt(link.dataset.page);
+                        link.classList.toggle('active', data.currentPage === pageNum);
+                    });
+                } catch (error) {
+                    console.error('Error fetching products:', error);
+                }
+            }
+        </script>
+
+        <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> ©, Evara - HTML Ecommerce Template .
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="/admin/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/admin/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/vendors/select2.min.js"></script>
+    <script src="/admin/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/admin/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="/admin/js/vendors/chart.js"></script>
+    <!-- Main Script -->
+    <script src="/admin/js/main.js" type="text/javascript"></script>
+    <script src="/admin/js/custom-chart.js" type="text/javascript"></script>
+
+    <!-- <script src="/admin/js1/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/admin/js1/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js1/vendors/select2.min.js"></script>
+    <script src="/admin/js1/vendors/perfect-scrollbar.js"></script>
+    <script src="/admin/js1/vendors/jquery.fullscreen.min.js"></script>
+    <script src="/admin/js1/vendors/chart.js"></script> -->
+    <!-- Main Script -->
+    <!-- <script src="/admin/js1/main.js" type="text/javascript"></script>
+    <script src="/admin/js1/custom-chart.js" type="text/javascript"></script> -->
+
+
+</body>
+
+</html>

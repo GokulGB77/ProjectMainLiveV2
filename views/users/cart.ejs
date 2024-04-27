@@ -1,0 +1,466 @@
+<%- include('../layouts/header.ejs') %>
+<style>
+    .quantity {
+        display: flex;
+        align-items: center;
+    }
+
+    .quantity input[type="text"] {
+        width: 40px;
+        /* Adjust width as needed */
+        text-align: center;
+    }
+
+    .minus-btn,
+    .plus-btn {
+        background-color: #ccc;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .minus-btn:hover,
+    .plus-btn:hover {
+        background-color: #aaa;
+    }
+</style>
+
+    <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+        <!--addd to class for padding - "breadcrumb-padding-1"-->
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h2>Cart</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><i class="ti-angle-right"></i></li>
+                    <li>Cart</li>
+                </ul>
+            </div>
+        </div>
+        <div class="breadcrumb-img-1">
+            <img src="/user/images/banner/breadcrumb-1.png" alt="">
+        </div>
+        <div class="breadcrumb-img-2">
+            <img src="/user/images/banner/breadcrumb-2.png" alt="">
+        </div>
+    </div>
+    <div class="cart-area pt-100 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#">
+                        <div class="cart-table-content">
+                            <div class="table-content table-responsive">
+                                <table>
+                                    <% if (!cart || cart.cartProducts.length===0) { %>
+                                        <tr style="height: 300px;">
+                                            <td colspan="6" style="text-align: center;">
+                                                <h3>Your cart is empty</h3>
+                                            </td>
+                                        </tr>
+                                        <% } else { %>
+                                            <thead>
+                                                <tr>
+                                                    <th class="width-thumbnail"></th>
+                                                    <th class="width-name">Product</th>
+                                                    <th class="width-price"> Price</th>
+                                                    <th class="width-quantity">Quantity</th>
+                                                    <th class="width-subtotal">Subtotal</th>
+                                                    <th class="width-remove"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                                <% cart.cartProducts.forEach(product=> { %>
+                                                    <tr id="product_<%=product.product._id%>">
+                                                        <div id="'product_' + <%= product.product._id %>">
+
+                                                            <td class="product-thumbnail">
+                                                                <% if (product.product.images &&
+                                                                    product.product.images.length> 0) { %>
+                                                                    <a href="/product-details?id=<%= product._id %>">
+                                                                        <img src="/productAssets/<%= product.product.images[0] %>"
+                                                                            alt="product.product.productName">
+                                                                    </a>
+                                                                    <% } else { %>
+                                                                        <!-- Provide a default image or handle the absence of images -->
+                                                                        <img src="/path/to/default/image.jpg"
+                                                                            alt="Default Image">
+                                                                        <% } %>
+                                                            </td>
+
+                                                            <td class="product-name">
+                                                                <h5><a href="/product-details?id=<%=product._id %>">
+                                                                        <%= product.product.productName %>
+                                                                    </a></h5>
+                                                            </td>
+                                                            <td class="product-cart-price">
+                                                                <% if(product.product.productOffer !==0 ||
+                                                                    product.product.categoryOffer !==0){ %>
+                                                                    <span class="amount">
+                                                                        ₹ <%= product.product.offerPrice %>
+                                                                    </span>
+                                                                    <% } else { %>
+                                                                        <span class="amount">
+                                                                            ₹ <%= product.product.productPrice %>
+                                                                        </span>
+                                                                        <% } %>
+                                                            </td>
+
+                                                            <td class="cart-quality">
+
+
+                                                                <div class="quantity">
+                                                                    <button class="minus-btn"
+                                                                        onclick="decreaseQuantity('<%=product.product._id%>', '<%=cart._id%>')">-</button>
+                                                                    <input type="text"
+                                                                        id="quantity_<%=product.product._id%>" min="1"
+                                                                        max="5" value="<%=product.quantity%>">
+                                                                    <button class="plus-btn"
+                                                                        onclick="increaseQuantity('<%=product.product._id%>', '<%=cart._id%>')">+</button>
+                                                                </div>
+
+
+
+
+
+                                                            </td>
+
+                                                            <td class="product-total"
+                                                                id="subtotal_<%= product.product._id %>">
+                                                                <% if (product.product.productOffer !==0 ||
+                                                                    product.product.categoryOffer !==0) { %>
+                                                                    <span>₹ <%= (product.product.offerPrice *
+                                                                            product.quantity).toFixed(2) %></span>
+                                                                    <% } else { %>
+                                                                        <span>₹ <%= (product.product.productPrice *
+                                                                                product.quantity).toFixed(2) %></span>
+                                                                        <% } %>
+                                                            </td>
+
+
+                                                            <td class="product-remove">
+                                                                <button
+                                                                    style="border: none; background: none; padding: 0; cursor: pointer;"
+                                                                    onclick="removeProduct('<%= product.product._id %>','<%=cart._id%>')"><lord-icon
+                                                                        src="https://cdn.lordicon.com/skkahier.json"
+                                                                        trigger="hover" delay="1000"
+                                                                        style="width:30px;height:30px">
+                                                                    </lord-icon></button>
+                                                            </td>
+                                                        </div>
+                                                    </tr>
+                                                    <% }); %>
+                                                        <% } %>
+                                            </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+
+                        <% if (cart.cartProducts.length===0) { %>
+
+                            <% } else { %>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="cart-shiping-update-wrapper">
+                                            <div class="cart-shiping-update btn-hover">
+                                                <a href="shop/:1">Continue Shopping</a>
+                                            </div>
+                                            <div class="cart-clear-wrap">
+                                                <!--   -->
+                                                <div class="cart-clear btn-hover">
+                                                    <a href="/cart/remove-all-products?id=<%=cart._id%>">Clear Cart</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-12 col-12 offset-lg-8">
+                <div class="grand-total-wrap">
+                    <div class="grand-total-content">
+                        <h3 id="cart-total">Subtotal: <span id="cart-total-value">₹ <%=cart.cartTotal.toLocaleString()%>
+                            </span></h3>
+
+                        <div class="grand-shipping">
+                            <span>Shipping</span>
+                            <ul>
+                                <li><input type="radio" name="shipping" value="info" checked="checked"><label>Shipping:
+                                        ₹ 500</label></li>
+                                
+                            </ul>
+                        </div>
+                        
+                        <div class="grand-total">
+                            <h3 id="total">Total: <span id="total-value">₹ <%=Total.toLocaleString()%></span></h3>
+                        </div>
+
+                    </div>
+                    <div class="grand-total-btn btn-hover">
+                        <a class="btn theme-color" href="/checkout?id=<%=cart._id%>">Proceed to checkout</a>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+
+    <!-- Increase/Decerase Update Cart -->
+    <script>
+        function decreaseQuantity(productId, cartId) {
+            var quantityInput = document.getElementById('quantity_' + productId);
+            var currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+                updateCart(productId, cartId, currentValue - 1);
+                $.toast({
+                    heading: 'Success',
+                    text: 'Product Quantity Decreased',
+                    showHideTransition: 'slide',
+                    position: 'top-center',
+                    icon: 'success'
+                });
+            } else {
+                $.toast({
+                    heading: 'Error',
+                    text: 'Minimum one quantity is required',
+                    showHideTransition: 'slide',
+                    position: 'top-center',
+                    icon: 'error'
+                });
+            }
+        }
+
+        function increaseQuantity(productId, cartId) {
+            var quantityInput = document.getElementById('quantity_' + productId);
+            var currentValue = parseInt(quantityInput.value);
+            var maxQuantity = 5; // Maximum quantity limit
+
+            if (currentValue < maxQuantity) {
+                var newQuantity = currentValue + 1;
+
+                // First, check if the product has enough stock quantity
+                fetch('/cart/check-product-stock', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        productId: productId,
+                        quantity: newQuantity
+                    })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.enoughStock) {
+                            // If enough stock available, proceed with updating the cart
+                            updateCart(productId, cartId, newQuantity);
+                            $.toast({
+                                heading: 'Success',
+                                text: 'Product Quantity Increased',
+                                showHideTransition: 'slide',
+                                position: 'top-center',
+                                icon: 'success'
+                            });
+                        } else {
+                            // If not enough stock available, show an error message
+                            $.toast({
+                                heading: 'Error',
+                                text: 'Not Enough Stock Available',
+                                showHideTransition: 'slide',
+                                position: 'top-center',
+                                icon: 'error'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('There was a problem checking product stock:', error);
+                    });
+            } else {
+                $.toast({
+                    heading: 'Error',
+                    text: 'Maximum quantity limit reached',
+                    showHideTransition: 'slide',
+                    position: 'top-center',
+                    icon: 'error'
+                });
+            }
+        }
+
+
+        function updateCart(productId, cartId, newQuantity) {
+            // First, check if the product has enough stock quantity
+            fetch('/cart/check-product-stock', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    productId: productId,
+                    quantity: newQuantity
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.enoughStock) {
+                        // If enough stock available, proceed with updating the cart
+                        fetch('/cart/update-cart-quantity', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                productId: productId,
+                                cartId: cartId,
+                                quantity: newQuantity
+                            })
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                // Update the quantity input value
+                                var quantityInput = document.getElementById('quantity_' + productId);
+                                quantityInput.value = newQuantity;
+
+                                // Update the subtotal for the specific product
+                                var productSubtotal = document.getElementById('subtotal_' + productId);
+                                productSubtotal.textContent = '₹ ' + (data.productSubtotal).toLocaleString();
+
+                                // Update the total cart value
+                                var cartTotalValue = document.getElementById('cart-total-value');
+                                cartTotalValue.textContent = '₹ ' + data.cartTotal.toLocaleString();
+                                var TotalValue = document.getElementById('total-value');
+                                TotalValue.textContent = '₹ ' + data.Total.toLocaleString();
+
+                                console.log('Cart updated successfully:', data);
+                            })
+                            .catch(error => {
+                                console.error('There was a problem updating the cart:', error);
+                            });
+                    } else {
+                        // If not enough stock available, show an error message
+                        $.toast({
+                            heading: 'Error',
+                            text: 'Not enough stock available for this product.',
+                            showHideTransition: 'slide',
+                            position: 'top-center',
+                            icon: 'error'
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem checking product stock:', error);
+                });
+        }
+
+
+
+    </script>
+
+    <!-- Product remove from cart -->
+    <script>
+        function removeProduct(productId, cartId) {
+            fetch('/cart/remove-cart-product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    productId: productId,
+                    cartId: cartId
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Product removed successfully
+                        $.toast({
+                            heading: 'Product Removed',
+                            text: 'Product Removed From Cart',
+                            position: 'top-center',
+                            showHideTransition: 'slide',
+                            icon: 'info'
+                        });
+                        // If removal is successful, remove the product from the DOM
+                        var productElement = document.querySelector(`tr[id="product_${productId}"]`)
+                        if (productElement) {
+                            productElement.remove();
+
+                            // Update subtotal and cart total
+                            updateCartTotals();
+                            response.json().then(data => {
+                                if (data.cartProductsCount === 0) {
+                                    let clearCartButton = document.querySelector('.cart-clear');
+                                    if (clearCartButton) {
+                                        clearCartButton.click();
+                                    }
+                                }
+                            })
+
+                        }
+                    }
+                })
+                .catch(error => console.error('Error removing product:', error));
+        }
+
+
+
+        function updateCartTotals() {
+            fetch('/cart/get-cart-totals', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+
+                    var cartTotalValue = document.getElementById('cart-total-value');
+                    cartTotalValue.textContent = '₹ ' + data.cartTotal.toLocaleString();
+
+                    var totalValue = document.getElementById('total-value');
+                    totalValue.textContent = '₹ ' + data.Total.toLocaleString();
+
+
+                    // Update the subtotal for each product
+                    data.cartProducts.forEach(product => {
+                        var productSubtotal = document.getElementById('subtotal_' + product.product._id);
+                        productSubtotal.textContent = '₹ ' + (product.product.productPrice * product.quantity).toFixed(2);
+                    });
+
+                    console.log('Cart totals updated successfully:', data);
+                })
+                .catch(error => {
+                    console.error('There was a problem updating the cart totals:', error);
+                });
+        }
+    </script>
+
+   
+
+    <%- include('../layouts/footer.ejs') %>

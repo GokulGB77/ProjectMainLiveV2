@@ -1,0 +1,1141 @@
+<%- include('../layouts/header.ejs') %>
+
+<section>
+    <div >
+        <div class="cart-area pt-100 pb-100" >
+            <div class="container" >
+                <div class="row justify-content-center" style="margin-bottom:50px ;" >
+                    <div class="col-md-10" style="border: 1px solid #c2c2c2; padding: 45px; border-radius: 10px; box-shadow: 0 0 10px rgba(92, 91, 91, 0.5);">
+                        <h2  style="font-weight: 400; font-size: 28px; line-height: 36px;">Order Details</h2>
+                        <span>Ordered on <%= orderDetails.orderDate %> |&nbsp; Order #<%= orderDetails.orderId %></span>
+    
+                        <div class="order-details-box" style="margin-top: 20px; padding-bottom: none;">
+    
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="shipping-info">
+                                        <h5 class="order-details-heading" >Shipping Address
+                                        </h5>
+    
+                                        <h6
+                                            style="list-style: none; color: #000; word-wrap: break-word;margin: 0; font-size: 14px">
+                                            <%= orderDetails.address.name %>,
+                                        </h6>
+                                        <h6
+                                            style="list-style: none; color: #000; word-wrap: break-word;margin: 0; font-size: 14px">
+                                            <%= orderDetails.address.house %>, <%= orderDetails.address.street %>,
+                                        </h6>
+                                        <h6
+                                            style="list-style: none; color: #000; word-wrap: break-word;margin: 0; font-size: 14px">
+                                            <%= orderDetails.address.city %> - <%= orderDetails.address.pincode %>
+                                        </h6>
+                                        <h6
+                                            style="list-style: none; color: #000; word-wrap: break-word;margin: 0; font-size: 14px">
+                                            <%= orderDetails.address.state %>
+                                        </h6>
+                                        <h6
+                                            style="list-style: none; color: #000; word-wrap: break-word;margin: 0; font-size: 14px">
+                                            <%= orderDetails.address.country %>
+                                        </h6>
+                                    </div>
+                                    <div class="payment-info">
+                                        <h5 class="order-details-heading" >Order Status
+                                        </h5>
+                                        <% if ( orderDetails.orderStatus==="pending" ) { %>
+                                            <span class="badge badge-pill badge-primary badge-sm" >
+                                                Soon To Be Delivered</span>
+                                            <% } else if (orderDetails.orderStatus==="cancelled" ) { %>
+                                                <span class="badge badge-pill badge-danger badge-sm">
+                                                    Cancelled</span>
+                                                <% } else if (orderDetails.orderStatus==="delivered" ) { %>
+                                                    <span class="badge badge-pill badge-sm badge-success">                                                                               
+                                                        Delivered</span>
+                                                    <% } else if (orderDetails.orderStatus==="return-requested" ) { %>
+                                                        <span class="badge badge-pill badge-info badge-sm">
+                                                            Return Intitated</span>
+                                                    <% } else if (orderDetails.orderStatus==="returned" ) { %>
+                                                        <span class="badge badge-pill badge-info badge-sm">
+                                                            Returned</span>
+                                                        <% } %>
+                                    </div>
+    
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="payment-info">
+                                        <h5 class="order-details-heading" >Payment Methods
+                                        </h5>
+                                        <% if ( orderDetails.paymentMethod=="cod" ) { %>
+                                            <h6
+                                                style="list-style: none; color: #000; word-wrap: break-word;margin: 0; font-size: 14px">
+                                                Pay on Delivery</h6>
+    
+                                            <% } else { %>
+                                                <h6
+                                                    style="list-style: none; color: #000; word-wrap: break-word;margin: 0; font-size: 14px">
+                                                    Razorpay</h6>
+                                                <% } %>
+                                    </div>
+    
+    
+                                </div>
+                                <style>
+                                    .order-details-heading {
+                                        font-weight: 700; 
+                                        font-size: 14px; 
+                                        line-height: 20px;
+                                    }
+                                    .order-details-text{
+                                        list-style: none; 
+                                        color: #000; 
+                                        word-wrap: break-word;
+                                        margin-top: 5px;
+                                        margin-left: 0; 
+                                        margin-right: 0; 
+                                        margin-bottom: 0; 
+                                        font-size: 14px
+                                    }
+                                </style>
+                                <div class="col-md-3">
+                                    <div class="order-summary">
+                                        <h5 class="order-details-heading" >Order Summary</h5>
+                                        <h6 class="order-details-text">
+                                            Item(s) Subtotal: &#8377; <%=( orderDetails.orderTotal).toLocaleString() %>
+                                        </h6>
+                                        <% if (orderDetails.couponDiscount!==0){%>
+                                        <h6 class="order-details-text">
+                                            Coupon Applied: <%= orderDetails.couponApplied %>
+                                        </h6>
+                                        <h6 class="order-details-text">
+                                            Coupon Discount: &#8377; <%=( orderDetails.couponDiscount).toLocaleString() %>
+                                        </h6>
+                                        <%}%>
+                                        <!-- <h6
+                                            style="list-style: none; color: #000; word-wrap: break-word;margin-top: 5px; font-size: 14px">
+                                            Shipping: &#8377;500</h6>
+                                        <h6
+                                            style="list-style: none; color: #000; word-wrap: break-word;margin-top: 5px; font-size: 14px">
+                                            Total: &#8377;<%= (orderDetails.orderTotal + 500).toLocaleString() %>
+                                        </h6>
+                                        <h6
+                                            style="list-style: none; color: #000; word-wrap: break-word;margin-top: 5px; font-size: 14px">
+                                            Promotion Applied: -&#8377; 500</h6> -->
+                                        <h6 class="order-details-text"
+                                            style="list-style: none; color: #000; font-weight: 700; word-wrap: break-word;margin-top: 10px; font-size: 14px">
+                                            Grand Total: &#8377; <%= (orderDetails.orderTotal ).toLocaleString() %>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+                        </div>
+                        <div class="order-details-box" style="margin-top: 20px; ">
+                            <div>
+                                <div>
+                                    <h2
+                                        style="padding-bottom: 0;padding-top: 0; font-weight: 700; font-size: 18px; line-height: 24px;">
+                                        <%= (orderDetails.orderProducts.length ) %> Shipments
+                                    </h2>
+                                </div>
+                                <div class="cancel-button" style="height: 50px;">
+                                    <% let showCancelButton = true; %>
+                                    <% let showReturnButton = true; %>
+                                    
+                                    <% for (const orderProduct of orderDetails.orderProducts) { %>
+                                      <% if (orderProduct.orderStatus !== 'cancelled') { %>
+                                        <% showCancelButton = false; %>
+                                      <% } %>
+                                      <% if (orderProduct.orderStatus !== 'delivered') { %>
+                                        <% showReturnButton = false; %>
+                                      <% } %>
+                                    <% } %>
+                                    
+                                    <% if (orderDetails.orderStatus === 'pending' && showCancelButton) { %>
+                                      <button onclick="showPopup()" class="cancel-button-button">Cancel this delivery</button>
+                                    <% } else if (orderDetails.orderStatus === 'delivered' && showReturnButton) { %>
+                                      <button onclick="showPopupForReturn()" class="cancel-button-button" id="returnBtn">Return this delivery</button>
+                                    <% } else if (orderDetails.orderStatus === 'payment-failed') { %>
+                                      <button onclick="continuePayment('<%= orderDetails.orderId%>')" class="cancel-button-button" id="retryPaymentBtn">Continue Payment</button>
+                                    <% } %>
+                                </div>
+                                <script>
+                                   const continuePayment = async (orderId) => {
+                                try {
+                                    const response = await fetch('/continue-payment', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ orderId })
+                                    });
+
+                                    const data = await response.json();
+
+                                    console.log("Server Response:", data);
+
+                                    if (data.error) {
+                                    swal({
+                                        title: "Error",
+                                        text: data.error,
+                                        icon: "error",
+                                        button: "OK"
+                                    });
+                                    } else {
+                                    const { key_id, order_id, cartDetails, selectedAddress, name, email, mobile } = data;
+
+                                    const options = {
+                                        "key": key_id,
+                                        "amount": cartDetails.cartTotal * 100,
+                                        "currency": "INR",
+                                        "name": "CouchCart",
+                                        "image": "https://dummyimage.com/600x400/000/fff",
+                                        "order_id": order_id,
+                                        "handler": function (response) {
+                                        // alert("Payment Successful")
+                                        window.location.href = `/place-order?id=${orderId}`
+                                        },
+                                        "prefill": {
+                                        "contact": mobile,
+                                        "name": name,
+                                        "email": email,
+                                        },
+                                        "notes": {
+                                        "description": cartDetails,
+                                        },
+                                        "theme": {
+                                        "color": "#2300a3"
+                                        }
+                                    };
+
+                                    const razorpayObject = new Razorpay(options);
+                                    razorpayObject.open();
+                                    }
+                                } catch (error) {
+                                    console.error('There was an error!', error);
+                                    if (error.message === 'Network response was not ok') {
+                                    alert('An error occurred while processing the request. Please try again.');
+                                    } else {
+                                    alert('An unexpected error occurred. Please check the console for more details.');
+                                    }
+                                }
+                                };
+                                </script>
+                                <% if(orderDetails.orderStatus=="delivered") {%>
+                                    <a href="/order/invoice?id=<%= orderDetails._id%>" class="download-button" style="float: right; margin-left: 10px;"  target="_blank">
+                                        <i class="fas fa-download"></i> Download Invoice
+                                      </a>
+                                    <% } %>
+                                
+                                
+                            </div>
+                            <% orderDetails.orderProducts.forEach((item,index)=> { %>
+                                <div class="ordered-products">
+                                    <div class="shipment-item">
+                                        <% if(item.ordeStatus) {%>
+                                        <% if (item.orderStatus==="cancelled" ) { %>
+                                            <h5
+                                                style="margin-bottom: 0;color: #c01717;font-size:18px;font-weight: 700; margin-bottom: 10px;">
+                                                Order Cancelled</h5>
+                                            <% } else if (item.orderStatus==="pending" ) { %>
+    
+                                                <h5
+                                                    style="margin-bottom: 0;color: #007600;font-size:18px;font-weight: 700; margin-bottom: 10px;">
+                                                    Arriving Soon...</h5>
+                                                    
+                                                <% } else if (item.orderStatus==="delivered" ) { %>
+                                                    <h5
+                                                        style="margin-bottom: 0;color: #007600;font-size:18px;font-weight: 700; margin-bottom: 10px;">
+                                                        Product Delivered</h5>
+                                                    <% } else if(item.orderStatus==="payment-failed" ) { %>
+                                                        <h5
+                                                        style="margin-bottom: 0;color: #cc0000;font-size:18px;font-weight: 700; margin-bottom: 10px;">
+                                                        Payment Pending</h5>        
+                                                        <% } %>
+                                                    <% } %>
+    
+                                                        <div class="product-info-actions-container">
+                                                            <div class="product-info ">
+                                                                <a href="/product-details?id=<%= item.product._id %>">
+                                                                    <img src="/productAssets/<%=item.product.images[0] %>"
+                                                                        alt="<%= item.product.productName %>">
+                                                                </a>
+                                                                <div class="product-details col-lg-8" style="padding: -5%;">
+                                                                    <h5 >
+                                                                        <a  style="color: 007185;"
+                                                                            href="/product-details?id=<%=item.product._id %>">
+                                                                            <%= item.product.productName %> 
+                                                                        </a>
+                                                                        
+                                                                    
+                                                                    </h5>
+                                                                    
+                                                                    <p>&#8377;<%= (item.price).toLocaleString() %> x <%=
+                                                                                item.quantity%> qty
+                                                                    </p>
+                                                                    <p>Total Amount: &#8377;
+                                                                        <%=(item.totalPrice).toLocaleString() %>
+                                                                    </p>
+                                                                    <div class="product-details " >
+                                                                        
+                                                                            <%   if (item.orderStatus==="cancelled" ) { %>
+                                                                                <span class="badge badge-pill badge-danger badge-sm">
+                                                                                    Cancelled</span>
+                                                                                <% } else if (item.orderStatus==="delivered" ) { %>
+                                                                                    <span class="badge badge-pill badge-sm badge-success">                                                                               
+                                                                                        Delivered</span>
+                                                                                <% } else if (item.orderStatus==="payment-failed"  ) { %>
+                                                                                    <span class="badge badge-pill badge-sm badge-danger">                                                                               
+                                                                                        Payment Failed</span>
+                                                                                <% } else if (item.orderStatus==="payment-pending"  ) { %>
+                                                                                    <span class="badge badge-pill badge-sm badge-danger">                                                                               
+                                                                                        Payment Pending</span>
+                                                                                    <% } else if (item.orderStatus==="return-requested" ) { %>
+                                                                                        <span class="badge badge-pill badge-info badge-sm">
+                                                                                            Return Intitated</span>
+                                                                                    <% } else if (item.orderStatus==="returned" ) { %>
+                                                                                        <span class="badge badge-pill badge-info badge-sm">
+                                                                                            Returned</span>
+                                                                                        <% } %>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="actions ">
+                                                                <div class="button-container">
+                                                                    <% if ((orderDetails.orderStatus == "pending" || orderDetails.orderStatus == "order-shipped") &&
+                                                                    ( (item.orderStatus !== "cancelled" && item.orderStatus != "return-requested" )|| item.orderStatus == "pending" || item.orderStatus == "order-shipped" || item.orderStatus == "payment-failed" ||  item.orderStatus == "payment-pending")) { %>
+                                                                <button onclick="showPopupForCancelOne()"
+                                                                        data-value1="<%= item.product._id %>"
+                                                                        data-value2="<%= orderDetails._id %>"
+                                                                        class="cancel-button-button cancelOneBtn">
+                                                                    Cancel this product
+                                                                </button>
+                                                            <% } %>
+                                                            
+    
+                                                                            <% if( (orderDetails.orderStatus=="delivered") && (item.orderStatus!=="cancelled" && item.orderStatus!=="return-requested" && item.orderStatus!=="returned"    )) {%>
+    
+                                                                                <button onclick="showPopupForReturnOne()" 
+                                                                                    data-value1="<%= item.product._id %>"
+                                                                                    data-value2="<%= orderDetails._id %>"
+                                                                                    class="cancel-button-button returnOneBtn "
+                                                                                    id="returnOneBtn">Return
+                                                                                    this product</button>
+    
+                                                                                <!-- <button>Leave product Review</button> -->
+    
+                                                                                <% } %>
+                                                                                    <!-- <% if(
+                                                                                        orderDetails.orderStatus=="cancelled"
+                                                                                        ) {%>
+                                                                                        <button>Archive order</button>
+                                                                                        <% } %> -->
+    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                    </div>
+                                    <% }) %>
+                                </div>
+        <!-- Cancel One  Popup -->
+        <div id="popupCancelOne" class="popupCancelOne" style="z-index: 1500; ;">
+            <div class="popup-content">
+                <div class="main-pcontent">
+        
+                    <div class="cancelOneReason" style="display: flex; flex-direction: column;">
+                        <p>Are you sure you want to cancel this delivery?
+                        </p>
+                        <div class="form-row">
+                            <div class="option-list">
+                                <select id="cancelOneReason" name="cancelOneReason" onchange="checkReasonForCancelOne()"
+                                    style="width:280px">
+                                    <option selected hidden disabled value="">Reason for
+                                        Cancellation
+                                    </option>
+                                    <option value="Delayed delivery">Delayed delivery
+                                    </option>
+                                    <option value="Wrong item">Wrong item
+                                    </option>
+                                    <option value="Changed mind">Changed mind
+                                    </option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label style="display: none;" id="cancelOneAddReasonLabel" for="cancelOneAddReason">Additional
+                            Reason:</label>
+                        <textarea style="display: none;" id="cancelOneAddReason" name="cancelOneAddReason" rows="4"
+                            cols="40"></textarea>
+                    </div>
+        
+                </div>
+                <br>
+                <br>
+                <div style="display: flex; justify-content:end; gap: 15px;">
+                    <button class="confirm-button" style="width: 60px;" onclick="closePopupCancelOne()">Close</button>
+                    <button class="confirm-cancel-one" id="confirm-cancel-one">Confirm
+                        Cancel</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cancel One Script -->
+        <script>
+            function saveIdSession(productId, orderId) {
+                localStorage.setItem('productId', productId);
+                localStorage.setItem('orderId', orderId);
+    
+    
+    
+            }
+            function showPopupForCancelOne() {
+                document.getElementById('popupCancelOne').style.display = 'block';
+    
+                var cancelBtn = event.target; // Get the button element that triggered the event
+                var value1 = cancelBtn.dataset.value1;
+                var value2 = cancelBtn.dataset.value2;
+                console.log("value1:", value1)
+                console.log("value2:", value2)
+    
+                var confirmCancelButton = document.getElementById('confirm-cancel-one');
+                confirmCancelButton.dataset.productId = value1;
+                confirmCancelButton.dataset.orderId = value2;
+            }
+    
+            function checkReasonForCancelOne() {
+                let selectElement2 = document.getElementById("cancelOneReason");
+                let additionalReasonLabel2 = document.getElementById("cancelOneAddReasonLabel")
+                let additionalReasonField2 = document.getElementById("cancelOneAddReason");
+    
+                if (selectElement2.value === "Other") {
+                    additionalReasonLabel2.style.display = "block";
+                    additionalReasonField2.style.display = "block";
+                    additionalReasonField2.required = true;
+                } else {
+                    additionalReasonLabel2.style.display = "none";
+    
+                    additionalReasonField2.style.display = "none";
+                    additionalReasonField2.required = false;
+                }
+            }
+    
+            function closePopupCancelOne() {
+                document.getElementById('popupCancelOne').style.display = 'none';
+                var dropdown = document.getElementById('cancelOneReason');
+                dropdown.selectedIndex = 0; // Select the first option (hidden placeholder)
+    
+            }
+    
+            document.querySelectorAll('.confirm-cancel-one').forEach(button => {
+                button.addEventListener('click', function () {
+    
+                    let cancelOneConfirmBtn = event.target
+                    productId = cancelOneConfirmBtn.dataset.productId.trim()
+                    orderId = cancelOneConfirmBtn.dataset.orderId.trim()
+                    // console.log("value1:", productId)
+                    // console.log("value2:", orderId)
+                    confirmCancelOne(orderId, productId);
+                });
+            });
+    
+            async function confirmCancelOne(orderId, productId) {
+                let reason = document.getElementById("cancelOneReason").value;
+                additionalReason = document.getElementById("cancelOneAddReason").value || "";
+                if (!reason) {
+                    $.toast({
+                        heading: 'Select Reason for Cancellation',
+                        position: 'top-center',
+                        showHideTransition: 'slide',
+                        icon: 'info'
+                    })
+    
+                    // if (reason === "other") {
+                    //     if (!additionalReason) {
+                    //         $.toast({
+                    //             heading: 'Explain Reason for Cancellation',
+                    //             position: 'top-center',
+                    //             showHideTransition: 'slide',
+                    //             icon: 'info'
+                    //         })
+                    //     }
+                } else {
+                    // let orderId = document.getElementById("confirm-cancel").getAttribute("data-order-id");
+                    console.log('Cancelling one orderorder:', orderId, "product:", productId);
+    
+                    await fetch(`/cancel-one-order`, {
+                        method: 'POST',
+                        body: JSON.stringify({ orderId, productId, reason, additionalReason }),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+    
+                            sessionStorage.setItem('oneOrderCancelled', 'true');
+    
+                            window.location.reload();
+    
+                        }
+    
+                    })
+    
+                    closePopup();
+    
+                }
+            }
+            window.onload = function () {
+                if (sessionStorage.getItem('oneOrderCancelled') === 'true') {
+                    $.toast({
+                        heading: 'One Order Cancelled',
+                        position: 'top-center',
+                        showHideTransition: 'slide',
+                        icon: 'success'
+                    });
+                    sessionStorage.removeItem('oneOrderCancelled');
+                }
+            };
+    
+        </script>
+        
+        
+        
+        <!-- Return all popup start -->
+        <div id="popupReturn" class="popupReturn" style="z-index: 1500; ">
+            <div class="popup-content">
+                <div class="main-pcontent">
+        
+                    <div class="returnReason" style="display: flex; flex-direction: column;">
+                        <p>Are you sure you want to Return this delivery?
+                        </p>
+                        <div class="form-row">
+                            <div class="option-list">
+                                <select id="returnReason" name="returnReason" onchange="checkReasonForReturn()"
+                                    style="width:280px">
+                                    <option selected hidden disabled value="">Reason for
+                                        Return
+                                    </option>
+                                    <option value="Item Defective">Item Defective
+                                    </option>
+                                    <option value="Wrong item Recieved">Wrong item Recieved
+                                    </option>
+                                    <option value="Size Incorrect">Size Incorrect
+                                    </option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label style="display: none;" id="additionalReturnReasonLabel" for="additionalReturnReason">Additional
+                            Reason:</label>
+                        <textarea style="display: none;" id="additionalReturnReason" name="additionalReturnReason" rows="4"
+                            cols="40"></textarea>
+                    </div>
+        
+                </div>
+                <br>
+                <br>
+                <div style="display: flex; justify-content:end; gap: 15px;">
+                    <button class="confirm-button" style="width: 60px;" onclick="closePopupForReturn()">Close</button>
+                    <button class="confirm-return" id="confirm-return" data-returnOrder-id="<%= orderDetails._id %>">Confirm
+                        Return</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Return all script -->
+        <script>
+            function showPopupForReturn() {
+                document.getElementById('popupReturn').style.display = 'block';
+    
+            }
+    
+            function closePopupForReturn() {
+                document.getElementById('popupReturn').style.display = 'none';
+                var dropdown = document.getElementById('returnReason');
+                dropdown.selectedIndex = 0; // Select the first option (hidden placeholder)
+            }
+    
+            document.querySelectorAll('.confirm-return').forEach(button => {
+                button.addEventListener('click', function () {
+                    const orderId = this.getAttribute('data-returnOrder-id');
+                    confirmReturn(orderId);
+                });
+            });
+    
+            function checkReasonForReturn() {
+                let returnReasonSelected = document.getElementById("returnReason");
+                let additionalReasonLabel = document.getElementById("additionalReturnReasonLabel")
+    
+                let additionalReturnReasonField = document.getElementById("additionalReturnReason");
+    
+                if (returnReasonSelected.value === "Other") {
+                    additionalReasonLabel.style.display = "block";
+                    additionalReturnReasonField.style.display = "block";
+                    additionalReturnReasonField.required = true;
+                } else {
+                    additionalReasonLabel.style.display = "none";
+                    additionalReturnReasonField.style.display = "none";
+                    additionalReturnReasonField.required = false;
+                }
+            }
+    
+            function confirmReturn() {
+                let returnReason = document.getElementById("returnReason").value;
+                additionalReason = document.getElementById("additionalReturnReason").value || "";
+                if (!returnReason) {
+                    $.toast({
+                        heading: 'Select Reason for Return',
+                        position: 'top-center',
+                        showHideTransition: 'slide',
+                        icon: 'info',
+                        stack: 0
+                    })
+    
+                    // } else if (reason === "other") {
+                    //     if (!additionalReason) {
+                    //         $.toast({
+                    //             heading: 'Explain Reason for Cancellation',
+                    //             position: 'top-center',
+                    //             showHideTransition: 'slide',
+                    //             icon: 'info'
+                    //         })
+                    //     }
+                } else {
+                    let orderId = document.getElementById("confirm-return").getAttribute("data-returnOrder-id");
+                    console.log('Returning order:', orderId);
+    
+                    fetch('/return-order?orderId=<%=orderDetails._id %>', {
+                        method: 'POST',
+                        body: JSON.stringify({ orderId: orderId, reason: returnReason, additionalReason: additionalReturnReason }),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }).then(response => {
+                        console.log("Order returned db and response came");
+                        if (response.ok) {
+                            sessionStorage.setItem('orderReturn', 'true');
+    
+                            window.location.reload();
+                        }
+                    })
+    
+                    closePopupForReturn();
+    
+                }
+            }
+    
+            window.onload = function () {
+                if (sessionStorage.getItem('orderReturn') === 'true') {
+                    $.toast({
+                                heading: 'Order Return Initiated',
+                                position: 'top-center',
+                                showHideTransition: 'slide',
+                                icon: 'success'
+                            })
+                    sessionStorage.removeItem('orderReturn');
+                }
+            };
+    
+    
+        </script>
+        
+        
+        <!-- For return one popup -->
+        <div id="popupReturnOne" class="popupReturnOne popup" style="z-index: 1500; ;">
+            <div class="popup-content">
+                <div class="main-pcontent">
+        
+                    <div class="returnOneReason" style="display: flex; flex-direction: column;">
+                        <p>Are you sure you want to Return this delivery?
+                        </p>
+                        <div class="form-row">
+                            <div class="option-list">
+                                <select id="returnOneReason" name="returnOneReason" onchange="checkReasonForReturnOne()"
+                                    style="width:280px">
+                                    <option selected hidden disabled value="">Reason for
+                                        Return
+                                    </option>
+                                    <option value="Delayed delivery">Delayed delivery
+                                    </option>
+                                    <option value="Wrong item">Wrong item
+                                    </option>
+                                    <option value="Changed mind">Changed mind
+                                    </option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label style="display: none;" id="returnOneAddReasonLabel" for="returnOneAddReason">Additional
+                            Reason:</label>
+                        <textarea style="display: none;" id="returnOneAddReason" name="returnOneAddReason" rows="4"
+                            cols="40"></textarea>
+                    </div>
+        
+                </div>
+                <br>
+                <br>
+                <div style="display: flex; justify-content:end; gap: 15px;">
+                    <button class="confirm-button" style="width: 60px;" onclick="closePopupReturnOne()">Close</button>
+                    <button class="confirm-return-one" id="confirm-return-one">Confirm
+                        Return</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Return one script -->
+        <script>
+    
+            function showPopupForReturnOne() {
+                document.getElementById('popupReturnOne').style.display = 'block';
+    
+                var returnBtn = event.target; // Get the button element that triggered the event
+                var value1 = returnBtn.dataset.value1;
+                var value2 = returnBtn.dataset.value2;
+                // console.log("value1:", value1)
+                // console.log("value2:", value2)
+    
+                var confirmReturnButton = document.getElementById('confirm-return-one');
+                confirmReturnButton.dataset.productId = value1;
+                confirmReturnButton.dataset.orderId = value2;
+            }
+    
+            function checkReasonForReturnOne() {
+                let selectElement2 = document.getElementById("returnOneReason");
+                let additionalReasonLabel2 = document.getElementById("returnOneAddReasonLabel")
+                let additionalReasonField2 = document.getElementById("returnOneAddReason");
+    
+                if (selectElement2.value === "Other") {
+                    additionalReasonLabel2.style.display = "block";
+                    additionalReasonField2.style.display = "block";
+                    additionalReasonField2.required = true;
+                } else {
+                    additionalReasonLabel2.style.display = "none";
+    
+                    additionalReasonField2.style.display = "none";
+                    additionalReasonField2.required = false;
+                }
+            }
+    
+            function closePopupReturnOne() {
+                document.getElementById('popupReturnOne').style.display = 'none';
+                var dropdown = document.getElementById('returnOneReason');
+                dropdown.selectedIndex = 0; // Select the first option (hidden placeholder)
+    
+            }
+    
+            document.querySelectorAll('.confirm-return-one').forEach(button => {
+                button.addEventListener('click', function () {
+    
+                    let returnOneConfirmBtn = event.target
+                    productId = returnOneConfirmBtn.dataset.productId.trim()
+                    orderId = returnOneConfirmBtn.dataset.orderId.trim()
+                    // console.log("value1:", productId)
+                    // console.log("value2:", orderId)
+                    confirmReturnOne(orderId, productId);
+                });
+            });
+    
+            async function confirmReturnOne(orderId, productId) {
+                let reason = document.getElementById("returnOneReason").value;
+                additionalReason = document.getElementById("returnOneAddReason").value || "";
+                if (!reason) {
+                    $.toast({
+                        heading: 'Select Reason for Return',
+                        position: 'top-center',
+                        showHideTransition: 'slide',
+                        icon: 'info'
+                    })
+    
+    
+                } else {
+                    console.log('Returning one orderorder:', orderId, "product:", productId);
+    
+                    await fetch(`/return-one-order`, {
+                        method: 'POST',
+                        body: JSON.stringify({ orderId, productId, reason, additionalReason }),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            sessionStorage.setItem('oneOrderReturn', 'true');
+    
+                            window.location.reload();
+                            window.onload = function () {
+                            if (sessionStorage.getItem('oneOrderReturn') === 'true') {
+                                $.toast({
+                                    heading: 'Order Returned',
+                                    position: 'top-center',
+                                    showHideTransition: 'slide',
+                                    icon: 'success'
+                                })
+                                sessionStorage.removeItem('oneOrderReturn');
+                            }
+                        };
+                        }
+    
+                    })
+    
+                    closePopup();
+    
+                }
+            }
+           
+    
+    
+        </script>
+        <!-- Popup for cancellation -->
+        <div id="popup" class="popup" style="z-index: 1500;">
+            <div class="popup-content">
+                <div class="main-pcontent">
+        
+                    <div class="reason" style="display: flex; flex-direction: column;">
+                        <p>Are you sure you want to cancel this delivery?
+                        </p>
+                        <div class="form-row">
+                            <div class="option-list">
+                                <select id="reason" name="reason" onchange="checkReason()" style="width:280px">
+                                    <option selected hidden disabled value="">Reason for
+                                        Cancellation
+                                    </option>
+                                    <option value="delay">Delayed delivery
+                                    </option>
+                                    <option value="wrong">Wrong item
+                                    </option>
+                                    <option value="changed">Changed mind
+                                    </option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label style="display: none;" id="additionalReasonLabel" for="additionalReason">Additional
+                            Reason:</label>
+                        <textarea style="display: none;" id="additionalReason" name="additionalReason" rows="4"
+                            cols="40"></textarea>
+                    </div>
+        
+                </div>
+                <br>
+                <br>
+                <div style="display: flex; justify-content:end; gap: 15px;">
+                    <button class="confirm-button" style="width: 60px;" onclick="closePopup()">Close</button>
+                    <button class="confirm-cancel" id="confirm-cancel" data-order-id="<%= orderDetails._id %>">Confirm
+                        Cancellation</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cancellation All script -->
+        <script>
+            function checkReason() {
+                let selectElement = document.getElementById("reason");
+                let additionalReasonField = document.getElementById("additionalReason");
+    
+                if (selectElement.value === "other") {
+                    additionalReasonLabel.style.display = "block";
+                    additionalReasonField.style.display = "block";
+                    additionalReasonField.required = true;
+                } else {
+                    additionalReasonLabel.style.display = "none";
+    
+                    additionalReasonField.style.display = "none";
+                    additionalReasonField.required = false;
+                }
+            }
+    
+            function showPopup() {
+                document.getElementById('popup').style.display = 'block';
+            }
+    
+            function closePopup() {
+                document.getElementById('popup').style.display = 'none';
+                var dropdown = document.getElementById('reason');
+                dropdown.selectedIndex = 0; // Select the first option (hidden placeholder)
+            }
+    
+    
+            document.querySelectorAll('.confirm-cancel').forEach(button => {
+                button.addEventListener('click', function () {
+                    const orderId = this.getAttribute('data-order-id');
+                    confirmCancellation(orderId);
+                });
+            });
+    
+            function confirmCancellation() {
+                let reason = document.getElementById("reason").value;
+                additionalReason = document.getElementById("additionalReason").value || "";
+                if (!reason) {
+                    $.toast({
+                        heading: 'Select Reason for Cancellation',
+                        position: 'top-center',
+                        showHideTransition: 'slide',
+                        icon: 'info'
+                    })
+    
+                    // } else if (reason === "other") {
+                    //     if (!additionalReason) {
+                    //         $.toast({
+                    //             heading: 'Explain Reason for Cancellation',
+                    //             position: 'top-center',
+                    //             showHideTransition: 'slide',
+                    //             icon: 'info'
+                    //         })
+                    //     }
+                } else {
+                    let orderId = document.getElementById("confirm-cancel").getAttribute("data-order-id");
+                    console.log('Cancelling order:', orderId);
+    
+                    fetch('/cancel-order?orderId=<%=orderDetails._id %>', {
+                        method: 'POST',
+                        body: JSON.stringify({ orderId: orderId, reason: reason, additionalReason: additionalReason }),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }).then(response => {
+                        console.log("Order cancelled db and response came");
+                        if (response.ok) {
+                            sessionStorage.setItem('OrderCancelled', 'true');
+    
+                            window.location.reload();
+                        }
+                    })
+    
+                    closePopup();
+    
+                }
+            }
+            window.onload = function () {
+                if (sessionStorage.getItem('OrderCancelled') === 'true') {
+                    $.toast({
+                        heading: 'Order Cancelled',
+                        position: 'top-center',
+                        showHideTransition: 'slide',
+                        icon: 'success'
+                    })
+                    sessionStorage.removeItem('OrderCancelled');
+                }
+            };
+    
+        </script>
+        
+        
+        <style>
+            .product-info-actions-container {
+                display: grid;
+                grid-template-columns: 5fr 1fr;
+                /* Two columns with equal width */
+                gap: 10px;
+                /* Gap between the columns */
+            }
+        
+            .delivery-status {
+                display: inline-block;
+                padding: 5px 10px;
+                border-radius: 20px;
+                color: #000000;
+                font-size: 12px;
+                margin: 0;
+            }
+        
+            .button-container {
+                display: flex;
+                flex-direction: column;
+            }
+        
+            .button-container button {
+                margin-bottom: 5px;
+            }
+        
+            .order-details-box {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                padding-top: 20px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        
+            .order-details-box h1 {
+                margin-top: 0;
+            }
+        
+            .shipping-info,
+            .payment-info,
+            .order-summary {
+                margin-bottom: 20px;
+            }
+        
+            .ordered-products {
+                margin-top: 30px;
+            }
+        
+            .shipment-item {
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+        
+            .product-info {
+                display: flex;
+                align-items: center;
+            }
+        
+            .product-info img {
+                width: 80px;
+                height: 80px;
+                object-fit: contain;
+                margin-right: 20px;
+            }
+        
+            .product-details {
+                flex-grow: 1;
+            }
+        
+            .actions {
+                display: flex;
+                justify-content: space-between;
+            }
+        
+            .actions button {
+                background-color: #fff;
+                color: #000000;
+                border: 1px solid #606060;
+                padding: 5px 5px;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 210px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        
+            }
+        
+            .cancel-button-button,
+            .confirm-return,
+            .confirm-return-one,
+            .returnOneBtn,
+            .confirm-cancel,
+            .confirm-button,
+            .confirm-cancel-one {
+                background-color: #fff;
+                color: #000000;
+                border: 1px solid #606060;
+                padding: 5px 5px;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 210px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        
+            }
+        
+            .actions button:hover,
+            .cancel-button-button:hover,
+            .confirm-return:hover,
+            .confirm-return-one:hover,
+            .returnOneBtn:hover
+            .confirm-cancel:hover,
+            .confirm-button:hover,
+            .confirm-cancel-one:hover {
+                background-color: #e97730;
+                color: #fff;
+            }
+        
+            .popupCancelOne {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        
+            .popupReturn {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        
+            .popup {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        
+            .popup-content {
+                background-color: white;
+                width: 400px;
+                padding: 20px;
+                border-radius: 10px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        
+            .image-container {
+                display: flex;
+                justify-content: center;
+                /* Horizontally center the image */
+                align-items: center;
+                /* Vertically center the image */
+            }
+        
+            .main-pcontent {
+                display: flex;
+        
+            }
+        
+            .reason,
+            .returnReason,
+            .cancelOne,
+            .cancelOneReason {
+                margin-left: 10px;
+            }
+        
+            .form-row {
+                display: inline-block;
+                margin-bottom: 10px;
+                /* Adjust as needed */
+            }
+        
+        
+        
+            .option-list {
+                display: inline-block;
+                vertical-align: top;
+                /* Align select with the top of the label */
+            }
+        
+            .option-list select {
+                border: 1px solid #ccc;
+                /* Adjust border properties as needed */
+                padding: 5px;
+                /* Optional: Adjust padding for better visual appearance */
+                box-sizing: border-box;
+                /* Ensure padding is included in the width */
+            }
+        </style>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</section>
+   
+
+
+
+
+
+<%- include('../layouts/footer.ejs') %>

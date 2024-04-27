@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/admin/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/admin/css/main.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="#" class="brand-wrap">
+                <img src="/admin/imgs/theme/logo.png" class="logo" alt="Admin Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/dashboard"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/sales-report"> <i class="icon material-icons md-assignment"></i>
+                        <span class="text">Sales Report</span>
+                    </a>
+                </li>
+                <li class="menu-item active ">
+                    <a class="menu-link" href="/admin/user-details?page=1"> <i
+                            class="icon material-icons md-person"></i>
+                        <span class="text">User Details</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/products"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/categories"> <i class="icon material-icons md-category"></i>
+                        <span class="text">Categories</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/orders"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/coupons?page=1"> <i
+                            class="icon material-icons material-icons md-card_giftcard"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/offers?page=1"> <i
+                            class="icon material-icons material-icons md-local_offer"></i>
+                        <span class="text">Offers</span>
+                    </a>
+
+                </li>
+              
+            </ul>
+            <hr>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/logout"> <i class="icon material-icons md-settings"></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <br>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i
+                                class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
+                        class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="/admin/imgs/people/avatar2.jpg" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                    class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">User Details </h2>
+                    <p>View Details or Block User </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row ">
+                        <div class="col-md-12" style="height: 820px;">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+
+                                            <th class="text-center" style="width: 10%;">Sl No.</th>
+                                            <th style="width: 20%;">Name</th>
+                                            <th style="width: 20%;">Email</th>
+                                            <th style="width: 15%;">Mobile</th>
+
+                                            <th style="width: 10%;" class="text-center">Status</th>
+                                            <th style="width: 25%;" class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Loaded using fetch request -->
+
+                                    </tbody>
+                                    <script>
+                                        function attachButtonClickListeners() {
+                                            document.querySelectorAll('.table tbody td button').forEach(button => {
+                                                button.addEventListener('click', async () => {
+                                                    const userId = button.dataset.id;
+                                                    const action = button.dataset.action;
+                                                    const url = `/admin/user-details/change-status?id=${userId}`;
+
+                                                    try {
+                                                        const response = await fetch(url, {
+                                                            method: 'PUT',
+                                                            headers: {
+                                                                'Content-Type': 'application/json'
+                                                            }
+                                                        });
+
+                                                        if (response.ok) {
+                                                            // Reload the user details after successful action
+                                                            fetchUserDetails(data.currentPage);
+                                                        } else {
+                                                            console.error('Failed to perform user action');
+                                                        }
+                                                    } catch (error) {
+                                                        console.error('Error occurred while performing user action:', error);
+                                                    }
+                                                });
+                                            });
+                                        }
+
+                                        // Call the function to attach event listeners after updating the table
+                                        // attachPaginationClickListeners();
+                                        attachButtonClickListeners();
+                                    </script>
+                                </table>
+                            </div>
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination pagination-area mt-30 mb-50 justify-content-center"
+                                    style="width: 1000px;">
+
+                                </ul>
+                            </nav>
+                            <script>
+                                const tableBody = document.querySelector('.table tbody');
+                                const paginationContainer = document.querySelector('.pagination');
+
+                                async function fetchUserDetails(page) {
+                                    const response = await fetch(`/admin/user-details-fetch?page=${page}`);
+                                    const data = await response.json();
+
+                                    if (response.ok) {
+                                        tableBody.innerHTML = '';
+                                        data.users.forEach((item, index) => {
+                                            const row = document.createElement('tr');
+                                            row.innerHTML = `
+                                                <td class="text-center">${index + 1 + (page - 1) * 10}</td>
+                                                <td><b>${item.name}</b></td>
+                                                <td>${item.email}</td>
+                                                <td>${item.mobile}</td>
+                                                <td class="text-center">
+                                                    <span class="badge rounded-pill alert-${item.status === 1 ? 'success' : 'danger'}">
+                                                    ${item.status === 0 ? 'Blocked' : 'Active'}
+                                                    </span>
+                                                </td>
+                                                
+                                               
+
+                                                <td style="width: 10%" class="text-center">
+                                                    <div>
+                                                        <button class="btn ${item.status === 0 ? 'btn-outline-success' : 'btn-outline-danger'}" type="button" onclick="changeStatus('${item._id}', ${item.status})">
+                                                            ${item.status === 0 ? 'Unblock' : 'Block'}
+                                                        </button>
+                                                    </div>
+                                                </td>
+
+
+                                            `;
+                                            tableBody.appendChild(row);
+                                        });
+
+                                        paginationContainer.innerHTML = `
+                                            <ul class="pagination justify-content-center">
+                                            ${data.currentPage > 1 ? `
+                                                <li class="page-item">
+                                                <a class="page-link" href="#" data-page="${data.currentPage - 1}"><</a>
+                                                </li>
+                                            ` : ''}
+
+                                            ${Array.from({ length: data.totalPages }, (_, i) => i + 1).map(pageNum => `
+                                                <li class="page-item ${pageNum === data.currentPage ? 'active' : ''}">
+                                                <a class="page-link" href="#" data-page="${pageNum}">${pageNum}</a>
+                                                </li>
+                                            `).join('')}
+
+                                            ${data.currentPage < data.totalPages ? `
+                                                <li class="page-item">
+                                                <a class="page-link" href="#" data-page="${data.currentPage + 1}">></a>
+                                                </li>
+                                            ` : ''}
+                                            </ul>
+                                        `;
+
+                                        attachPaginationClickListeners();
+                                    } else {
+                                        console.error('Failed to fetch user details');
+                                    }
+                                }
+                                function changeStatus(id, currentStatus) {
+                                    let newStatus = currentStatus === 1 ? 1 : 0; // Toggle the status
+                                    let route = `/admin/user-details/change-status?id=${id}&status=${newStatus}`;
+                                    location.href = route;
+                                }
+
+
+                                function attachPaginationClickListeners() {
+                                    document.querySelectorAll('.pagination .page-link').forEach(link => {
+                                        link.addEventListener('click', async (e) => {
+                                            e.preventDefault();
+                                            const page = e.target.dataset.page;
+                                            fetchUserDetails(page);
+                                        });
+                                    });
+                                }
+
+                                // Initial fetch
+                                fetchUserDetails(1);
+                            </script>
+                        </div> <!-- .col// -->
+                    </div> <!-- .row // -->
+                </div> <!-- card body .// -->
+            </div> <!-- card .// -->
+        </section> <!-- content-main end// -->
+        <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> ©, Evara - HTML Ecommerce Template .
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="/admin/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/admin/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/vendors/select2.min.js"></script>
+    <script src="/admin/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/admin/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="/admin/js/main.js" type="text/javascript"></script>
+</body>
+
+</html>

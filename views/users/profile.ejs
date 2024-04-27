@@ -1,0 +1,1234 @@
+<%- include('../layouts/header.ejs') %>
+
+
+    <!-- my account wrapper start -->
+    <div class="my-account-wrapper pb-100 pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- My Account Page Start -->
+                    <div class="myaccount-page-wrapper">
+                        <!-- My Account Tab Menu Start -->
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4">
+                                <div class="myaccount-tab-menu nav" role="tablist">
+                                    <!-- <a href="/profile" class="active" id="dashboard-menu"
+                                        data-bs-toggle="tab">Dashboard</a> -->
+                                    <a href="#account-info" class="active" id="myprofile-menu" data-bs-toggle="tab">My
+                                        Profile</a>
+                                    <a href="#address-edit" id="address-menu" data-bs-toggle="tab">Address</a>
+                                    <a href="#change-password" id="cpassword-menu" data-bs-toggle="tab">Change
+                                        Password</a>
+                                    <a href="#orders" id="orders-menu" data-bs-toggle="tab">Orders</a>
+                                    <!-- <a href="#download" id="download" data-bs-toggle="tab">Download</a> -->
+                                    <a href="#wallet" id="wallet-menu" data-bs-toggle="tab">Wallet</a>
+                                    <a href="/logout">Logout</a>
+                                </div>
+                            </div>
+                            <!-- My Account Tab Menu End -->
+                            <!-- My Account Tab Content Start -->
+                            <div class="col-lg-9 col-md-8">
+                                <div class="tab-content" id="myaccountContent">
+                                    <!-- My Profile Tab Content Start -->
+                                    <div class="tab-pane fade " id="dashboad" role="tabpanel">
+                                        <div class="myaccount-content">
+                                            <h3>My Profile</h3>
+                                            <div class="welcome">
+                                                <p>Hello, <strong>
+                                                        <%=currentUser.name%>
+                                                    </strong> (If Not <strong>
+                                                        <%=currentUser.name.split(" ")[0]%> !</strong><a href=" /logout"
+                                                            class="logout"> Logout</a>)</p>
+                                            </div>
+
+                                            <p class="mb-0">From your account dashboard. you can easily check & view
+                                                your recent orders, manage your shipping and billing addresses and edit
+                                                your password and account details.</p>
+                                        </div>
+                                    </div>
+                                    <!-- My Profile Tab Content End -->
+                                    <!-- Orders Tab Content Start -->
+                                    <div class="tab-pane fade" id="orders" role="tabpanel">
+                                        <div class="myaccount-content" style="height: 660px;">
+                                            <h3>Orders</h3>
+                                            <div class="myaccount-table table-responsive text-center">
+                                                <% if(orderDetails.length!==0) { %>
+                                                    <table class="table table-bordered">
+                                                        <thead class="thead-light">
+                                                            <tr class="text-center">
+                                                                <th>Sl No.</th>
+                                                                <th>Order ID</th>
+                                                                <th>Date</th>
+                                                                <th>Status</th>
+                                                                <th>Total</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% orderDetails.forEach((order,index)=> { %>
+                                                                <tr class="text-center">
+                                                                    <td>
+                                                                        <%= index + 1%>
+                                                                    </td>
+                                                                    <td><a href="/order-details?id=<%=order._id%>"
+                                                                            class="check-btn sqr-btn">
+                                                                            <%= order.orderId %>
+                                                                        </a></td>
+                                                                    <td>
+                                                                        <%= order.orderDate %>
+                                                                    </td>
+                                                                    <% if(order.orderStatus === 'payment-failed') { %>
+                                                                        <td class="red-text" >
+                                                                            <%= order.orderStatus %>
+                                                                        </td>
+                                                                    <% } %>
+                                                                    <% if(order.orderStatus === 'pending') { %>
+                                                                        <td class="orange-text" >
+                                                                            <%= order.orderStatus %>
+                                                                        </td>
+                                                                    <% } %>
+                                                                    <% if(order.orderStatus === 'delivered') { %>
+                                                                        <td class="green-text" >
+                                                                            <%= order.orderStatus %>
+                                                                        </td>
+                                                                    <% } %>
+                                                                    <% if(order.orderStatus === 'return-requested' || order.orderStatus === 'returned' ) { %>
+                                                                        <td class="green-text" >
+                                                                            <%= order.orderStatus %>
+                                                                        </td>
+                                                                    <% } %>
+                                                                    <% if(order.orderStatus === 'cancelled' ) { %>
+                                                                        <td class="brown-text" >
+                                                                            <%= order.orderStatus %>
+                                                                        </td>
+                                                                    <% } %>
+                                                                    
+                                                                    <style>
+                                                                        .red-text {
+                                                                            color: rgb(221, 0, 0);
+                                                                        }
+                                                                        .orange-text {
+                                                                            color: orange;
+                                                                        }
+                                                                        .green-text {
+                                                                            color: green;
+                                                                        }
+                                                                        .blue-text {
+                                                                            color: rgb(0, 0, 172);
+                                                                        }
+                                                                        .brown-text {
+                                                                            color: brown;
+                                                                        }
+
+                                                                    </style>
+                                                                    
+                                                                    <td>&#8377 <%= (order.orderTotal).toLocaleString()
+                                                                            %>
+                                                                    </td>
+                                                                    <td><a href="/order-details?id=<%=order._id%>"
+                                                                            class="check-btn sqr-btn">View</a></td>
+                                                                </tr>
+                                                                <% }); %>
+                                                        </tbody>
+                                                    </table>
+                                                    <br>
+                                                    <div class="mt-10">
+                                                        <form action="/profile#orders" method="GET" class="pagination-form" onsubmit="handlePagination(event)">
+                                                            <div class="pagination-controls d-flex justify-content-between align-items-center mb-4">
+                                                              <label for="page-select" class="mb-0" style="padding-left: 580px;">Page:</label>
+                                                              <select name="page" id="page-select" class="form-select" style=" width: 10%;">
+                                                                <% for (let i = 1; i <= totalPages; i++) { %>
+                                                                <option value="<%= i %>" <%= currentPage === i ? 'selected' : '' %>><%= i %></option>
+                                                                <% } %>
+                                                              </select>
+                                                              <button type="submit" class="btn" style=" margin-right: 10px;  background-color: #e97730; color: #ffffff;">Go</button>
+                                                            </div>
+                                                          </form>
+                                                    </div>
+                                                    
+                                                    <% } else {%>
+                                                        <h4>No Orders Found</h4>
+                                                        <% } %>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <script>
+                                        function handlePagination(event) {
+                                            event.preventDefault(); // Prevent the default form submission
+
+                                            const pageSelect = document.getElementById('page-select');
+                                            const selectedPage = pageSelect.value;
+
+                                            // Make the AJAX request to fetch the order data for the selected page
+                                            fetch(`/profile1?page=${selectedPage}`, {
+                                                method: 'GET',
+                                            })
+                                                .then((response) => response.json())
+                                                .then((data) => {
+                                                    // Update the order details table with the new data
+                                                    updateOrdersTable(data.orderDetails);
+                                                    updatePaginationControls(data.currentPage, data.totalPages);
+                                                })
+                                                .catch((error) => {
+                                                    console.error('Error fetching order data:', error);
+                                                });
+                                        }
+
+                                        function updateOrdersTable(orderDetails) {
+                                            const tableBody = document.querySelector('#orders tbody');
+                                            tableBody.innerHTML = '';
+
+                                            orderDetails.forEach((order, index) => {
+                                                const row = document.createElement('tr');
+                                                row.classList.add('text-center');
+
+                                                const slNo = document.createElement('td');
+                                                slNo.textContent = index + 1;
+
+                                                const orderId = document.createElement('td');
+                                                const orderIdLink = document.createElement('a');
+                                                orderIdLink.href = `/order-details?id=${order._id}`;
+                                                orderIdLink.classList.add('check-btn', 'sqr-btn');
+                                                orderIdLink.textContent = order.orderId;
+                                                orderId.appendChild(orderIdLink);
+
+                                                const orderDate = document.createElement('td');
+                                                orderDate.textContent = order.orderDate;
+
+                                                const orderStatus = document.createElement('td');
+
+                                                if (order.orderStatus === 'payment-failed') {
+                                                orderStatus.textContent = order.orderStatus;
+                                                orderStatus.classList.add('red-text');
+                                                } else if (order.orderStatus === 'pending') {
+                                                orderStatus.textContent = order.orderStatus;
+                                                orderStatus.classList.add('orange-text');
+                                                } else if (order.orderStatus === 'delivered') {
+                                                orderStatus.textContent = order.orderStatus;
+                                                orderStatus.classList.add('green-text');
+                                                } else if (order.orderStatus === 'return-requested' || order.orderStatus === 'returned') {
+                                                orderStatus.textContent = order.orderStatus;
+                                                orderStatus.classList.add('green-text');
+                                                } else if (order.orderStatus === 'cancelled') {
+                                                orderStatus.textContent = order.orderStatus;
+                                                orderStatus.classList.add('brown-text');
+                                                } else {
+                                                orderStatus.textContent = order.orderStatus;
+                                                }
+
+                                                const orderTotal = document.createElement('td');
+                                                orderTotal.textContent = `₹ ${order.orderTotal.toLocaleString()}`;
+
+                                                const action = document.createElement('td');
+                                                const actionLink = document.createElement('a');
+                                                actionLink.href = `/order-details?id=${order._id}`;
+                                                actionLink.classList.add('check-btn', 'sqr-btn');
+                                                actionLink.textContent = 'View';
+                                                action.appendChild(actionLink);
+
+                                                row.appendChild(slNo);
+                                                row.appendChild(orderId);
+                                                row.appendChild(orderDate);
+                                                row.appendChild(orderStatus);
+                                                row.appendChild(orderTotal);
+                                                row.appendChild(action);
+
+                                                tableBody.appendChild(row);
+                                            });
+                                        }
+
+                                        function updatePaginationControls(currentPage, totalPages) {
+                                            const paginationSelect = document.getElementById('page-select');
+                                            paginationSelect.innerHTML = '';
+
+                                            for (let i = 1; i <= totalPages; i++) {
+                                                const option = document.createElement('option');
+                                                option.value = i;
+                                                option.textContent = i;
+                                                option.selected = i === currentPage;
+                                                paginationSelect.appendChild(option);
+                                            }
+                                        }
+                                    </script>
+
+                                    <!-- Orders Tab Content End -->
+
+                                    <!-- Download Tab Content Start -->
+                                    <div class="tab-pane fade" id="download" role="tabpanel">
+                                        <div class="myaccount-content">
+                                            <h3>Downloads</h3>
+                                            <div class="myaccount-table table-responsive text-center">
+                                                <table class="table table-bordered">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>Product</th>
+                                                            <th>Date</th>
+                                                            <th>Expire</th>
+                                                            <th>Download</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Haven - Free Real Estate PSD Template</td>
+                                                            <td>Aug 22, 2022</td>
+                                                            <td>Yes</td>
+                                                            <td><a href="#" class="check-btn sqr-btn "><i
+                                                                        class="fa fa-cloud-download"></i> Download
+                                                                    File</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>HasTech - Profolio Business Template</td>
+                                                            <td>Sep 12, 2022</td>
+                                                            <td>Never</td>
+                                                            <td><a href="#" class="check-btn sqr-btn "><i
+                                                                        class="fa fa-cloud-download"></i> Download
+                                                                    File</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Download Tab Content End -->
+
+                                    <!-- Wallet Tab Content Start -->
+                                    <div class="tab-pane fade" id="wallet" role="tabpanel">
+                                        <div class="myaccount-content">
+                                            <h3>Wallet</h3>
+                                            <div class="wallet-section">
+                                                <div class="wallet-balance">
+                                                    <h5>Current Balance :
+                                                        <% if (wallet) { %>
+                                                            ₹ <%= wallet.balance%>
+                                                                <%} else {%>
+                                                                    ₹ 0
+                                                                    <% } %>
+                                                    </h5>
+
+                                                </div>
+                                                <br>
+                                                <div class="wallet-actions">
+
+                                                    <button class="btn btn-primary"
+                                                        style="background-color: #e97730; border-color: #e97730;">Add
+                                                        Funds</button>
+                                                    <button class="btn btn-secondary">Withdraw Funds</button>
+                                                </div>
+                                                <br>
+                                                <hr>
+                                                <div class="wallet-transactions">
+                                                    <h5>Recent Transactions</h5>
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Date</th>
+                                                                <th>Description</th>
+                                                                <th>Amount</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% 
+                                                            // Sort transactions by createdAt date in descending order
+                                                            const sortedTransactions = wallet.transactions.sort((a, b) => {
+                                                                return new Date(b.createdAt) - new Date(a.createdAt);
+                                                            });
+                                                            
+                                                            // Iterate through sorted transactions
+                                                            sortedTransactions.forEach(transaction => {
+                                                                const dateStr = transaction.createdAt;
+                                                                const date = new Date(dateStr);
+                                                                const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+                                                                const formattedTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+                                                            %>
+                                                            <tr>
+                                                                <td><%= formattedDate %></td>
+                                                                <td><%= transaction.description %></td>
+                                                                <% if (transaction.type.includes("Debit")) { %>
+                                                                    <td> - <%= transaction.amount %></td>
+                                                                <% } else { %>
+                                                                    <td> + <%= transaction.amount %></td>
+                                                                <% } %>
+                                                            </tr>
+                                                            <% }) %> 
+                                                        </tbody>
+                                                        
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Wallet Tab Content End -->
+
+                                    <!-- Address Tab Content Start -->
+                                    <div class="tab-pane fade" id="address-edit" role="tabpanel">
+                                        <% if (addresslist.length < 4) { %>
+                                            <div class="row">
+                                                <div class="myaccount-content col-lg-6" style="border: none;">
+                                                    <button id="addAddressButton" class="btn btn-primary"
+                                                        style="font-size: 14px; padding: 5px 10px; background-color: #e97730; border-color: #e97730;"><i
+                                                            class="fa fa-plus"></i> Add Address</button>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                                <div class="tab-pane fade show active" id="address-content"
+                                                    role="tabpanel">
+                                                    <div class="row">
+                                                        <% addresslist.forEach(function(address, index) { %>
+                                                            <div class="col-md-6 ">
+                                                                <div class="myaccount-content">
+                                                                    <h5>
+                                                                        Address <%= index + 1 %>
+                                                                            <%if(address.setDefault===true) { %> | <span
+                                                                                    class="default-pill">Default</span>
+                                                                                <% } %>
+                                                                                    <style>
+                                                                                        .default-pill {
+                                                                                            background-color: green;
+                                                                                            color: white;
+                                                                                            padding: 3px 6px;
+                                                                                            border-radius: 10px;
+                                                                                            font-size: small;
+                                                                                        }
+                                                                                    </style>
+                                                                    </h5>
+                                                                    <div class="row address-details">
+                                                                        <div class="col-md-8">
+                                                                            <p><strong>Type:</strong>
+                                                                                <%= address.type %>
+                                                                            </p>
+                                                                            <p><strong>Name:</strong>
+                                                                                <%= address.name %>
+                                                                            </p>
+                                                                            <p><strong>House:</strong>
+                                                                                <%= address.house %>
+                                                                            </p>
+                                                                            <p><strong>Street:</strong>
+                                                                                <%= address.street %>
+                                                                            </p>
+                                                                            <p><strong>City:</strong>
+                                                                                <%= address.city %>
+                                                                            </p>
+                                                                            <p><strong>State:</strong>
+                                                                                <%= address.state %>
+                                                                            </p>
+                                                                            <p><strong>Mobile:</strong>
+                                                                                <%= address.mobile %>
+                                                                            </p>
+                                                                            <p><strong>Pincode:</strong>
+                                                                                <%= address.pincode %>
+                                                                            </p>
+                                                                        </div>
+                                                                        <!-- Edit/Delete Address Button -->
+                                                                        <div
+                                                                            class="col-md-4 d-flex flex-column justify-content-center align-items-center">
+                                                                            <a href="#"
+                                                                                class="btn btn-danger edit-address-btn"
+                                                                                data-address-id="<%= address._id %>"
+                                                                                style="font-size: 14px; padding: 5px 10px;background-color: #e97730;">Edit</a>
+                                                                            <br>
+                                                                            <br>
+                                                                            <a href="/profile/delete-address?id=<%= address._id %>"
+                                                                                class="btn btn-danger delete-btn"
+                                                                                style="font-size: 14px; padding: 5px 10px;">Delete</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <% }); %>
+                                                                <script>
+                                                                    document.querySelector('.delete-btn').addEventListener('click', function (event) {
+                                                                        event.preventDefault();
+                                                                        const confirmation = confirm('Are you sure you want to delete this item?');
+                                                                        if (confirmation) {
+                                                                            window.location.href = this.getAttribute('href');
+                                                                        }
+                                                                    });
+                                                                </script>
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- Edit Address button click event script-->
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', function () {
+                                                        const editAddressButtons = document.querySelectorAll('.edit-address-btn');
+
+                                                        editAddressButtons.forEach(function (button) {
+                                                            button.addEventListener('click', function (event) {
+                                                                event.preventDefault();
+
+                                                                // Get the address ID from the data attribute
+                                                                const addressId = button.dataset.addressId;
+
+                                                                // Redirect to the edit address page with the address ID
+                                                                window.location.href = '/profile/edit-address?id=' + addressId;
+                                                            });
+                                                        });
+                                                    });
+                                                </script>
+
+                                                <style>
+                                                    .address-details p {
+                                                        margin-bottom: 5px;
+                                                        /* Adjust as needed */
+                                                    }
+                                                </style>
+                                    </div>
+                                    <!-- Address Tab Content End -->
+
+                                    <!-- Show Add address Modal Script -->
+                                    <script>
+                                        document.getElementById('addAddressButton').addEventListener('click', function () {
+                                            // Show the modal popup
+                                            $('#addAddressModal').modal('show');
+                                        });
+                                    </script>
+
+                                    <!-- Add address Modal  -->
+                                    <div id="addAddressModal" class="modal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Add New Address</h4>
+                                                    <button type="button" class="close"
+                                                        data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <!-- Modal Body -->
+                                                <div class="modal-body">
+                                                    <!-- Form for adding a new address -->
+                                                    <form id="addAddressForm" action="/profile/add-address"
+                                                        method="post">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                id="setDefault" name="setDefault" value=true>
+                                                            <label class="form-check-label" for="setDefault">Make this
+                                                                my default address</label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="type">Address Type:</label>
+                                                            <div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        id="home" name="type" value="Home" checked>
+                                                                    <label class="form-check-label"
+                                                                        for="home">Home</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        id="office" name="type" value="Office">
+                                                                    <label class="form-check-label"
+                                                                        for="office">Office</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <input type="text" hidden class="form-control"
+                                                                id="addressId" name="addressId">
+                                                            <label for="name">Name:</label>
+                                                            <input type="text" class="form-control" id="addname"
+                                                                name="addname" required pattern="[A-Za-z ]{1,20}"
+                                                                title="Name should be max 20 characters, and contain only letters and spaces">
+                                                        </div>
+                                                        <br>
+                                                        <input type="text" value="<%=currentUserId%>" hidden
+                                                            class="form-control" id="user" name="user">
+                                                        <div class="form-group">
+                                                            <label for="house">House:</label>
+                                                            <input type="text" class="form-control" id="house"
+                                                                name="house" required maxlength="20"
+                                                                title="House should be max 20 characters">
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label for="street">Street:</label>
+                                                            <input type="text" class="form-control" id="street"
+                                                                name="street" required maxlength="20"
+                                                                title="Street should be max 20 characters">
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label for="city">City:</label>
+                                                            <input type="text" class="form-control" id="city"
+                                                                name="city" required maxlength="16"
+                                                                title="City should be max 16 characters">
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label for="state">State:</label>
+                                                            <input type="text" class="form-control" id="state"
+                                                                name="state" required maxlength="16"
+                                                                title="State should be max 16 characters">
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label for="mobile">Mobile:</label>
+                                                            <input type="text" class="form-control" id="mobile"
+                                                                name="mobile" required pattern="[0-9]{10}"
+                                                                min="0000000000" max="9999999999"
+                                                                title="Mobile number should be 10 digits">
+                                                        </div>
+                                                        <br>
+
+                                                        <div class="form-group">
+                                                            <label for="pincode">Pincode:</label>
+                                                            <input type="number" class="form-control" id="pincode"
+                                                                name="pincode" required min="000000" max="999999"
+                                                                title="Pincode should be 6 digits">
+                                                        </div>
+
+                                                        <br>
+                                                        <!-- Submit button -->
+                                                        <button type="submit" class="btn btn-primary"
+                                                            style="font-size: 14px; padding: 5px 10px; background-color: #e97730;">Add
+                                                            Address</button>
+
+                                                        <a href="/profile#address" class="btn btn-secondary"
+                                                            style=" font-size: 14px; padding: 5px 10px;background-color: #e97730;">Back</a>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Add/Delete address toast Script -->
+                                    <script>
+                                        $(document).ready(function () {
+                                            // Check if success parameter exists in URL and if the message has not been shown yet
+                                            const urlParams = new URLSearchParams(window.location.search);
+                                            const success = urlParams.get('deleted');
+                                            const added = urlParams.get('added');
+                                            const removedAddressToast = sessionStorage.getItem('removedAddressToast');
+
+                                            if (success === 'true' && !removedAddressToast) {
+                                                // Display toast message for success
+                                                $.toast({
+                                                    heading: 'Success',
+                                                    text: 'Address Removed',
+                                                    showHideTransition: 'slide',
+                                                    position: 'top-center',
+                                                    icon: 'success'
+                                                });
+                                                // Set session storage to indicate that the message has been shown
+                                                sessionStorage.setItem('removedAddressToast', 'true');
+                                                setTimeout(() => {
+                                                    sessionStorage.setItem('removedAddressToast', 'null');
+                                                }, 60000);
+
+                                            }
+                                            const addedAddressSuccess = sessionStorage.getItem('addedAddressSuccess');
+                                            if (added === 'true' && !addedAddressSuccess) {
+                                                // Display toast message for success
+                                                $.toast({
+                                                    heading: 'Success',
+                                                    text: 'New Address Added',
+                                                    showHideTransition: 'slide',
+                                                    position: 'top-center',
+                                                    icon: 'success'
+                                                });
+                                                sessionStorage.setItem('addedAddressSuccess', 'true');
+                                                setTimeout(() => {
+                                                    sessionStorage.setItem('addedAddressSuccess', 'null');
+                                                }, 60000);
+
+
+                                            }
+                                        });
+                                    </script>
+
+                                    <!-- Account Details Start -->
+                                    <div class="tab-pane fade show active" id="account-info" role="tabpanel">
+
+                                        <div class="myaccount-content">
+                                            <h3>Account Details</h3>
+                                            <div class="welcome">
+                                                <p>Hello, <strong>
+                                                        <%=currentUser.name%>
+                                                    </strong> (If Not <strong>
+                                                        <%=currentUser.name.split(" ")[0]%> !</strong><a href=" /logout"
+                                                            class="logout"> Logout</a>)</p>
+                                            </div>
+
+                                            <div>
+                                                <p class="mb-0">From your account dashboard. you can easily check & view
+                                                    your recent orders, manage your shipping and billing addresses and
+                                                    edit
+                                                    your password and account details.</p>
+                                                <br>
+                                                <br>
+                                            </div>
+                                            <div class="account-details-form">
+                                                <form action="/update-user-details?id=<%=currentUser._id%>"
+                                                    method="post" onsubmit="return validateForm()">
+
+                                                    <div class="single-input-item">
+                                                        <label for="display-name" class="required">Name</label>
+                                                        <input type="text" oninput="validateName()" name="name"
+                                                            value="<%=currentUser.name%>" id="name" />
+                                                        <span id="nameErrorMessage" style="color: red;"></span>
+
+                                                    </div>
+                                                    <div class="single-input-item">
+                                                        <label for="email">Email Address</label>
+                                                        <input type="email" value="<%=currentUser.email%>" disabled
+                                                            id="email" />
+                                                        <p style="color: red;">Email Cannot Be Changed!</p>
+                                                    </div>
+                                                    <style>
+                                                        /* Style for disabled input */
+                                                        #email {
+                                                            background-color: #d3d1d1;
+                                                            /* Light gray background */
+                                                            border: 1px solid #ccc;
+                                                            /* Light gray border */
+                                                            cursor: not-allowed;
+                                                            /* Change cursor to indicate that it cannot be edited */
+                                                        }
+                                                    </style>
+                                                    <div class="single-input-item">
+                                                        <label for="mobile" class="required">Mobile</label>
+                                                        <input type="mobile" oninput="validateMobile()" name="newMobile"
+                                                            value="<%=currentUser.mobile%>" id="newMobile" />
+                                                        <span id="mobileErrorMessage" style="color: red;"></span>
+
+                                                    </div>
+
+                                                    <div class="single-input-item btn-hover">
+                                                        <button class="check-btn sqr-btn">Save Changes</button>
+                                                    </div>
+                                                </form>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        // Check if success parameter exists in URL and if the message has not been shown yet
+                                                        const urlParams = new URLSearchParams(window.location.search);
+                                                        const success = urlParams.get('success');
+                                                        const alreadyShown = sessionStorage.getItem('toastShown');
+
+                                                        if (success === 'true') {
+                                                            // Display toast message for success
+                                                            $.toast({
+                                                                heading: 'Success',
+                                                                text: 'User Profile updated',
+                                                                showHideTransition: 'slide',
+                                                                position: 'top-center',
+                                                                icon: 'success'
+                                                            });
+
+                                                            // Set session storage to indicate that the message has been shown
+                                                            sessionStorage.setItem('toastShown', 'true');
+
+                                                        }
+                                                    });
+                                                </script>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        // Check if success parameter exists in URL and if the message has not been shown yet
+                                                        const urlParams = new URLSearchParams(window.location.search);
+                                                        const success = urlParams.get('edited');
+                                                        const alreadyShown = sessionStorage.getItem('toastShown');
+
+                                                        if (success === 'true') {
+                                                            // Display toast message for success
+                                                            $.toast({
+                                                                heading: 'Success',
+                                                                text: 'Address Updated Successfully',
+                                                                showHideTransition: 'slide',
+                                                                position: 'top-center',
+                                                                icon: 'success'
+                                                            });
+
+                                                            // Set session storage to indicate that the message has been shown
+                                                            sessionStorage.setItem('toastShown', 'true');
+
+                                                        } else if (success === 'false') {
+                                                            // Display toast message for success
+                                                            $.toast({
+                                                                heading: 'Error',
+                                                                text: 'Address Updation Failed',
+                                                                showHideTransition: 'slide',
+                                                                position: 'top-center',
+                                                                icon: 'success'
+                                                            });
+                                                        }
+                                                    });
+                                                </script>
+
+                                                <script>
+                                                    function validateMobile() {
+                                                        const mobileNumber = document.getElementById('mobile').value;
+                                                        const mobileErrorMessage = document.getElementById('mobileErrorMessage');
+                                                        const mobileRegex = /^[0-9]{10}$/;
+                                                        const allSameRegex = /^(\d)\1+$/;
+
+                                                        if (mobileNumber.trim() === '') {
+                                                            mobileErrorMessage.textContent = 'Mobile number should not be blank';
+                                                        } else if (!/^\d+$/.test(mobileNumber)) {
+                                                            mobileErrorMessage.textContent = 'Mobile number can only contain digits';
+                                                        } else if (/\s/.test(mobileNumber)) {
+                                                            mobileErrorMessage.textContent = 'Mobile number should not contain spaces';
+                                                        } else if (!mobileRegex.test(mobileNumber)) {
+                                                            mobileErrorMessage.textContent = 'Mobile number should be 10 digits';
+                                                        } else if (allSameRegex.test(mobileNumber)) {
+                                                            mobileErrorMessage.textContent = 'All digits in the mobile number should not be the same';
+                                                        } else {
+                                                            mobileErrorMessage.textContent = '';
+                                                        }
+                                                    }
+
+
+                                                    function validateName() {
+                                                        let name = document.getElementById('name').value;
+                                                        const nameErrorMessage = document.getElementById('nameErrorMessage');
+
+                                                        // Remove leading and trailing spaces
+
+
+                                                        // Condition: Should not be all spaces
+                                                        if (name.length === 0) {
+                                                            nameErrorMessage.textContent = 'Name should not be empty or contain only spaces';
+                                                        }
+                                                        // Condition: Should contain only characters and not any special characters
+                                                        else if (!/^[a-zA-Z\s]+$/.test(name)) {
+                                                            nameErrorMessage.textContent = 'Name should contain only letters';
+                                                        }
+                                                        // Condition: All characters shouldn't be the same
+                                                        else if (/^(\w)\1+$/.test(name)) {
+                                                            nameErrorMessage.textContent = 'Name should not contain all same characters';
+                                                        }
+                                                        // Add more conditions for checking if it's a valid name based on specific requirements
+
+                                                        else {
+                                                            // Capitalize the first character and characters after space
+                                                            name = name.replace(/\b\w/g, char => char.toUpperCase());
+                                                            document.getElementById('name').value = name;
+                                                            nameErrorMessage.textContent = ''; // Remove the error message
+                                                        }
+                                                    }
+
+
+                                                    function validateForm() {
+                                                        // Call individual validation functions
+                                                        const isNameValid = validateName();
+                                                        const isMobileValid = validateMobile();
+
+                                                        // Check if all validations pass
+                                                        function validateForm() {
+                                                            // Call individual validation functions
+                                                            const isNameValid = validateName();
+                                                            const isMobileValid = validateMobile();
+
+                                                            // Check if all validations pass
+                                                            if (isNameValid && isMobileValid) {
+                                                                // If all validations pass, return true to allow form submission
+                                                                return true;
+                                                            } else {
+                                                                // If any validation fails, show error toast message and prevent form submission
+                                                                if (!isNameValid && !isMobileValid) {
+                                                                    $.toast({
+                                                                        heading: 'Error',
+                                                                        text: 'Enter Valid Name and Mobile',
+                                                                        showHideTransition: 'fade',
+                                                                        position: 'top-center',
+                                                                        icon: 'error'
+                                                                    });
+                                                                } else if (!isNameValid) {
+                                                                    $.toast({
+                                                                        heading: 'Error',
+                                                                        text: 'Enter Valid Name',
+                                                                        showHideTransition: 'fade',
+                                                                        position: 'top-center',
+                                                                        icon: 'error'
+                                                                    });
+                                                                } else if (!isMobileValid) {
+                                                                    $.toast({
+                                                                        heading: 'Error',
+                                                                        text: 'Enter Valid Mobile',
+                                                                        showHideTransition: 'fade',
+                                                                        position: 'top-center',
+                                                                        icon: 'error'
+                                                                    });
+                                                                }
+                                                                return false; // Prevent form submission
+                                                            }
+                                                        }
+                                                    }
+
+                                                </script>
+
+                                            </div>
+                                        </div>
+                                        <div class="myaccount-content " style="margin-top: 20; ">
+                                            <h5>Refer a friend</h5>
+                                            <hr class="referalHR">
+                                            <% if(!referralCode){ %>
+                                                <button class="generate-link-btn check-btn sqr-btn" id="generateBtn">GENERATE REFERRAL LINK</button>
+                                                <% } else {%>
+                                            <div class="referral-link">
+                                                <span>Your Referral Code: </span>
+                                                <span id="referralCodeSpan" style="color: #e97730; cursor: pointer;" onclick="copyReferralCode('<%= referralCode %>')"><%= referralCode %> 
+                                                    <i class='fas fa-copy'></i></span>
+                                                <a href="http://localhost:3000/register?referral-code=<%= referralCode%>" id="referralLink" target="_blank"></a>
+                                            </div>
+                                            
+                                            <button class="copy-link-btn check-btn sqr-btn" onclick="copyReferralLink()">COPY LINK <i class='fas fa-copy'></i></button>
+                                            <% } %>
+                                        </div>
+                                        <script>
+                                            function copyReferralCode(referralCode) {
+                                                var tempInput = document.createElement("input");
+                                                tempInput.value = referralCode;
+                                                document.body.appendChild(tempInput);
+                                                tempInput.select();
+                                                document.execCommand("copy");
+                                                document.body.removeChild(tempInput);
+                                                $.toast({
+                                                    heading: 'Referral Code Copied',
+                                                    icon: 'success',
+                                                    position:'top-center'
+                                                })                                            }
+                                        </script>
+                                        <script>
+                                            function copyReferralLink() {
+                                                var referralLink = document.getElementById("referralLink");
+                                                var tempInput = document.createElement("input");
+                                                tempInput.value = referralLink.href;
+                                                document.body.appendChild(tempInput);
+                                                tempInput.select();
+                                                document.execCommand("copy");
+                                                document.body.removeChild(tempInput);
+                                                $.toast({
+                                                    heading: 'Referral Link Copied',
+                                                    icon: 'success',
+                                                    position:'top-center'
+                                                })
+                                            }
+                                        </script>
+                                        <script>
+                                            document.getElementById("generateBtn").addEventListener("click", function() {
+                                                const userId = "<%= currentUser._id%>"
+                                                fetch('/admin/generate-referral-code', {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'Content-Type': 'application/json'
+                                                        // Add any other headers if required
+                                                    },
+                                                    // You can pass any necessary data to your backend
+                                                    body: JSON.stringify({ userId })
+                                                })
+                                                .then(response => {
+                                                    if (!response.ok) {
+                                                        throw new Error('Network response was not ok');
+                                                    }
+                                                    window.location.reload()
+                                                    return response.json();
+                                                })
+                                                
+                                                .catch(error => {
+                                                    console.error('There was a problem with the fetch operation:', error);
+                                                });
+                                            });
+                                            </script>
+                                        <style>
+                                            .referalHR {
+                                        
+                                                border: none;
+                                                border-top: 2px dotted rgb(0, 0, 0);
+                                                color: #fff;
+                                                background-color: #fff;
+                                                height: 1px;
+                                                width: 100%;
+                                        
+                                            }
+                                            .referral-link {
+                                                display: flex;
+                                                align-items: center;
+                                                background-color: #f2f2f2;
+                                                border-radius: 4px;
+                                                padding: 8px 12px;
+                                                font-family: Arial, sans-serif;
+                                            }
+
+                                            .referral-link span {
+                                                margin-right: 8px;
+                                                font-weight: bold;
+                                            }
+
+                                            .referral-link a {
+                                                color: #333;
+                                                text-decoration: none;
+                                                margin-right: 8px;
+                                            }
+
+                                            .generate-link-btn {
+                                                margin-top: 10px;
+                                                margin-left: 325px;
+                                                background-color: #e97730;
+                                                color: white;
+                                                border: none;
+                                                border-radius: 4px;
+                                                padding: 6px 12px;
+                                                cursor: pointer;
+                                            }
+                                            .copy-link-btn {
+                                                margin-top: 10px;
+                                                margin-left: 325px;
+                                                background-color: #e97730;
+                                                color: white;
+                                                border: none;
+                                                border-radius: 4px;
+                                                padding: 6px 12px;
+                                                cursor: pointer;
+                                            }
+                                        </style>
+                                        </div>
+                                        <!-- Account Details End -->
+
+                                    <!-- Change Password Start -->
+                                    <div class="tab-pane fade" id="change-password" role="tabpanel">
+                                        <div class="myaccount-content">
+                                            <h3>Change Password</h3>
+                                            <div class="account-details-form">
+                                                <form action="/profile/change-password" method="post">
+                                                    <fieldset>
+                                                        <input type="text" value="<%=currentUserId%>" hidden
+                                                            class="form-control" id="user1" name="user1">
+
+                                                        <div class="single-input-item">
+                                                            <label for="current-pwd" class="required">Current Password</label>
+                                                            <input type="password" id="currentPwd" name="currentPwd" />
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="single-input-item">
+                                                                    <label for="newPwd" class="required">New
+                                                                        Password</label>
+                                                                    <input type="text" id="newPwd" name="newPwd" />
+                                                                    <span id="passwordErrorMessage"
+                                                                        style="color: red;"></span>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="single-input-item">
+                                                                    <label for="confirmPwd" class="required">Confirm
+                                                                        Password</label>
+                                                                    <input type="password" id="confirmPwd"
+                                                                        onchange=" confirmPassword()"
+                                                                        name="confirmPwd" />
+                                                                    <span id="confirmPasswordErrorMessage"
+                                                                        style="color: red;"></span>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                    <div class="single-input-item btn-hover">
+                                                        <button class="check-btn sqr-btn"
+                                                            onclick="return validation()">Save Changes</button>
+                                                    </div>
+                                                </form>
+
+                                                <script>
+
+                                                    function confirmPassword() {
+                                                        let newPassword = document.getElementById("newPwd").value;
+                                                        let confirmPassword = document.getElementById("confirmPwd").value;
+                                                        let confirmPasswordErrorMessage = document.getElementById("confirmPasswordErrorMessage");
+                                                        if (newPassword !== confirmPassword) {
+                                                            confirmPasswordErrorMessage.textContent = 'Password does not match';
+                                                            setTimeout(() => {
+                                                                confirmPasswordErrorMessage.textContent = null;
+                                                            }, 3000); // Hide after 2 seconds
+                                                            return false;
+                                                        }
+                                                        return true;
+                                                    }
+
+                                                    function validatePassword() {
+                                                        console.log('Validating password...'); // Add this line
+
+                                                        const password = document.getElementById('newPwd').value;
+                                                        const passwordErrorMessage = document.getElementById('passwordErrorMessage');
+                                                        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+                                                        if (password.length < 8) {
+                                                            passwordErrorMessage.textContent = 'Password must be at least 8 characters long';
+                                                            return false
+                                                        } else if (/\s/.test(password)) {
+                                                            passwordErrorMessage.textContent = 'Password should not contain spaces';
+                                                            return false
+                                                        } else if (!passwordRegex.test(password)) {
+                                                            passwordErrorMessage.textContent = 'Password should contain at least one lowercase letter, one uppercase letter, one number, and one special character from !@#$%^&*';
+                                                            return false
+                                                        } else {
+                                                            passwordErrorMessage.textContent = null; // Remove the error message
+
+                                                            setTimeout(() => {
+                                                                passwordErrorMessage.textContent = null;
+                                                            }, 3000); // Hide after 2 seconds
+                                                        }
+                                                        return true
+                                                    }
+
+                                                    document.getElementById('newPwd').addEventListener('input', validatePassword);
+
+                                                    document.getElementById('newPwd').addEventListener('focus', function () {
+                                                        document.getElementById('passwordErrorMessage').textContent = null;
+                                                    });
+                                                    function validation() {
+                                                        const newPasswordValid = validatePassword();
+                                                        const confirmPasswordValid = confirmPassword();
+
+                                                        if (!newPasswordValid || !confirmPasswordValid) {
+                                                            $.toast({
+                                                                heading: 'Error',
+                                                                text: 'Fix the errors',
+                                                                showHideTransition: 'slide',
+                                                                position: 'top-center',
+                                                                icon: 'error'
+                                                            });
+                                                            return false;
+                                                        }
+                                                        return true;
+                                                    }
+
+
+                                                </script>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        // Check if success parameter exists in URL and if the message has not been shown yet
+                                                        const urlParams = new URLSearchParams(window.location.search);
+                                                        const success = urlParams.get('updated');
+                                                        const alreadyShown = sessionStorage.getItem('PwdErrToast');
+
+                                                        if (success === 'true' && !alreadyShown) {
+                                                            // Display toast message for success
+                                                            $.toast({
+                                                                heading: 'Success',
+                                                                text: 'Password Updated Successfully',
+                                                                showHideTransition: 'slide',
+                                                                position: 'top-center',
+                                                                icon: 'success'
+                                                            });
+
+                                                            // Set session storage to indicate that the message has been shown
+                                                            sessionStorage.setItem('PwdErrToast', 'true');
+                                                            setTimeout(() => {
+                                                                sessionStorage.setItem('PwdErrToast', 'null')
+                                                            }, 60000)
+                                                        }
+                                                        if (success === 'false') {
+                                                            // Display toast message for success
+                                                            $.toast({
+                                                                heading: 'Error',
+                                                                text: 'Password Updation Failed',
+                                                                showHideTransition: 'slide',
+                                                                position: 'top-center',
+                                                                icon: 'error'
+                                                            });
+                                                        }
+                                                        const samepass = urlParams.get('samepass');
+                                                        if (samepass === 'true') {
+                                                            // Display toast message for success
+                                                            $.toast({
+                                                                heading: 'Error',
+                                                                text: 'New Password cannot be same as Old Password',
+                                                                showHideTransition: 'slide',
+                                                                position: 'top-center',
+                                                                icon: 'error'
+                                                            });
+                                                        }
+                                                        const currentpwd = urlParams.get('currentpwd');
+                                                        if (currentpwd === 'false') {
+                                                            // Display toast message for success
+                                                            $.toast({
+                                                                heading: 'Error',
+                                                                text: 'Entered Current Password Is Incorrect',
+                                                                showHideTransition: 'slide',
+                                                                position: 'top-center',
+                                                                icon: 'error'
+                                                            });
+                                                        }
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <!-- Change Password End -->
+                                </div>
+                            </div> <!-- My Account Tab Content End -->
+                        </div>
+                    </div> <!-- My Account Page End -->
+                </div>
+            </div>
+        </div>
+    </div>\
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1); 
+
+            if (hash === 'orders') {
+                // Activate the desired tab
+                const ordersTab = document.getElementById('orders');
+                const ordersMenu = document.getElementById('orders-menu');
+                const accountInfo = document.getElementById('account-info');
+                const myProfileMenu = document.getElementById('myprofile-menu');
+
+                // Remove active classes from other tabs
+                accountInfo.classList.remove('show', 'active');
+                myProfileMenu.classList.remove('active');
+
+                // Add active classes to the desired tab
+                ordersTab.classList.add('show', 'active');
+                ordersMenu.classList.add('active');
+            }
+            if (hash === 'wallet') {
+                // // Activate the desired tab
+                const walletTab = document.getElementById('wallet');
+                const walletMenu = document.getElementById('wallet-menu');
+                const accountInfo = document.getElementById('account-info');
+                const myProfileMenu = document.getElementById('myprofile-menu');
+
+                // Remove active classes from other tabs
+                accountInfo.classList.remove('show', 'active');
+                myProfileMenu.classList.remove('active');
+
+                // Add active classes to the desired tab
+                walletTab.classList.add('show', 'active');
+                walletMenu.classList.add('active');
+            }
+            if (hash === 'change-password') {
+                // // Activate the desired tab
+                const changePasswordTab = document.getElementById('change-password');
+                const changePasswordMenu = document.getElementById('cpassword-menu');
+                const accountInfo = document.getElementById('account-info');
+                const myProfileMenu = document.getElementById('myprofile-menu');
+
+                // Remove active classes from other tabs
+                accountInfo.classList.remove('show', 'active');
+                myProfileMenu.classList.remove('active');
+
+                // Add active classes to the desired tab
+                changePasswordTab.classList.add('show', 'active');
+                changePasswordMenu.classList.add('active');
+            }
+            if (hash === 'address') {
+                // // Activate the desired tab
+                const addressTab = document.getElementById('address-edit');
+                const addressMenu = document.getElementById('address-menu');
+                const accountInfo = document.getElementById('account-info');
+                const myProfileMenu = document.getElementById('myprofile-menu');
+
+                // Remove active classes from other tabs
+                accountInfo.classList.remove('show', 'active');
+                myProfileMenu.classList.remove('active');
+
+                // Add active classes to the desired tab
+                addressTab.classList.add('show', 'active');
+                addressMenu.classList.add('active');
+            }
+        });
+    </script>
+    <%- include('../layouts/footer.ejs') %>

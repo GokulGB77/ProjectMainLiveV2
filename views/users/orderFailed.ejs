@@ -1,0 +1,87 @@
+<%- include('../layouts/header.ejs') %>
+
+    <body>
+
+
+        <main>
+            <div class="centered-div" style="padding-top: 3%; padding-bottom: 3%;">
+              <div style="border: 1px solid #b1b1b1; padding: 45px; border-radius: 10px; box-shadow: 0 0 10px rgba(92, 91, 91, 0.5);">
+                <strong style="color: #ff4d4d;font-size: xx-large;">&#10060; Order Payment Unsuccessful!</strong>
+                <p>Payment for your order has been failed. Please Try Again from the Pending Orders Page.</p>
+                <ul>
+                  <li><strong>Order ID: <%= orderDetails.orderId %></strong></li>
+                  <li><strong>Order Status: <span style="color: red;"><%= orderDetails.orderStatus %></span></strong></li>
+                  <li><strong>Total Amount: ₹ <%= orderDetails.orderTotal %></strong></li>
+                  <li><strong>Date: <%= orderDetails.orderDate %></strong></li>
+                </ul>
+                <hr>
+                <h5>Products:</h5>
+                <% orderDetails.orderProducts.forEach(item=> { %>
+                <div class="col-md-8">
+                  <div class="product row">
+                    <div class="col-md-4">
+                      <img src="/productAssets/<%= item.product.images[0] %>" alt="Product Image" class="img-fluid" style="max-height: 100px;">
+                    </div>
+                    <div class="col-md-8">
+                      <h6 class="product-title"><%= item.product.productName %></h6>
+                      <span class="product-price">₹ <%= item.price.toFixed(2).toLocaleString() %></span> - / <span class="Quantity"><%= item.quantity %> units</span>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <% }); %>
+                <br>
+                <div class="button-container">
+                  <a href="/order-details?id=">
+                    <button class="continue-shopping-btn">Retry Payment</button>
+                  </a>
+                  <a href="/profile#orders">
+                    <button class="review-orders-btn">Go to orders</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </main>
+          
+          <style>
+            main {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 75vh;
+            }
+          
+            .centered-div {
+              width: 750px;
+            }
+          
+            .button-container {
+              text-align: center;
+              margin-top: 20px;
+            }
+          
+            .continue-shopping-btn, .review-orders-btn {
+              background-color: #e97730;
+              color: #fff;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 5px;
+              text-decoration: none;
+              cursor: pointer;
+              transition: background-color 0.3s;
+            }
+          
+            .continue-shopping-btn:hover, .review-orders-btn:hover {
+              background-color: #d16022;
+            }
+          
+            .continue-shopping-btn a, .review-orders-btn a {
+              color: inherit;
+              text-decoration: none;
+            }
+          </style>
+
+
+    </body>
+
+    <%- include('../layouts/footer.ejs',) %>

@@ -1,0 +1,1021 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/admin/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/admin/css/main.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="#" class="brand-wrap">
+                <img src="/admin/imgs/theme/logo.png" class="logo" alt="Admin Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/dashboard"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/sales-report"> <i class="icon material-icons md-assignment"></i>
+                        <span class="text">Sales Report</span>
+                    </a>
+                </li>
+                <li class="menu-item  ">
+                    <a class="menu-link" href="/admin/user-details?page=1"> <i class="icon material-icons md-person"></i>
+                        <span class="text">User Details</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/products"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/categories"> <i class="icon material-icons md-category"></i>
+                        <span class="text">Categories</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/orders"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/coupons?page=1"> <i
+                            class="icon material-icons material-icons md-card_giftcard"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+
+                </li>
+                <li class="menu-item active">
+                    <a class="menu-link" href="/admin/offers?page=1"> <i
+                            class="icon material-icons material-icons md-local_offer"></i>
+                        <span class="text">Offers</span>
+                    </a>
+
+                </li>
+                <!--                 
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-sellers-cards.html"> <i class="icon material-icons md-store"></i>
+                        <span class="text">Sales</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-sellers-cards.html">Sellers cards</a>
+                        <a href="page-sellers-list.html">Sellers list</a>
+                        <a href="page-seller-detail.html">Seller profile</a>
+                    </div>
+                </li>
+            
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Banners</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-form-product-1.html">Add product 1</a>
+                        <a href="page-form-product-2.html">Add product 2</a>
+                        <a href="page-form-product-3.html">Add product 3</a>
+                        <a href="page-form-product-4.html">Add product 4</a>
+                    </div>
+                </li>
+                  -->
+            </ul>
+            <hr>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/logout"> <i class="icon material-icons md-settings"></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <br>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar ">
+            <div class="col-search">
+                <!-- <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i
+                                class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form> -->
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
+                        class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="/admin/imgs/people/avatar2.jpg" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                    class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="content-main">
+            <!-- <div class="card mb-4">
+                <div class="card-body">
+                    <div style="border: 2px; border-color: black;">
+                        <h5 class="content-title card-title">Click Apply All Offers inorder to apply all the updated
+                            offers. Otherwise no changes will be applied.</h5>
+
+                        <a href="/admin/apply-offers" id="apply-offers-btn" class="btn btn-primary btn-sm rounded">Apply
+                            All Offers</a>
+
+                    </div>
+                </div>
+            </div> -->
+
+
+            <!-- Category Offers -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div style="border: 2px; border-color: black;">
+                        <% if (!categoryOffers || categoryOffers.length> 0 ) { %>
+                            <div class="content-header">
+                                <div>
+                                    <h3 class="content-title card-title">Categories Offer</h3>
+                                </div>
+                                <div>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#createCategoryModal"
+                                        class="btn btn-primary btn-sm rounded">Create
+                                        Category Offer</a>
+                                </div>
+                            </div>
+                            <table class="table category-offers mb-4">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <!-- <th>Start Date</th>
+                                        <th>End Date</th> -->
+                                        <th>Category</th>
+                                        <th>Discount Percentage</th>
+                                        <th class="text-center" width="10%">Status</th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (cOffers) {%>
+                                        <% cOffers.forEach(offer=> { %>
+                                            <tr>
+                                                <td>
+                                                    <%= offer.title %>
+                                                </td>
+
+                                                <!-- <td>
+                                                    <%= new Date(offer.startDate).toLocaleDateString() %>
+                                                </td>
+                                                <td>
+                                                    <%= new Date(offer.endDate).toLocaleDateString() %>
+                                                </td> -->
+                                                <td>
+                                                    <%= offer.categoryOffer.category.categoryName %>
+                                                </td>
+                                                <td>
+                                                    <%= offer.categoryOffer.discountPercentage %> %
+                                                </td>
+                                                <td class="text-center" data-offer-id="<%= offer._id %>">
+                                                    <span
+                                                        class="badge  rounded-pill alert-<%= offer.isActive === true ? 'success' : 'danger' %>">
+                                                        <%= offer.isActive===false ? 'Inactive' : 'Active' %>
+                                                    </span>
+                                                </td>
+                                                <td class="text-center" td[data-offer-id="<%= offer._id %>">
+                                                    <button id="toggleButton" onclick="toogleStatus('<%= offer._id %>')"
+                                                        class="btn rounded btn-sm font-sm btn-brand">Change Status
+                                                    </button>
+                                                    <button id="deleteButton" onclick="deleteOffer('<%= offer._id %>')"
+                                                        class="btn rounded btn-sm font-sm btn-danger">Delete
+                                                    </button>
+                                                </td>
+
+
+                                            </tr>
+                                            <% }) %>
+                                                <% } %>
+                                </tbody>
+                            </table>
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+            <!-- Add Category Offer Modal -->
+            <div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createCategoryModalLabel">Create New Category Offer</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/add-category-offer" method="post">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Title:</label>
+                                    <input type="text" id="title" name="title" class="form-control"
+                                        style="max-width: 300px;" required>
+                                    <p id="title-error" class="error-message" style="color: red;"></p>
+                                </div>
+
+                                <!-- <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="startDate" class="form-label">Start Date:</label>
+                                        <input type="date" id="startDate" name="startDate" class="form-control"
+                                            required>
+                                        <p id="startDate-error" class="error-message" style="color: red;"></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="endDate" class="form-label">End Date:</label>
+                                        <input type="date" id="endDate" name="endDate" class="form-control" required>
+                                        <p id="endDate-error" class="error-message" style="color: red;"></p>
+                                    </div>
+                                </div> -->
+                                <div class="mb-3">
+                                    <label for="category" class="form-label">Category:</label>
+                                    <select id="category" name="category" class="form-select" style="max-width: 350px;"
+                                        required>
+                                        <% categories.forEach(category=> { %>
+                                            <option value="<%= category._id %>">
+                                                <%= category.categoryName %>
+                                            </option>
+                                            <% }); %>
+                                    </select>
+                                    <p id="category-error" class="error-message" style="color: red;"></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="discountPercentage" class="form-label">Discount Percentage:</label>
+                                    <input type="number" id="discountPercentage" name="discountPercentage"
+                                        class="form-control" min="0" value="0" style="max-width: 150px;" required>
+                                    <p id="discountPercentage-error" class="error-message" style="color: red;"></p>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add Category Offer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Produts Offers -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="content-header">
+                        <div>
+                            <h3 class="content-title card-title">Products Offer</h3>
+                        </div>
+                        <div>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#createProductModal"
+                                class="btn btn-primary btn-sm rounded">Create Product Offer</a>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search products...">
+                    </div>
+
+                    <div class="product-list-container" style="max-height: 400px; overflow-y: auto;">
+                        <% if(products.length> 0) { %>
+                            <ul class="list-group">
+                                <% products.forEach((product,index)=> { %>
+                                    <li class="list-group-item">
+                                        <!-- Product Details -->
+                                        <div class="row">
+                                            <div class="col-sm-3 product-img">
+                                                <img style="width: 50px; height: 50px;"
+                                                    src="/productAssets/<%=product.images[0] %>"
+                                                    class="img-sm img-thumbnail" alt="Item">
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <a href="#" class="title text-truncate">
+                                                    <%= product.productName %>
+                                                </a>
+                                                <div class="info-wrap">
+                                                    <!-- MRP and Offer Price -->
+                                                    <div
+                                                        style="display: inline-block; vertical-align: center; width: 20%;">
+                                                        <div class="input-group">
+                                                            <label for="price"
+                                                                style="height: 25px; margin-top: 13px; margin-right: 5px;">MRP:</label>
+                                                            <span id="price_<%=index  %>"
+                                                                style="height: 25px; margin-top: 13px; margin-right: 5px;">&#8377
+                                                                <%= product.productPrice %>
+                                                            </span>
+                                                        </div>
+                                                        <div class="info-wrap">
+                                                            <label for="offerPrice"
+                                                                style="height: 25px; margin-top: 13px; margin-right: 5px;">Offer
+                                                                Price:</label>
+                                                            <span id="price_<%=index  %>"
+                                                                style="height: 25px; margin-top: 13px; margin-right: 5px;">&#8377
+                                                                <%= product.offerPrice %>
+                                                            </span>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Offer % and Apply Button -->
+                                                    <div class="info-wrap"
+                                                        style="display: inline-block; vertical-align: center; margin-left: 118px;">
+                                                        <label for="offprice"
+                                                            style="display: inline-block; vertical-align: center; height: 25px; margin-top: 13px; margin-right: 5px;">Offer
+                                                            %:</label>
+                                                        <input required="" class="form-control square offer-input"
+                                                            style="display: inline-block; vertical-align: center; height: 25px; margin-top: 10px; margin-bottom: 8px; margin-right: 8px;  width: 60px;"
+                                                            name="offprice" value="<%= product.productOffer %>"
+                                                            id="offprice_<%= index %>">
+                                                        <button class="btn btn-sm font-sm rounded btn-brand apply-btn"
+                                                            style="margin-left: 20px;" disabled
+                                                            onclick="applyProductOffer('<%= product._id %>','<%= index %>')">
+                                                            <i class="material-icons md-edit"></i> Apply
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                            <% } else { %>
+                                <div class="alert alert-warning" role="alert">Products Not Found</div>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+
+
+            <style>
+                .product-img {
+                    width: 10%;
+
+                }
+            </style>
+
+            <!-- Add Product Offer Modal -->
+            <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createProductModalLabel">Create New Product Offer</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/admin/add-product-offer" method="post">
+                                <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <label for="title" class="form-label">Title:</label>
+                                        <input type="text" class="form-control" id="title" name="title"
+                                            style="max-width: 300px;" required>
+                                        <p id="title-error" class="error-message" style="color: red;"></p>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="discountPercentage" class="form-label">Discount Percentage:</label>
+                                        <div class="input-group">
+                                            <input type="number" class="form-control" id="discountPercentage"
+                                                name="discountPercentage" style="max-width: 150px;" required>
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                        <p id="discountPercentage-error" class="error-message" style="color: red;"></p>
+                                    </div>
+                                </div>
+                                <!-- <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="startDate" class="form-label">Start Date:</label>
+                                        <input type="date" class="form-control" id="startDate" name="startDate"
+                                            required>
+                                        <p id="startDate-error" class="error-message" style="color: red;"></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="endDate" class="form-label">End Date:</label>
+                                        <input type="date" class="form-control" id="endDate" name="endDate" required>
+                                        <p id="endDate-error" class="error-message" style="color: red;"></p>
+                                    </div>
+                                </div> -->
+                                <hr class="my-4">
+                                <h4 class="mb-3">Product Offer Details</h4>
+
+                                <div class="mb-3">
+                                    <label for="selectedProducts" class="form-label">Select Products:</label>
+                                    <div id="selectedPreview"></div>
+                                    <input type="text" id="searchProduct" class="form-control"
+                                        placeholder="Search products...">
+                                    <select class="form-control dropdown form-drop" id="selectedProducts"
+                                        name="selectedProducts[]" style="max-width: 900px;" multiple required>
+                                        <% products.forEach(product=> { %>
+                                            <option value="<%= product._id %>">
+                                                <%= product.productName %>
+                                            </option>
+                                            <% }); %>
+                                    </select>
+                                    <p id="selectedProducts-error" class="error-message" style="color: red;"></p>
+                                </div>
+
+                                <style>
+                                    .form-drop {
+                                        height: 260px;
+                                    }
+                                </style>
+
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const searchInput = document.getElementById('searchProduct');
+                                        const selectBox = document.getElementById('selectedProducts');
+                                        const selectedPreview = document.getElementById('selectedPreview');
+                                        const selectedOptions = [];
+
+                                        // Function to update selected options preview
+                                        function updateSelectedPreview() {
+                                            selectedPreview.innerHTML = '';
+                                            selectedOptions.forEach(function (optionText) {
+                                                const selectedOption = document.createElement('span');
+                                                selectedOption.textContent = optionText;
+                                                selectedOption.classList.add('selected-option');
+                                                selectedOption.addEventListener('click', function () {
+                                                    const index = selectedOptions.indexOf(optionText);
+                                                    if (index !== -1) {
+                                                        selectedOptions.splice(index, 1);
+                                                        updateSelectedPreview();
+                                                        selectBox.querySelectorAll('option').forEach(option => {
+                                                            if (option.textContent === optionText) {
+                                                                option.selected = false;
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                                selectedPreview.appendChild(selectedOption);
+                                            });
+                                        }
+
+                                        // Event listener for search input
+                                        searchInput.addEventListener('input', function () {
+                                            const searchValue = this.value.toLowerCase();
+                                            Array.from(selectBox.options).forEach(function (option) {
+                                                const text = option.textContent.toLowerCase();
+                                                const matches = text.includes(searchValue);
+                                                option.style.display = matches ? 'block' : 'none';
+                                            });
+                                        });
+
+                                        // Event listener for select box change
+                                        selectBox.addEventListener('change', function () {
+                                            const selectedValues = Array.from(this.selectedOptions).map(option => option.textContent);
+                                            selectedOptions.splice(0, selectedOptions.length, ...selectedValues);
+                                            updateSelectedPreview();
+                                        });
+
+                                        // Initial update of selected preview
+                                        updateSelectedPreview();
+                                    });
+
+
+                                </script>
+                               
+
+                                
+                                <button type="submit" class="btn btn-primary">Create Product Offer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Referral Offers -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="card-body">
+                        <h3 class="mb-4">Referral Offer</h3>
+                        <form id="referralForm">
+                            <div class="row">
+                                <div class="col-md-5 ml-40">
+                                    <div class="mb-3">
+                                        <label for="referredUserReward" class="form-label" style="font-size: 15px;">Referred User Reward:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">Rs:</span>
+                                            <input type="number" class="form-control" id="referredUserReward" name="referredUserReward"
+                                                style="max-width: 150px;" required value="">
+                                        </div>
+                                    </div>
+                                
+                                    <div class="mb-3">
+                                        <label for="referringUserReward" class="form-label" style="font-size: 15px;">Referring User Reward:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">Rs:</span>
+                                            <input type="number" class="form-control" id="referringUserReward" name="referringUserReward"
+                                                style="max-width: 150px;" required value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary" id="submitForm" style="margin-top: 65px; margin-left: -193px;">Apply Offer</button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <script>
+                            // Function to fetch existing data
+                            function fetchExistingData() {
+                                fetch('/admin/get-referral-offer')
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        document.getElementById('referredUserReward').value = data.forExistingUser;
+                                        document.getElementById('referringUserReward').value = data.forNewUser;
+                                    })
+                                    .catch(error => console.error('Error:', error));
+                            }
+                        
+                            // Fetch existing data when the page loads
+                            fetchExistingData();
+                        
+                            // Event listener for form submission
+                            document.getElementById('submitForm').addEventListener('click', function() {
+                                // Get form data
+                                const formData = new FormData(document.getElementById('referralForm'));
+                        
+                                // Convert form data to JSON object
+                                const jsonData = {};
+                                formData.forEach((value, key) => {
+                                    jsonData[key] = value;
+                                });
+                        
+                                // Send data to server using Fetch API
+                                fetch('/admin/add-referral-offer', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(jsonData)
+                                })
+                                .then(response => {
+                                    if (response.ok) {
+                                        alert('Offer applied successfully!');
+                                    } else {
+                                        alert('Failed to apply offer. Please try again later.');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert('An error occurred. Please try again later.');
+                                });
+                            });
+                        </script>
+                        
+                        
+        
+                        
+                    </div>
+                </div>
+            </div>
+            
+          
+
+
+
+
+        </section>
+        <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> ©,
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <!-- Apply Offers button script -->
+    <!-- <script>
+        document.getElementById("apply-offers-btn").addEventListener('click', async (event) => {
+            event.preventDefault();
+
+            try {
+                const response = await fetch('/admin/apply-offers', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    sessionStorage.setItem('offerApplied', 'true')
+                    console.log("Offers Applied", data.message);
+                    window.location.reload()
+                } else {
+                    // Handle error response
+                    console.error('Error creating category offer:', data);
+                    $.toast({
+                        heading: 'Error',
+                        text: 'An unexpected error occured while applying offers. Please Try Again',
+                        icon: 'error'
+                    })
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        window.onload = function () {
+            if (sessionStorage.getItem('offerApplied')) {
+                // Display the toast indicating success
+                $.toast({
+                    heading: 'Success: Offer Applied',
+                    text: 'All offers applied to respective products and categories',
+                    icon: 'success',
+                    showHideTransition: 'slide',
+                    position: 'top-center',
+                    hideAfter: 5000
+                });
+
+                // Remove the session variable 'offerApplied'
+                sessionStorage.removeItem('offerApplied');
+            }
+        }
+    </script> -->
+
+    <!-- Add Category Offer Fetch Fn -->
+    <script>
+        document.querySelector('form[action="/add-category-offer"]').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const requestData = {};
+
+            for (const [key, value] of formData.entries()) {
+                requestData[key] = value;
+            }
+
+            try {
+                const response = await fetch('/admin/add-category-offer', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Handle successful response
+                    console.log('Category offer created:', data);
+
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('createCategoryModal'));
+                    modal.hide();
+                    window.location.reload()
+                    req.session.toastMessage = "Category Offer Added";
+
+                } else {
+                    // Handle error response
+                    console.error('Error creating category offer:', data);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        window.addEventListener('load', function () {
+            const toastMessage = '<%= typeof session !== "undefined" ? session.toastMessage : "" %>';
+            if (toastMessage) {
+                $.toast({
+                    heading: 'Success',
+                    text: "Category Offer Added",
+                    showHideTransition: 'slide',
+                    icon: 'success',
+                    position: 'top-center',
+                    hideAfter: 4000
+
+                });
+                delete req.session.toastMessage;
+
+            }
+        });
+    </script>
+
+    <!-- Activate Category Offer Fetch Fn -->
+    <script>
+        const toogleStatus = async (offerId) => {
+            try {
+                const response = await fetch(`/admin/toggle-category-offer?id=${offerId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log(data);
+
+                // Update the <td> element with the new status
+                const offerStatusTd = document.querySelector(`td[data-offer-id="${offerId}"] span.badge`);
+                const newStatus = data.isActive ? 'Active' : 'Inactive';
+                const badgeClass = data.isActive ? 'alert-success' : 'alert-danger';
+                offerStatusTd.classList.remove('alert-danger');
+                offerStatusTd.classList.add(badgeClass);
+                offerStatusTd.textContent = newStatus;
+
+                // Update the action button
+                const offerActionTd = document.querySelector(`td[data-offer-id="${offerId}"] div:last-child button`);
+                offerActionTd.textContent = data.isActive ? 'Deactivate' : 'Activate';
+                offerActionTd.removeEventListener('click', activateOffer);
+                offerActionTd.addEventListener('click', () => deactivateOffer(offerId));
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+
+
+    </script>
+    <!-- Delete Category Offer Fetch Fn -->
+    <script>
+        const deleteOffer = async (offerId) => {
+            try {
+                const response = await fetch(`/admin/delete-category-offer?id=${offerId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                if (!response.ok) {
+                    $.toast({
+                        heading: 'Delete Failed',
+                        text: 'Category Delete Failed',
+                        icon: 'info',
+                        position: 'top-center'
+                    })
+                }
+                $.toast({
+                    heading: 'Deleted',
+                    text: 'Category Offer Deleted',
+                    icon: 'info',
+                    position: 'top-center'
+                })
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+
+
+    </script>
+
+    <!-- Apply product offer btn script -->
+    <script>
+        // Function to handle input change event
+        function handleInputChange(index) {
+            var inputField = document.getElementById('offprice_' + index);
+            var applyButton = inputField.parentElement.querySelector('.apply-btn');
+
+            // Enable the "Apply" button if there's any change in the input field value
+            if (inputField.value !== inputField.getAttribute('data-initial-value')) {
+                applyButton.disabled = false;
+            } else {
+                applyButton.disabled = true;
+            }
+        }
+
+        // Attach input change event listener to all input fields with class "offer-input"
+        document.querySelectorAll('.offer-input').forEach(function (inputField) {
+            // Save the initial value of the input field
+            inputField.setAttribute('data-initial-value', inputField.value);
+
+            // Listen for input change event
+            inputField.addEventListener('input', function () {
+                // Get the index from the input field id
+                var index = this.id.split('_')[1];
+                // Call the handleInputChange function
+                handleInputChange(index);
+            });
+        });
+
+        // Ensure buttons are initially disabled for unchanged inputs
+        document.querySelectorAll('.offer-input').forEach(function (inputField) {
+            var index = inputField.id.split('_')[1];
+            handleInputChange(index);
+        });
+    </script>
+
+
+    <!-- applyProductOffer function -->
+    <script>
+        function applyProductOffer(productId, index) {
+            // Get the offer percentage value from the input field
+            var offerPercentage = document.getElementById('offprice_' + index).value;
+            var applyButton = document.querySelector('.apply-btn');
+
+            // Disable the apply button to prevent multiple clicks
+            applyButton.disabled = true;
+            // Fetch function to send data to the server
+            fetch('/admin/apply-product-offer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    productId: productId,
+                    offerPercentage: offerPercentage
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        $.toast({
+                            heading: 'Failed: Error applying offer',
+                            icon: 'success',
+                            position: 'top-center',
+                            hideAfter: 5000,
+                            stack: 0,
+                        })
+                    }
+                    $.toast({
+                        heading: 'Success: Offer applied successfully',
+                        text: 'Click Apply Offers to Update the Changes',
+                        icon: 'success',
+                        position: 'top-center',
+                        hideAfter: 5000,
+                        stack: 0,
+                    })
+                    console.log('Offer applied successfully');
+                })
+                .catch(error => {
+                    console.error('Error applying offer:', error);
+                    // Handle error, show error message, or retry if necessary
+                });
+        }
+    </script>
+    <!-- Search for products -->
+    <script>
+        // Function to handle the search functionality
+        function searchProducts() {
+            // Get the input value
+            var searchText = document.getElementById('searchInput').value.toLowerCase();
+            // Get all the list items
+            var items = document.querySelectorAll('.list-group-item');
+            // Loop through each item
+            items.forEach(function (item) {
+                // Get the product name within the item
+                var productName = item.querySelector('.title').innerText.toLowerCase();
+                // Check if the product name contains the search text
+                if (productName.indexOf(searchText) === -1) {
+                    // Hide the item if it doesn't match the search text
+                    item.style.display = 'none';
+                } else {
+                    // Show the item if it matches the search text
+                    item.style.display = 'block';
+                }
+            });
+        }
+
+        // Attach event listener to the search input field
+        document.getElementById('searchInput').addEventListener('keyup', searchProducts);
+    </script>
+    <!-- Add Product Offer Fetch Fn -->
+    <script>
+        document.querySelector('form[action="/admin/add-product-offer"]').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const requestData = {};
+
+            for (const [key, value] of formData.entries()) {
+                if (key === 'selectedProducts[]') {
+                    if (!requestData.selectedProducts) {
+                        requestData.selectedProducts = [];
+                    }
+                    requestData.selectedProducts.push(value);
+                } else {
+                    requestData[key] = value;
+                }
+            }
+
+            try {
+                const response = await fetch('/admin/add-product-offer', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Handle successful response
+                    console.log('Product offer created:', data);
+
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('createProductModal'));
+                    modal.hide();
+                    window.location.reload();
+
+                    // Show success message to user
+                    showToastMessage("Product Offer Added");
+                } else {
+                    // Handle error response
+                    console.error('Error creating product offer:', data);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        function showToastMessage(message) {
+            $.toast({
+                heading: 'Success',
+                text: message,
+                showHideTransition: 'slide',
+                icon: 'success',
+                position: 'top-center',
+                hideAfter: 4000
+            });
+        }
+
+    </script>
+
+    <script src="/admin/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/admin/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/vendors/select2.min.js"></script>
+    <script src="/admin/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/admin/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="/admin/js/vendors/chart.js"></script>
+    <!-- Main Script -->
+    <script src="/admin/js/main.js" type="text/javascript"></script>
+    <script src="/admin/js/custom-chart.js" type="text/javascript"></script>
+
+    <!-- $.toast plugins -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+
+ <!-- jQuery -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ <!-- Select2 CSS -->
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css"
+     rel="stylesheet" />
+
+ <!-- Select2 JS -->
+ <script
+     src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/js/select2.min.js"></script>
+
+
+
+</body>
+
+
+
+</html>

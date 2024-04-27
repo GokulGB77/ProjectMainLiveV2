@@ -1,0 +1,590 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/admin/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/admin/css/main.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="#" class="brand-wrap">
+                <img src="/admin/imgs/theme/logo.png" class="logo" alt="Admin Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/dashboard"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/sales-report"> <i class="icon material-icons md-assignment"></i>
+                        <span class="text">Sales Report</span>
+                    </a>
+                </li>
+                <li class="menu-item  ">
+                    <a class="menu-link" href="/admin/user-details?page=1"> <i class="icon material-icons md-person"></i>
+                        <span class="text">User Details</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/products"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+                   
+                </li>
+                
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/categories"> <i class="icon material-icons md-category"></i>
+                        <span class="text">Categories</span>
+                    </a>
+                   
+                </li>
+                
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/orders"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+                  
+                </li>
+                <li class="menu-item active">
+                    <a class="menu-link" href="/admin/coupons?page=1"> <i class="icon material-icons material-icons md-card_giftcard"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+                  
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/offers?page=1"> <i class="icon material-icons material-icons md-local_offer"></i>
+                        <span class="text">Offers</span>
+                    </a>
+                  
+                </li>
+<!--                 
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-sellers-cards.html"> <i class="icon material-icons md-store"></i>
+                        <span class="text">Sales</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-sellers-cards.html">Sellers cards</a>
+                        <a href="page-sellers-list.html">Sellers list</a>
+                        <a href="page-seller-detail.html">Seller profile</a>
+                    </div>
+                </li>
+            
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Banners</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-form-product-1.html">Add product 1</a>
+                        <a href="page-form-product-2.html">Add product 2</a>
+                        <a href="page-form-product-3.html">Add product 3</a>
+                        <a href="page-form-product-4.html">Add product 4</a>
+                    </div>
+                </li>
+                  -->
+            </ul>
+            <hr>
+            <ul class="menu-aside">     
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/logout"> <i class="icon material-icons md-settings"></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <br>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i
+                                class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
+                        class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="/admin/imgs/people/avatar2.jpg" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                    class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <section>
+            <div class="card-body">
+                <section class="content-main">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="content-header">
+                                <div>
+                                    <h2 class="content-title card-title">Coupons</h2>
+                                    <p>Add or Edit Coupon Details </p>
+
+                                </div>
+                                <div>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#createCouponModal"
+                                        class="btn btn-primary btn-sm rounded">Create
+                                        New Coupon</a>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" style="width: 10%;">Sl No.</th>
+                                                    <th style="width: 20%;">Name</th>
+                                                    <th style="width: 20%;">Code</th>
+                                                    <th style="width: 15%;">Expiry</th>
+
+
+                                                    <th style="width: 10%;" class="text-center">Status</th>
+                                                    <!-- <th style="width: 13%;" class="text-center">Change</th> -->
+                                                    <th style="width: 25%;" class="text-center">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% coupons.forEach((item, index)=> { %>
+                                                    <tr data-coupon-id="<%= item._id%>">
+
+                                                        <td style="vertical-align: middle;" class="text-center">
+                                                            <%= index + 1 %>
+                                                        </td>
+                                                        <td style="vertical-align: middle;"><b>
+                                                                <%= item.name %>
+                                                            </b></td>
+                                                        <td style="vertical-align: middle;">
+                                                            <%= item.code %>
+                                                        </td>
+                                                        <td style="vertical-align: middle;">
+                                                            <%= (item.expiryDate).toDateString() %>
+                                                        </td>
+                                                        <td style="vertical-align: middle;" class="text-center"
+                                                            data-coupon-id="<%= item._id %>">
+                                                            <span
+                                                                class="badge  rounded-pill alert-<%= item.status === 'active' ? 'success' : 'danger' %>">
+                                                                <%= item.status==='inactive' ? 'Inactive' : 'Active' %>
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-center" data-coupon-id="<%= item._id %>">
+                                                            <div style="margin-bottom: 10px;">
+                                                                <a href="#" data-bs-toggle="modal"
+                                                                    data-bs-target="#editCouponModal<%=index%>"
+                                                                    data-coupon-id="<%= item._id %>"
+                                                                    class="btn btn-sm font-sm rounded btn-brand">
+                                                                    <i class="material-icons md-edit"></i> Edit
+                                                                </a>
+                                                            </div>
+                                                            <div>
+                                                                <% if (item.status==="inactive" ) { %>
+                                                                    <a onclick="activateCoupon('<%= item._id %>','active')"
+                                                                        class="btn btn-sm font-sm rounded btn-brand">
+                                                                        Activate
+                                                                    </a>
+                                                                    <% } else { %>
+                                                                        <a onclick="deactivateCoupon('<%= item._id %>','inactive')"
+                                                                            class="btn btn-sm font-sm rounded btn-brand">
+                                                                            Deactivate
+                                                                        </a>
+                                                                        <% } %>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-left" style="margin-left: -20px;">
+                                                            <div style="margin-bottom: 10px;">
+                                                                <a onclick="deleteCoupon('<%= item._id %>')"
+                                                                    class="btn btn-sm font-sm rounded btn-danger">
+                                                                    Delete
+                                                                </a>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                    </div>
+                                </div>
+                                <% }); %>
+                                    </tbody>
+                                    </table>
+                            </div>
+                        </div> <!-- .col// -->
+                    </div> <!-- .row // -->
+            </div> <!-- card body .// -->
+            </div> <!-- card .// -->
+        </section> <!-- content-main end// -->
+
+        <div class="pagination-area mt-15 mb-50">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-start">
+                    <% if (currentPage> 1) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="/admin/coupons?page=<%= currentPage - 1 %>"
+                                aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <% } %>
+                            <% for (let i=1; i <=totalPages; i++) { %>
+                                <li class="page-item ">
+                                    <a class="page-link <%= i === currentPage ? 'active' : '' %>"
+                                        href="/admin/coupons?page=<%= i %>">
+                                        <%= i %>
+                                    </a>
+                                </li>
+                                <% } %>
+                                    <% if (currentPage < totalPages) { %>
+                                        <li class="page-item">
+                                            <a class="page-link" href="/admin/coupons?page=<%= currentPage + 1 %>"
+                                                aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                        <% } %>
+                </ul>
+            </nav>
+        </div>
+
+        </div>
+
+
+        <div class="modal fade" id="createCouponModal" tabindex="-1" aria-labelledby="createCouponModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createCouponModalLabel">Create New Coupon</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="couponForm" action="/admin/coupons" method="post">
+                            <!-- <form id="couponForm" onsubmit="handleCouponFormSubmit(event)"> -->
+
+                            <div class="mb-3">
+                                <label for="couponName" class="form-label">Coupon Name</label>
+                                <input type="text" class="form-control" id="couponName" name="name"
+                                    placeholder="Enter coupon name" required>
+                                <p id="couponName-error" class="error-message" style="color: red;"></p>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="couponCode" class="form-label">Coupon Code</label>
+                                <input type="text" class="form-control" id="couponCode" name="code"
+                                    placeholder="Enter coupon code" required>
+                                <p id="couponCode-error" class="error-message" style="color: red;"></p>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="discountType" class="form-label">Discount Type</label>
+                                <select class="form-select" id="discountType" name="discountType" required>
+                                    <option value="percentage">Percentage</option>
+                                    <option value="fixed">Fixed Amount</option>
+                                </select>
+                                <p id="discountType-error" class="error-message" style="color: red;"></p>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="discountValue" class="form-label">Discount Value</label>
+                                <input type="number" class="form-control" id="discountValue" name="discountValue"
+                                    placeholder="Enter discount value" required>
+                                <p id="discountValue-error" class="error-message" style="color: red;"></p>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="minimumOffer" class="form-label">Minimum Offer</label>
+                                <input type="number" class="form-control" id="minimumOffer" name="minimumOffer"
+                                    placeholder="Enter minimum offer" required>
+                                <p id="minimumOffer-error" class="error-message" style="color: red;"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="maximumOffer" class="form-label">Maximim Offer</label>
+                                <input type="number" class="form-control" id="maximumOffer" name="maximumOffer"
+                                    placeholder="Enter maximum offer" required>
+                                <p id="maximumOffer-error" class="error-message" style="color: red;"></p>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="expiryDate" class="form-label">Expiry Date</label>
+                                <input type="date" class="form-control" id="expiryDate" name="expiryDate" required>
+                                <p id="expiryDate-error" class="error-message" style="color: red;"></p>
+                            </div>
+
+                            <button type="submit" id="createCouponBtn" class="btn btn-primary">Create Coupon</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% coupons.forEach((item, index)=> { %>
+            <div class="modal fade" id="editCouponModal<%=index%>" tabindex="-1" aria-labelledby="editCouponModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editCouponModalLabel">Edit Coupon</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form id="updateCouponForm" action="/admin/coupons/update" method="post"
+                                onsubmit="return validateCouponForm()">
+                                <input type="text" value="<%= item._id %>" name="couponId" hidden>
+                                <div class="mb-3">
+                                    <label for="couponName" class="form-label">Coupon Name</label>
+                                    <input type="text" class="form-control" id="couponName" name="name"
+                                        value="<%= item.name %>">
+                                    <p id="couponName-error" class="error-message" style="color: red;"></p>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="couponCode" class="form-label">Coupon Code</label>
+                                    <input type="text" class="form-control" id="couponCode" name="code"
+                                        value="<%= item.code %>">
+                                    <p id="couponCode-error" class="error-message" style="color: red;"></p>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="discountType" class="form-label">Discount Type</label>
+                                    <select class="form-select" id="discountType" name="discountType"
+                                        value="<%= item.discountType %>">
+                                        <option value="percentage" <% if (item.discountType==="percentage" ) {%>
+                                            selected <% } %>>Percentage</option>
+                                        <option value="fixed" <% if (item.discountType==="fixed" ) {%> selected <% } %>
+                                                >Fixed Amount</option>
+                                    </select>
+                                    <p id="discountType-error" class="error-message" style="color: red;"></p>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="discountValue" class="form-label">Discount Value</label>
+                                    <input type="number" class="form-control" id="discountValue" name="discountValue"
+                                        value="<%= item.discountValue %>">
+                                    <p id="discountValue-error" class="error-message" style="color: red;"></p>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="minimumOffer" class="form-label">Minimum Offer</label>
+                                    <input type="number" class="form-control" id="minimumOffer" name="minimumOffer"
+                                        value="<%= item.minimumOffer %>">
+                                    <p id="minimumOffer-error" class="error-message" style="color: red;"></p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="maximumOffer" class="form-label">Maximim Offer</label>
+                                    <input type="number" class="form-control" id="maximumOffer" name="maximumOffer"
+                                        value="<%= item.maximumOffer %>">
+                                    <p id="maximumOffer-error" class="error-message" style="color: red;"></p>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                                    <input type="date" class="form-control" id="expiryDate" name="expiryDate"
+                                        value="<%= item.expiryDate.toISOString().split('T ')[0] %>">
+                                    <p id="expiryDate-error" class="error-message" style="color: red;"></p>
+                                </div>
+
+                                <button type="submit" id="createCouponBtn" class="btn btn-primary">Update
+                                    Coupon</button>
+
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <% }) %>
+                </section>
+
+
+
+
+                <footer class="main-footer font-xs">
+                    <div class="row pb-30 pt-15">
+                        <div class="col-sm-6">
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> ©, Evara - HTML Ecommerce Template .
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end">
+                                All rights reserved
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+    </main>
+
+    <script src="/admin/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/admin/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/vendors/select2.min.js"></script>
+    <script src="/admin/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/admin/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="/admin/js/vendors/chart.js"></script>
+    <!-- Main Script -->
+    <script src="/admin/js/main.js" type="text/javascript"></script>
+    <script src="/admin/js/custom-chart.js" type="text/javascript"></script>
+
+    <!-- $.toast plugins -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+
+
+ 
+    <script>
+        $(document).ready(function () {
+            // Check if there's a toast message in session
+            const toastMessage = sessionStorage.getItem('toastMessage');
+            if (toastMessage) {
+                // Display the toast message
+                $.toast({
+                    heading: 'Success',
+                    text: toastMessage,
+                    showHideTransition: 'slide',
+                    icon: 'success'
+                });
+                // Clear the toast message from session after displaying
+                sessionStorage.removeItem('toastMessage');
+            }
+        });
+    </script>
+    <script>
+        const activateCoupon = async (couponId,status) => {
+            try {
+                const response = await fetch(`/admin/coupons/activate-coupon?id=${couponId}&status=${status}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log(data);
+
+                // Update the <td> element with the new status
+                const couponStatusTd = document.querySelector(`td[data-coupon-id="${couponId}"] span.badge`);
+                const newStatus = 'Active';
+                const badgeClass = 'alert-success';
+                couponStatusTd.classList.remove('alert-danger');
+                couponStatusTd.classList.add(badgeClass);
+                couponStatusTd.textContent = newStatus;
+
+                // Update the action button
+                const couponActionTd = document.querySelector(`td[data-coupon-id="${couponId}"] div:last-child a`);
+                couponActionTd.textContent = 'Deactivate';
+                couponActionTd.removeEventListener('click', activateCoupon);
+                couponActionTd.addEventListener('click', () => deactivateCoupon(couponId));
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+        const deactivateCoupon = async (couponId,status) => {
+            try {
+                const response = await fetch(`/admin/coupons/deactivate-coupon?id=${couponId}&status=${status}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log(data);
+
+                // Update the status badge
+                const couponStatusTd = document.querySelector(`td[data-coupon-id="${couponId}"] span.badge`);
+                const newStatus = 'Inactive';
+                const badgeClass = 'alert-danger';
+                couponStatusTd.classList.remove('alert-success');
+                couponStatusTd.classList.add(badgeClass);
+                couponStatusTd.textContent = newStatus;
+
+                // Update the action button
+                const couponActionTd = document.querySelector(`td[data-coupon-id="${couponId}"] div:last-child a`);
+                couponActionTd.textContent = 'Activate';
+                couponActionTd.removeEventListener('click', deactivateCoupon);
+                couponActionTd.addEventListener('click', () => activateCoupon(couponId));
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+        const deleteCoupon = async (couponId) => {
+            try {
+                const response = await fetch(`/admin/coupons/delete-coupon?id=${couponId}`, {
+                    method: 'DELETE', // Change method to DELETE
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // Remove the coupon row from the table
+                const couponRow = document.querySelector(`tr[data-coupon-id="${couponId}"]`);
+                couponRow.remove();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+    </script>
+    
+</body>
+
+</html>

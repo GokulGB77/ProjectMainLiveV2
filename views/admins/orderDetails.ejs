@@ -1,0 +1,803 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/admin/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/admin/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="/admin/css1/main.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="#" class="brand-wrap">
+                <img src="/admin/imgs/theme/logo.png" class="logo" alt="Admin Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/dashboard"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/sales-report"> <i class="icon material-icons md-assignment"></i>
+                        <span class="text">Sales Report</span>
+                    </a>
+                </li>
+                <li class="menu-item  ">
+                    <a class="menu-link" href="/admin/user-details?page=1"> <i class="icon material-icons md-person"></i>
+                        <span class="text">User Details</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/products"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/categories"> <i class="icon material-icons md-category"></i>
+                        <span class="text">Categories</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item active">
+                    <a class="menu-link" href="/admin/orders"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/coupons?page=1"> <i
+                            class="icon material-icons material-icons md-card_giftcard"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/offers?page=1"> <i
+                            class="icon material-icons material-icons md-local_offer"></i>
+                        <span class="text">Offers</span>
+                    </a>
+
+                </li>
+                <!--                 
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-sellers-cards.html"> <i class="icon material-icons md-store"></i>
+                        <span class="text">Sales</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-sellers-cards.html">Sellers cards</a>
+                        <a href="page-sellers-list.html">Sellers list</a>
+                        <a href="page-seller-detail.html">Seller profile</a>
+                    </div>
+                </li>
+            
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Banners</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-form-product-1.html">Add product 1</a>
+                        <a href="page-form-product-2.html">Add product 2</a>
+                        <a href="page-form-product-3.html">Add product 3</a>
+                        <a href="page-form-product-4.html">Add product 4</a>
+                    </div>
+                </li>
+                  -->
+            </ul>
+            <hr>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/logout"> <i class="icon material-icons md-settings"></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <br>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <!-- <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i
+                                class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form> -->
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
+                        class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="/admin/imgs/people/avatar2.jpg" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <a class="dropdown-item" href="#"><i
+                                    class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="#"><i
+                                    class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="content-main">
+            <div class="content-header">
+                <div>
+                    <h2 class="content-title card-title">Order Details</h2>
+                    <p>Details for Order ID: #<%= orderDetails.orderId %>
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <header class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-6 mb-lg-0 mb-15">
+                            <span>
+                                <i class="material-icons md-calendar_today"></i> <b>
+                                    <%= formattedDate %>, <%= formattedTime %>
+                                </b>
+                            </span> <br>
+                            <small class="text-muted">Order ID: <%= orderDetails.orderId %></small>
+                        </div>
+                        <div class="col-lg-6 col-md-6 ms-auto text-md-end">
+                            <% if (orderDetails.orderStatus==="pending" ){ %>
+                                <select id="statusSelect" class="form-select d-inline-block mb-lg-0 mb-15 mw-200">
+                                    <option disabled selected hidden><%=orderDetails.orderStatus  %></option>
+                                    <option>order-shipped</option>
+                                    <option>delivered</option>
+                                </select>
+                                <a class="btn btn-primary" href="#" id="changeOrderStatusBtn" >Save</a>
+                                <% } else if (orderDetails.orderStatus==="order-delivered" ){ %>
+                                    <select id="statusSelect" class="form-select d-inline-block mb-lg-0 mb-15 mw-200">
+                                        <option disabled selected hidden>Change Status</option>
+                                        <option>returned</option>
+                                    </select>
+                                    <a class="btn btn-primary" href="#" id="changeOrderStatusBtn" >Save</a>
+                                    <% } else if (orderDetails.orderStatus==="order-shipped" ){ %>
+                                        <select id="statusSelect" class="form-select d-inline-block mb-lg-0 mb-15 mw-200">
+                                            <option disabled selected hidden>Change Status</option>
+                                            <option>delivered</option>
+                                        </select>
+                                        <a class="btn btn-primary" href="#" id="changeOrderStatusBtn" >Save</a>
+                                            <% } %>
+                                       
+
+
+                                            <!-- <option>Order Pending</option>
+                                        <option>Order Shipped</option>
+                                        <option>Order Delivered</option>
+                                        <option>Order Returned</option>
+                                        <option>Cancel Order</option> -->
+                                            <a class="btn btn-secondary print ms-2" href="#"><i
+                                                    class="icon material-icons md-print"
+                                                    ></i></a>
+                        </div>
+
+                        <script>
+                            // Select the button element
+                            const changeOrderStatusBtn = document.getElementById('changeOrderStatusBtn');
+
+                            // Add click event listener
+                            changeOrderStatusBtn.addEventListener('click', async (event) => {
+                                event.preventDefault(); // Prevent the default action of the button
+                                const statusSelect = document.getElementById('statusSelect');
+                                const selectedStatus = statusSelect.value;
+                                const orderId = "<%= orderDetails._id %>"
+                                // Make the fetch request to change the order status
+                                try {
+                                    const response = await fetch('/admin/change-order-status', {
+                                        method: 'POST', // or 'PUT', 'PATCH', etc.
+                                        headers: {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({ orderId: orderId, selectedStatus: selectedStatus })
+                                    });
+
+                                    if (response.ok) {
+                                        console.log('Order status changed successfully');
+                                        response.json().then(data => {
+                                            $.toast({
+                                                text: `Order status changed to ${selectedStatus}`, 
+                                                heading: 'Order Status Change Succcessfull', 
+                                                icon: 'success', 
+                                                showHideTransition: 'fade', 
+                                                allowToastClose: true, 
+                                                hideAfter: 3000, 
+                                                stack: false, 
+                                                position: 'top-center', 
+                                                textAlign: 'left',  
+                                                loader: true,  
+                                                loaderBg: '#9EC600',  
+                                                beforeShow: function () {},
+                                                afterShown: function () {},
+                                                beforeHide: function () {}, 
+                                                afterHidden: function () {}  
+                                            });
+                                            if (data.orderDetails) {
+                                                window.location.reload()
+                                            } else {
+                                                console.error('Invalid response data:', data);
+                                            }
+                                        })
+                                    } else {
+                                        console.error('Failed to change order status');
+                                        // Handle error scenario
+                                    }
+                                } catch (error) {
+                                    console.error('Error occurred while changing order status:', error);
+                                    // Handle error scenario
+                                }
+                            });
+
+                            
+
+                        </script>
+                    </div>
+                </header> <!-- card-header end// -->
+                <div class="card-body">
+                    <div class="row mb-50 mt-20 order-info-wrap">
+                        <div class="col-md-4">
+                            <article class="icontext align-items-start">
+                                <span class="icon icon-sm rounded-circle bg-primary-light">
+                                    <i class="text-primary material-icons md-person"></i>
+                                </span>
+                                <div class="text">
+                                    <h6 class="mb-1">Customer</h6>
+                                    <p class="mb-1">
+                                        <%= orderDetails.user.name %> <br>
+                                            <%= orderDetails.user.email %> <br>
+                                                <%= orderDetails.user.mobile %>
+                                    </p>
+                                    <!-- <a href="#">View profile</a> -->
+                                </div>
+                            </article>
+                        </div> <!-- col// -->
+                        <div class="col-md-4">
+                            <article class="icontext align-items-start">
+                                <span class="icon icon-sm rounded-circle bg-primary-light">
+                                    <i class="text-primary material-icons md-local_shipping"></i>
+                                </span>
+                                <div class="text">
+                                    <h6 class="mb-1">Order info</h6>
+                                    <p class="mb-1">
+                                        Shipping: Fargo express <br>
+                                        Pay method:
+                                        <% if (orderDetails.paymentMethod==="cod" ) { %>
+                                            Cash On Delivery
+                                            <% } else { %>
+                                                Online Payment - RazorPay
+                                                <% } %> <br>
+                                    </p>
+                                    <!-- badges-------------------------->
+                                    <div id="order-status-badge" style="display: flex; align-items: center;">
+                                        <% if (orderDetails.orderStatus==="pending" ) { %>
+                                            <span style="font-size: 0.8rem;">Order Status:</span>
+                                            <span class="badge rounded-pill alert-warning text-warning ms-2"
+                                                style="font-size: 0.8rem;">Delivery Pending</span>
+                                        <% } else if (orderDetails.orderStatus==="order-shipped" ) { %>
+                                            <span style="font-size: 0.8rem;">Order Status:</span>
+                                            <span class="badge rounded-pill alert-primary text-primary ms-2"
+                                                style="font-size: 0.8rem;">Delivery Pending</span>
+                                            <% } else if(orderDetails.orderStatus==="order-delivered" ) { %>
+                                                <span style="font-size: 0.8rem;">Order Status:</span>
+                                                <span class="badge rounded-pill alert-success text-success ms-2"
+                                                    style="font-size: 0.8rem;">Delivered</span>
+                                                <% } else if(orderDetails.orderStatus==="cancelled" ) { %>
+                                                    <span style="font-size: 0.8rem;">Order Status:</span>
+                                                    <span class="badge rounded-pill alert-danger text-danger ms-2"
+                                                        style="font-size: 0.8rem;">Cancelled</span>
+                                                    <% } else if(orderDetails.orderStatus==="return-requested" ) { %>
+                                                        <span style="font-size: 0.8rem;">Order Status:</span>
+                                                        <span class="badge rounded-pill alert-primary text-primary ms-2"
+                                                            style="font-size: 0.8rem;">Return Requested</span>
+                                                        <% } else if(orderDetails.orderStatus==="returned" ) { %>
+                                                            <span style="font-size: 0.8rem;">Order Status:</span>
+                                                            <span
+                                                                class="badge rounded-pill alert-primary text-primary ms-2"
+                                                                style="font-size: 0.8rem;">Returned</span>
+                                                            <% } %>
+                                    </div>
+                                    <!-- <a href="#">Download info</a> -->
+                                </div>
+                            </article>
+                        </div> <!-- col// -->
+                        <div class="col-md-4">
+                            <article class="icontext align-items-start">
+                                <span class="icon icon-sm rounded-circle bg-primary-light">
+                                    <i class="text-primary material-icons md-place"></i>
+                                </span>
+                                <div class="text">
+                                    <h6 class="mb-1">Deliver to</h6>
+                                    <p class="mb-1">
+                                        Name: <%= orderDetails.address.name %> <br>City: <%= orderDetails.address.city
+                                                %>, <%= orderDetails.address.state %> <br>
+                                                    <%= orderDetails.address.house %>, <%= orderDetails.address.street
+                                                            %><br> Pincode: <%= orderDetails.address.pincode %>
+                                    </p>
+                                    <!-- <a href="#">View profile</a> -->
+                                </div>
+                            </article>
+                        </div> <!-- col// -->
+                    </div> <!-- row // -->
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th width="40%" style="text-align: center;">Product</th>
+                                            <th width="20%">Unit Price</th>
+                                            <th width="20%">Quantity</th>
+                                            <th width="20%" class="text-end">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% orderDetails.orderProducts.forEach(item=>{ %>
+                                            <tr>
+                                                <td>
+                                                    <a class="itemside" href="#">
+                                                        <div class="left">
+                                                            <img src="/productAssets/<%=item.product.images[0] %>"
+                                                                width="60" height="50" class="img-xs"
+                                                                alt="<%= item.product.productName %>">
+                                                        </div>
+                                                        <div class="info">
+                                                            <%= item.product.productName %>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td>&#8377; <%= (item.price).toLocaleString() %>
+                                                <td>
+                                                    <%= item.quantity %>
+                                                </td>
+                                                <td class="text-end"> &#8377; <%= (item.totalPrice).toLocaleString() %>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+
+
+                                                <tr>
+                                                    <td colspan="4">
+                                                        <article class="float-end">
+                                                            <dl class="dlist">
+                                                                <dt>Subtotal:</dt>
+                                                                <dd>&#8377; <%=
+                                                                        (orderDetails.orderTotal).toLocaleString() %>
+                                                                </dd>
+                                                            </dl>
+                                                            <!-- <dl class="dlist">
+                                                                <dt>Shipping cost:</dt>
+                                                                <dd>&#8377;  deliveryCharge 
+                                                                </dd>
+                                                            </dl> -->
+                                                            <dl class="dlist">
+                                                                <dt>Grand total:</dt>
+                                                                <dd> <b class="h5">&#8377; <%=
+                                                                            (orderDetails.orderTotal).toLocaleString()
+                                                                            %></b> </dd>
+                                                            </dl>
+                                                            <dl class="dlist">
+                                                                <dt class="text-muted">Status:</dt>
+                                                                <!-- badges-------------------------->
+
+                                                                <dd id="payment-status-badge">
+                                                                    <% if (orderDetails.paymentMethod==="cod" ) { %>
+                                                                        <% if (orderDetails.orderStatus==="pending" ) {
+                                                                            %>
+                                                                            <span
+                                                                                class="badge rounded-pill alert-warning text-warning">Payment
+                                                                                Pending</span>
+                                                                            <% } else if
+                                                                                (orderDetails.orderStatus==="order-delivered"
+                                                                                ) { %>
+                                                                                <span
+                                                                                    class="badge rounded-pill alert-success text-success">Payment
+                                                                                    Done</span>
+                                                                                <% } else if
+                                                                                    (orderDetails.orderStatus==="return-requested"
+                                                                                    ) { %>
+                                                                                    <span
+                                                                                        class="badge rounded-pill alert-primary text-primary">Refund
+                                                                                        Initiated</span>
+                                                                                    <% } else if
+                                                                                        (orderDetails.orderStatus==="returned"
+                                                                                        ) { %>
+                                                                                        <span
+                                                                                            class="badge rounded-pill alert-primary text-dark">Refund
+                                                                                            Approved</span>
+                                                                                        <% } else if
+                                                                                            (orderDetails.orderStatus==="cancelled"
+                                                                                            ) { %>
+                                                                                            <span
+                                                                                                class="badge rounded-pill alert-info text-info">No
+                                                                                                Payment Done</span>
+                                                                                            <% } %>
+                                                                                                <% } else { %>
+                                                                                                    <% if
+                                                                                                        (orderDetails.orderStatus==="pending"
+                                                                                                        ||
+                                                                                                        orderDetails.orderStatus==="order-delivered"
+                                                                                                        ) { %>
+                                                                                                        <span
+                                                                                                            class="badge rounded-pill alert-success text-success">Payment
+                                                                                                            Done</span>
+                                                                                                        <% } else if
+                                                                                                            (orderDetails.orderStatus==="return-requested"
+                                                                                                            ||
+                                                                                                            orderDetails.orderStatus==="cancelled"
+                                                                                                            ) { %>
+                                                                                                            <span
+                                                                                                                class="badge rounded-pill alert-primary text-primary">Refund
+                                                                                                                Initiated</span>
+                                                                                                            <% } else if
+                                                                                                                (orderDetails.orderStatus==="returned"
+                                                                                                                ) { %>
+                                                                                                                <span
+                                                                                                                    class="badge rounded-pill alert-primary text-dark">Refund
+                                                                                                                    Approved</span>
+                                                                                                                <% } %>
+                                                                                                                    <% }
+                                                                                                                        %>
+                                                                </dd>
+
+
+                                                            </dl>
+                                                        </article>
+                                                    </td>
+                                                </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- table-responsive// -->
+                            <!-- <a class="btn btn-primary" href="page-orders-tracking.html">Cancel Order </a> -->
+                        </div> <!-- col// -->
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-4">
+                            <!-- <div class="box shadow-sm bg-light">
+                                <h6 class="mb-15">Payment info</h6>
+                                <p>
+                                    <img src="/admin/imgs/card-brands/2.png" class="border" height="20"> Master Card
+                                    **** **** 4768 <br>
+                                    Business name: Grand Market LLC <br>
+                                    Phone: +1 (800) 555-154-52
+                                </p>
+                            </div> -->
+
+                            <div>
+                                <% if(orderDetails.orderStatus!=="cancelled" &&
+                                    orderDetails.orderStatus!=="return-requested" &&
+                                    orderDetails.orderStatus!=="returned" &&
+                                    orderDetails.orderStatus!=="delivered" ) { %>
+                                    <div class="h-25 pt-4">
+                                        <div class="mb-3">
+                                            <label for="notes">Cancellation Reason</label>
+                                            <select class="form-control" id="notes" name="notes">
+                                                <option value="">Select a reason</option>
+                                                <option value="Order Cancelled due to Unavailability of stock"> Order
+                                                    Cancelled due to Unavailability of stock</option>
+                                                <option value="Order Cancelled due to Incomplete Payemnt">Order
+                                                    Cancelled due to Incomplete Payemnt</option>
+                                                <option value="Order Cancelled due to other reason">Order Cancelled due
+                                                    to other reason </option>
+                                                <!-- Add more options as needed -->
+                                            </select>
+                                        </div>
+                                        <button id="saveButton" class="btn btn-primary">Cancel Order</button>
+                                        <!--Cancel Button------------------------>
+                                        <% } %>
+                                    </div>
+                                    <div>
+
+                                        <% if (orderDetails.paymentMethod==="razorPay" &&
+                                            (orderDetails.orderStatus==="return-requested" ) ) { %>
+                                            <button id="refundApprove" class="btn btn-primary">Approve Refund</button>
+                                            <% } %>
+                                        <% if (orderDetails.paymentMethod==="cod" &&
+                                            (orderDetails.orderStatus==="return-requested" ) ) { %>
+                                            <button id="refundApprove" class="btn btn-primary">Approve Refund</button>
+                                            <% } %>
+
+                                    </div>
+                            </div>
+                        </div> <!-- col// -->
+                    </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var approveButton = document.getElementById('refundApprove');
+
+                            approveButton.addEventListener('click', function () {
+                                var orderId = '<%= orderDetails._id %>';
+
+                                approveRefund(orderId);
+                            });
+                        });
+                        function approveRefund(orderId) {
+                            fetch("/admin/approve-refund", {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ orderId: orderId })
+                            })
+                                .then(response => {
+                                    if (response.ok) {
+                                        // Refund approved successfully
+                                        // You can perform additional actions here if needed
+                                        console.log('Refund approved successfully');
+                                        response.json().then(data => {
+                                            // Check the condition again with updated orderDetails
+
+
+                                            var myToast = $.toast({
+                                                heading: 'Approving Refund.Please Wait..',
+                                                text: "Approving Refund. The Amount will be added to user wallet",
+                                                icon: 'info',
+                                                hideAfter: 7000,
+                                                position: 'top-center',
+
+                                            });
+
+                                            // Update the toast after three seconds.
+                                            window.setTimeout(function () {
+                                                myToast.update({
+                                                    heading: "Success: Refunded to user wallet",
+                                                    text: "Amount added to user wallet",
+                                                    icon: 'success',
+                                                    hideAfter: 7000,
+                                                    position: 'top-center',
+                                                });
+                                                checkCondition(data.orderDetails);
+                                                updatePaymentBadge(data.orderDetails);
+                                                updateOrderStatusBadge(data.orderDetails);
+                                            }, 3000)
+                                        });
+                                    } else {
+                                        // Refund approval failed
+                                        console.error('Failed to approve refund');
+                                        var myToast = $.toast({
+                                            heading: 'Approving Refund.Please Wait..',
+                                            text: "Approving Refund. The Amount will be added to user wallet",
+                                            icon: 'info',
+                                            hideAfter: 7000,
+                                            position: 'top-center',
+
+                                        });
+
+                                        // Update the toast after three seconds.
+                                        window.setTimeout(function () {
+                                            myToast.update({
+                                                heading: "Error: Refund Approval Failed",
+                                                text: "Failed to approve refund to user wallet",
+                                                icon: 'success',
+                                                hideAfter: 7000,
+                                                position: 'top-center',
+                                            });
+                                        }, 3000)
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error approving refund:', error);
+                                });
+                        }
+
+                        //refundApprove approve btn updation
+                        function checkCondition(orderDetails) {
+                            // Check the condition again with updated orderDetails
+                            if (orderDetails.paymentMethod === "razorPay" &&
+                                (orderDetails.orderStatus === "return-requested" ||
+                                    orderDetails.orderStatus === "cancelled")) {
+                                // Enable the button
+                                document.getElementById('refundApprove').hidden = false;
+                            } else {
+                                // Disable the button
+                                document.getElementById('refundApprove').hidden = true;
+                            }
+                        }
+                        //payment-status-badge updation
+                        function updatePaymentBadge(orderDetails) {
+                            var paymentBadge = document.getElementById('payment-status-badge');
+                            if (orderDetails.paymentMethod === "cod") {
+                                if (orderDetails.orderStatus === "pending") {
+                                    paymentBadge.innerHTML = '<span class="badge rounded-pill alert-warning text-warning">Payment Pending</span>';
+                                } else if (orderDetails.orderStatus === "order-delivered") {
+                                    paymentBadge.innerHTML = '<span class="badge rounded-pill alert-success text-success">Payment Done</span>';
+                                } else if (orderDetails.orderStatus === "order-shipped") {
+                                    paymentBadge.innerHTML = '<span class="badge rounded-pill alert-warning text-warning">Payment Pending</span>';
+                                } else if (orderDetails.orderStatus === "return-requested") {
+                                    paymentBadge.innerHTML = '<span class="badge rounded-pill alert-primary text-primary">Refund Initiated</span>';
+                                } else if (orderDetails.orderStatus === "returned") {
+                                    paymentBadge.innerHTML = '<span class="badge rounded-pill alert-primary text-dark">Refund Approved</span>';
+                                } else if (orderDetails.orderStatus === "cancelled") {
+                                    paymentBadge.innerHTML = '<span class="badge rounded-pill alert-info text-info">No Payment Done</span>';
+                                }
+                            } else {
+                                if (orderDetails.orderStatus === "pending" || orderDetails.orderStatus === "order-delivered" || orderDetails.orderStatus === "order-shipped") {
+                                    paymentBadge.innerHTML = '<span class="badge rounded-pill alert-success text-success">Payment Done</span>';
+                                } else if (orderDetails.orderStatus === "return-requested" || orderDetails.orderStatus === "cancelled") {
+                                    paymentBadge.innerHTML = '<span class="badge rounded-pill alert-primary text-primary">Refund Initiated</span>';
+                                } else if (orderDetails.orderStatus === "returned") {
+                                    paymentBadge.innerHTML = '<span class="badge rounded-pill alert-primary text-dark">Refund Approved</span>';
+                                }
+                            }
+                        }
+
+                        //order-status-badge updation
+                        function updateOrderStatusBadge(orderDetails) {
+                            var orderStatusBadge = document.getElementById('order-status-badge');
+                            if (orderDetails.orderStatus === "pending") {
+                                orderStatusBadge.innerHTML = '<span style="font-size: 0.8rem;">Order Status:</span>' +
+                                    '<span class="badge rounded-pill alert-warning text-warning ms-2" style="font-size: 0.8rem;">Delivery Pending</span>';
+                            } else if (orderDetails.orderStatus === "order-delivered") {
+                                orderStatusBadge.innerHTML = '<span style="font-size: 0.8rem;">Order Status:</span>' +
+                                    '<span class="badge rounded-pill alert-success text-success ms-2" style="font-size: 0.8rem;">Order Delivered</span>';
+                            } else if (orderDetails.orderStatus === "cancelled") {
+                                orderStatusBadge.innerHTML = '<span style="font-size: 0.8rem;">Order Status:</span>' +
+                                    '<span class="badge rounded-pill alert-danger text-danger ms-2" style="font-size: 0.8rem;">Cancelled</span>';
+                            } else if (orderDetails.orderStatus === "return-requested") {
+                                orderStatusBadge.innerHTML = '<span style="font-size: 0.8rem;">Order Status:</span>' +
+                                    '<span class="badge rounded-pill alert-primary text-primary ms-2" style="font-size: 0.8rem;">Return Requested</span>';
+                            } else if (orderDetails.orderStatus === "returned") {
+                                orderStatusBadge.innerHTML = '<span style="font-size: 0.8rem;">Order Status:</span>' +
+                                    '<span class="badge rounded-pill alert-primary text-primary ms-2" style="font-size: 0.8rem;">Returned</span>';
+                            }
+                        }
+                    </script>
+
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            document.getElementById('saveButton').addEventListener('click', async function () {
+                                try {
+                                    const notes = document.getElementById("notes").value;
+                                    const orderId = "<%= orderDetails._id %>";
+                                    if (notes) {
+                                        const response = await fetch('/admin/orders/order-details/save-notes?orderId=<%=orderDetails._id %>', {
+                                            method: 'POST',
+                                            body: JSON.stringify({
+                                                orderId: orderId,
+                                                notes: notes
+                                            }),
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                            }
+                                        });
+
+                                        if (response.ok) {
+                                            const data = await response.json();
+                                            console.log('Notes saved:', data);
+
+                                            sessionStorage.setItem('showToastAfterReload', 'true');
+
+                                            window.location.reload()
+                                        } else {
+                                            // Display error toast based on the response status code
+                                            const errorMessage = `Error saving notes (${response.status})`;
+                                            console.error(errorMessage);
+                                            $.toast({
+                                                heading: 'Error Saving Notes',
+                                                text: errorMessage,
+                                                position: 'top-center',
+                                                showHideTransition: 'slide',
+                                                icon: 'error'
+                                            });
+                                        }
+                                    } else {
+                                        $.toast({
+                                            heading: 'Enter Notes Before Saving',
+                                            text: 'You have enter some notes to save it to the order details.',
+                                            position: 'top-center',
+                                            showHideTransition: 'slide',
+                                            icon: 'info'
+                                        });
+                                    }
+
+
+                                } catch (error) {
+                                    console.error('There was a problem with your fetch operation:', error);
+                                    $.toast({
+                                        heading: 'There was a problem with the fetch operation',
+                                        position: 'top-center',
+                                        showHideTransition: 'slide',
+                                        icon: 'error'
+                                    });
+                                }
+                            });
+                        });
+
+                        // Check if there is a flag to show toast after reload
+                        window.onload = function () {
+                            const showToastAfterReload = sessionStorage.getItem('showToastAfterReload');
+                            if (showToastAfterReload === 'true') {
+                                // Display the toast
+                                $.toast({
+                                    heading: 'Order Cancelled',
+                                    text: 'Order has been cancelled',
+                                    position: 'top-center',
+                                    showHideTransition: 'slide',
+                                    icon: 'success'
+                                });
+
+                                // Remove the flag from session storage
+                                sessionStorage.removeItem('showToastAfterReload');
+                            }
+                        };
+                    </script>
+
+                </div> <!-- card-body end// -->
+            </div> <!-- card end// -->
+        </section> <!-- content-main end// -->
+        <footer class="main-footer font-xs">
+            <div class="row pb-30 pt-15">
+                <div class="col-sm-6">
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> ©, CouchCart Ecommerce
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end">
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="/admin/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/admin/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/vendors/select2.min.js"></script>
+    <script src="/admin/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/admin/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="/admin/js/main.js" type="text/javascript"></script>
+
+    <!-- $.toast plugins -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,736 @@
+<%- include('../layouts/header.ejs') %>
+
+    <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+        <div class="container" style="  height: 10%;">
+            <div class="breadcrumb-content text-center">
+                <h2 data-aos="fade-up" data-aos-delay="200">Product Details</h2>
+                <ul data-aos="fade-up" data-aos-delay="400">
+                    <li><a href="/">Home</a></li>
+                    <li><i class="ti-angle-right"></i></li>
+                    <li><a href="/shop">Shop</a> </li>
+                    <li><i class="ti-angle-right"></i></li>
+                    <li>Product Details</li>
+                </ul>
+            </div>
+        </div>
+        <div class="breadcrumb-img-1" data-aos="fade-right" data-aos-delay="200">
+            <img src="user/images/banner/breadcrumb-1.png" alt="">
+        </div>
+        <div class="breadcrumb-img-2" data-aos="fade-left" data-aos-delay="200">
+            <img src="user/images/banner/breadcrumb-2.png" alt="">
+        </div>
+    </div>
+    <div class="product-details-area pb-100 pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product-details-img-wrap product-details-vertical-wrap" data-aos="fade-up"
+                        data-aos-delay="200">
+                        <div class="product-details-small-img-wrap">
+                            <div class="swiper-container product-details-small-img-slider-1 pd-small-img-style">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="product-details-small-img">
+                                            <img src="/productAssets/<%= product.images[0] %>" alt="Product Thumnail">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="product-details-small-img">
+                                            <img src="/productAssets/<%= product.images[1] %>" alt="Product Thumnail">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="product-details-small-img">
+                                            <img src="/productAssets/<%= product.images[2] %>" alt="Product Thumnail">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="pd-prev pd-nav-style"> <i class="ti-angle-up"></i></div>
+                                <div class="pd-next pd-nav-style"> <i class="ti-angle-down"></i></div> -->
+                        </div>
+                        <div class="swiper-container product-details-big-img-slider-1 pd-big-img-style">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="easyzoom-style">
+                                        <div class="easyzoom easyzoom--overlay">
+                                            <a href="/productAssets/<%= product.images[0] %>">
+                                                <img src="/productAssets/<%= product.images[0] %>" alt="">
+                                            </a>
+                                        </div>
+                                        <a class="easyzoom-pop-up img-popup"
+                                            href="/productAssets/<%= product.images[0] %>">
+                                            <i class="pe-7s-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="easyzoom-style">
+                                        <div class="easyzoom easyzoom--overlay">
+                                            <a href="/productAssets/<%= product.images[1] %>">
+                                                <img src="/productAssets/<%= product.images[1] %>" alt="">
+                                            </a>
+                                        </div>
+                                        <a class="easyzoom-pop-up img-popup"
+                                            href="/productAssets/<%= product.images[1] %>">
+                                            <i class="pe-7s-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="easyzoom-style">
+                                        <div class="easyzoom easyzoom--overlay">
+                                            <a href="/productAssets/<%= product.images[2] %>">
+                                                <img src="/productAssets/<%= product.images[2] %>" alt="">
+                                            </a>
+                                        </div>
+                                        <a class="easyzoom-pop-up img-popup"
+                                            href="/productAssets/<%= product.images[2] %>">
+                                            <i class="pe-7s-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-details-content" data-aos="fade-up" data-aos-delay="400">
+                        <h2>
+                            <%=product.productName %>
+                        </h2>
+                        
+                        <div class="product-details-price">
+                            <% if(product.productOffer !== 0 || product.categoryOffer !==0){ %>
+                                <span class="old-price">₹ <%=( product.productPrice)%></span>
+                                <span class="new-price">₹ <%= product.offerPrice %></span>
+                                <% } else { %>
+                                    <span class="old-price"></span>
+                                    <span class="new-price">₹ <%= product.productPrice %></span>
+                                    <% } %>
+                        </div>
+                        <div class="product-details-review">
+                            <div class="product-rating">
+                                <i class=" ti-star"></i>
+                                <i class=" ti-star"></i>
+                                <i class=" ti-star"></i>
+                                <i class=" ti-star"></i>
+                                <i class=" ti-star"></i>
+                            </div>
+                            <span>( 1079 Customer Review )</span>
+                        </div>
+
+
+
+                        <% if (product.stock>10) {%>
+                            <div class="product-details-price">
+                                <span class="qty-count text-success fs-5 text-center"> In stock</span>
+                            </div>
+                            <% } else if (product.stock>0 && product.stock<=10) { %>
+                                    <div class="product-details-price">
+                                        <span class="qty-count text-danger fs-5 text-center"> Only <%=product.stock %> left in stock.</span>
+                                    </div>
+                                    <% } else if (product.stock > 10 && product.stock<=25) { %>
+                                        <div class="product-details-price">
+                                            <span class="qty-count text-danger fs-5 text-center"> Only few left in stock!</span>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="product-details-price">
+                                                <span class="qty-count text-danger fs-5 text-center"> Out of stock!</span>
+                                            </div>
+                                            <% } %>
+
+                                                <div class="product-color product-color-active product-details-color">
+                                                    <!-- <span>Color :</span>
+                                <ul>
+                                    <li><a title="Pink" class="pink" href="#">pink</a></li>
+                                    <li><a title="Yellow" class="active yellow" href="#">yellow</a></li>
+                                    <li><a title="Purple" class="purple" href="#">purple</a></li>
+                                </ul> -->
+                                                </div>
+                                                <div class="product-details-action-wrap">
+                                                    <!-- <div class="product-quality">
+                                                <input class="cart-plus-minus-box input-text qty text" name="qtybutton"
+                                                    value="1">
+                                            </div> -->
+                                                    <!-- <div class="single-product-cart btn-hover">
+                                    <a href="#">Add to cart</a>
+                                </div> -->
+                                                    <div class="single-product-cart btn-hover">
+                                                        <button data-product-id="<%= product._id %>" class="addBtn"
+                                                            id="addBtn">Add to cart</button>
+                                                    </div>
+                                                    <style>
+                                                        #addBtn {
+                                                            height: 60px;
+                                                            /* Adjust height */
+                                                            width: 120px;
+                                                            /* Adjust width */
+                                                            border: none;
+                                                            /* Adjust border color */
+                                                            background-color: #fd7e14;
+                                                            /* Adjust background color */
+                                                            color: #fff3f3;
+                                                            /* Adjust font color */
+                                                            font-size: 16px;
+                                                            /* Adjust font size if needed */
+                                                            font-weight: bold;
+                                                            /* Optionally adjust font weight */
+                                                            cursor: pointer;
+                                                            /* Add pointer cursor on hover */
+                                                        }
+
+                                                        /* Change button appearance on hover */
+                                                        #addBtn:hover {
+                                                            background-color: #252525;
+                                                            /* Change background color on hover */
+                                                        }
+                                                    </style>
+                                                    <script>
+                                                        document.querySelectorAll('.addBtn').forEach(button => {
+                                                            button.addEventListener('click', function () {
+                                                                const productId = this.getAttribute('data-product-id');
+                                                                addToCart(productId);
+                                                            });
+                                                        });
+
+                                                        function addToCart(productId) {
+                                                            // Here you can implement your logic to add the product to the cart
+                                                            console.log('Adding product to cart:', productId);
+
+                                                            fetch('/add-to-cart?user=<%=userId%>', {
+                                                                method: 'POST',
+                                                                body: JSON.stringify({ productId: productId, userId: "<%=userId%>" }),
+                                                                headers: {
+                                                                    'Content-Type': 'application/json',
+                                                                }
+                                                            }).then(response => {
+                                                                if (response.ok) {
+                                                                    $.toast({
+                                                                        heading: 'Success',
+                                                                        text: 'Product added to cart successfully',
+                                                                        position: 'top-center',
+                                                                        showHideTransition: 'slide',
+                                                                        icon: 'success'
+                                                                    })
+                                                                } else if (response.status === 401) {
+                                                                    $.toast({
+                                                                        heading: 'Error',
+                                                                        text: 'Maximum Quantity Per Order Reached',
+                                                                        showHideTransition: 'fade',
+                                                                        position: 'top-center',
+                                                                        icon: 'error'
+                                                                    })
+
+                                                                } else if (response.status === 405) {
+                                                                    $.toast({
+                                                                        heading: 'Error',
+                                                                        text: 'Insufficient stock available',
+                                                                        showHideTransition: 'fade',
+                                                                        position: 'top-center',
+                                                                        icon: 'error'
+                                                                    })
+                                                                } else {
+                                                                    $.toast({
+                                                                        heading: 'Error',
+                                                                        text: 'Error adding product to cart',
+                                                                        showHideTransition: 'fade',
+                                                                        position: 'top-center',
+                                                                        icon: 'error'
+                                                                    })
+
+                                                                }
+                                                            }).catch(error => {
+                                                                console.error("Error adding product to cart:", error);
+                                                                $.toast({
+                                                                    heading: 'Error',
+                                                                    text: 'Error adding product to cart',
+                                                                    showHideTransition: 'fade',
+                                                                    position: 'top-center',
+                                                                    icon: 'error'
+                                                                })
+                                                            });
+                                                        }
+                                                    </script>
+                                                    <div class="single-product-wishlist">
+                                                        <a title="Wishlist" href="wishlist.html"><i
+                                                                class="pe-7s-like"></i></a>
+                                                    </div>
+                                                    <div class="single-product-compare">
+                                                        <a title="Compare" href="#"><i class="pe-7s-shuffle"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-details-meta">
+                                                    <ul>
+                                                        <!-- <li><span class="title">SKU:</span> Ch-256xl</li> -->
+                                                        <li><span class="title">Category:</span>
+                                                            <ul>
+                                                                <li><a href="#">
+                                                                        <%=product.category.categoryName %>
+                                                                    </a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li><span class="title">Tags:</span>
+                                                            <ul class="tag">
+                                                                <li><a href="#">
+                                                                        <%=product.productTags %>
+                                                                    </a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <!-- <div class="social-icon-style-4">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-dribbble"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                            </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="description-review-area pb-85">
+        <div class="container">
+            <div class="description-review-topbar nav" data-aos="fade-up" data-aos-delay="200">
+                <a class="active" data-bs-toggle="tab" href="#des-details1">Description</a>
+                <a data-bs-toggle="tab" href="#des-details2" class=""> Information </a>
+                <a data-bs-toggle="tab" href="#des-details3" class=""> Reviews </a>
+            </div>
+            <div class="tab-content">
+                <div id="des-details1" class="tab-pane active">
+                    <div class="product-description-content text-center">
+                        <p data-aos="fade-up" data-aos-delay="200">
+                            <%=product.productDetails %>
+                        </p>
+                    </div>
+                </div>
+                <div id="des-details2" class="tab-pane">
+                    <div class="product-description-content text-center ">
+                        <pre><p  data-aos="fade-up" data-aos-delay="200"><%=product.productInfo %> </p></pre>
+                    </div>
+
+                </div>
+                <!-- <div id="des-details2" class="tab-pane">
+                        <div class="specification-wrap table-responsive">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="width1">Brands</td>
+                                        <td>Airi, Brand, Draven, Skudmart, Yena</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width1">Color</td>
+                                        <td>Blue, Gray, Pink</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width1">Size</td>
+                                        <td>L, M, S, XL, XXL</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> -->
+                <div id="des-details3" class="tab-pane">
+                    <div class="review-wrapper">
+                        <h3>1 review for Sleeve Button Cowl Neck</h3>
+                        <div class="single-review">
+                            <div class="review-img">
+                                <img src="user/images/product-details/review-1.png" alt="">
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <a href="#"><i class="ti-star"></i></a>
+                                    <a href="#"><i class="ti-star"></i></a>
+                                    <a href="#"><i class="ti-star"></i></a>
+                                    <a href="#"><i class="ti-star"></i></a>
+                                    <a href="#"><i class="ti-star"></i></a>
+                                </div>
+                                <h5><span>HasTech</span> - April 29, 2022</h5>
+                                <p>Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas magna molestie a.
+                                    Proin ac ex maximus, ultrices justo eget, sodales orci. Aliquam egestas libero ac
+                                    turpis pharetra, in vehicula lacus scelerisque</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ratting-form-wrapper">
+                        <h3>Add a Review</h3>
+                        <p>Your email address will not be published. Required fields are marked <span>*</span></p>
+                        <div class="your-rating-wrap">
+                            <span>Your rating</span>
+                            <div class="your-rating">
+                                <a href="#"><i class="ti-star"></i></a>
+                                <a href="#"><i class="ti-star"></i></a>
+                                <a href="#"><i class="ti-star"></i></a>
+                                <a href="#"><i class="ti-star"></i></a>
+                                <a href="#"><i class="ti-star"></i></a>
+                            </div>
+                        </div>
+                        <div class="ratting-form">
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="rating-form-style mb-15">
+                                            <label>Name <span>*</span></label>
+                                            <input type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="rating-form-style mb-15">
+                                            <label>Email <span>*</span></label>
+                                            <input type="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="rating-form-style mb-15">
+                                            <label>Your review <span>*</span></label>
+                                            <textarea name="Your Review"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="save-email-option">
+                                            <p><input type="checkbox"> <label>Save my name, email, and website in this
+                                                    browser for the next time I comment.</label></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-submit">
+                                            <input type="submit" value="Submit">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="related-product-area pb-95">
+        <div class="container">
+            <div class="section-title-2 st-border-center text-center mb-75" data-aos="fade-up" data-aos-delay="200">
+                <h2>Related Products</h2>
+            </div>
+            <div class="related-product-active swiper-container" style=" height: 35%;">
+                <div class="swiper-wrapper">
+                    <% relatedProducts.forEach(product=>{ %>
+
+                        <div class="swiper-slide">
+                            <div class="product-wrap" data-aos="fade-up" data-aos-delay="200">
+                                <div class="product-img img-zoom mb-25">
+                                    <a href="product-details?id=<%=product._id %>">
+                                        <img src="/productAssets/<%= product.images[0] %>"
+                                            alt="<%= product.productName %>">
+                                    </a>
+                                    <!-- <div class="product-badge badge-top badge-right badge-pink">
+                                        <span>-10%</span>
+                                    </div> -->
+                                    <div class="product-action-wrap">
+                                        <button class="product-action-btn-1" title="Wishlist"><i
+                                                class="pe-7s-like"></i></button>
+                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                            <i class="pe-7s-look"></i>
+                                        </button>
+                                    </div>
+                                    <div class="product-action-2-wrap">
+                                        <button class="product-action-btn-2" data-product-id="<%= product._id %>"
+                                            class="addBtn" id="addBtn" title="Add To Cart"><i class="pe-7s-cart"></i>
+                                            Add to cart</button>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <h3><a href="product-details.html">
+                                            <%= product.productName %>t
+                                        </a></h3>
+                                    <div class="product-price">
+                                        <span class="old-price">₹ <%=( product.productPrice
+                                                +(product.productPrice*(10/100)) ).toFixed(0)%></span>
+                                        <span class="new-price">₹ <%= product.productPrice %></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-area">
+        <div class="bg-gray-2">
+            <div class="container">
+                <div class="footer-top pt-80 pb-35">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget footer-about mb-40">
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="user/images/logo/logo.png" alt="logo"></a>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, cons adipi elit, sed do eiusmod tempor incididunt ut
+                                    aliqua.</p>
+                                <div class="payment-img">
+                                    <a href="#"><img src="user/images/icon-img/payment.png" alt="logo"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget footer-widget-margin-1 footer-list mb-40">
+                                <h3 class="footer-title">Information</h3>
+                                <ul>
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="#">Delivery Information</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Customer Service</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget footer-list mb-40">
+                                <h3 class="footer-title">My Accound</h3>
+                                <ul>
+                                    <li><a href="my-account.html">My Account</a></li>
+                                    <li><a href="#">Order History</a></li>
+                                    <li><a href="wishlist.html">Wish List</a></li>
+                                    <li><a href="#">Newsletter</a></li>
+                                    <li><a href="#">Order History</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget footer-widget-margin-2 footer-address mb-40">
+                                <h3 class="footer-title">Get in touch</h3>
+                                <ul>
+                                    <li><span>Address: </span>Your address goes here </li>
+                                    <li><span>Telephone Enquiry:</span> (012) 345 6789</li>
+                                    <li><span>Email: </span>demo@example.com</li>
+                                </ul>
+                                <div class="open-time">
+                                    <p>Open : <span>8:00 AM</span> - Close : <span>18:00 PM</span></p>
+                                    <p>Saturday - Sunday : Close</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gray-3">
+            <div class="container">
+                <div class="footer-bottom copyright text-center bg-gray-3">
+                    <p>Copyright ©2022 All rights reserved | Made with <i class="fa fa-heart"></i> by <a
+                            href="https://www.youtube.com/@sayyamCode"> SayyamCode</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Product Modal start -->
+    <div class="modal fade quickview-modal-style" id="exampleModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close"><i class=" ti-close "></i></a>
+                </div>
+                <div class="modal-body">
+                    <div class="row gx-0">
+                        <div class="col-lg-5 col-md-5 col-12">
+                            <div class="modal-img-wrap">
+                                <img src="user/images/product/quickview.png" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-12">
+                            <div class="product-details-content quickview-content">
+                                <h2>New Modern Chair</h2>
+                                <div class="product-details-price">
+                                    <span class="old-price">$25.89 </span>
+                                    <span class="new-price">$20.25</span>
+                                </div>
+                                <div class="product-details-review">
+                                    <div class="product-rating">
+                                        <i class=" ti-star"></i>
+                                        <i class=" ti-star"></i>
+                                        <i class=" ti-star"></i>
+                                        <i class=" ti-star"></i>
+                                        <i class=" ti-star"></i>
+                                    </div>
+                                    <span>( 1 Customer Review )</span>
+                                </div>
+                                <div class="product-color product-color-active product-details-color">
+                                    <span>Color :</span>
+                                    <ul>
+                                        <li><a title="Pink" class="pink" href="#">pink</a></li>
+                                        <li><a title="Yellow" class="active yellow" href="#">yellow</a></li>
+                                        <li><a title="Purple" class="purple" href="#">purple</a></li>
+                                    </ul>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ornare tincidunt
+                                    neque vel semper. Cras placerat enim sed nisl mattis eleifend.</p>
+                                <div class="product-details-action-wrap">
+                                    <div class="product-quality">
+                                        <input class="cart-plus-minus-box input-text qty text" name="qtybutton"
+                                            value="1">
+                                    </div>
+                                    <div class="single-product-cart btn-hover">
+                                        <a href="#">Add to cart</a>
+                                    </div>
+                                    <div class="single-product-wishlist">
+                                        <a title="Wishlist" href="#"><i class="pe-7s-like"></i></a>
+                                    </div>
+                                    <div class="single-product-compare">
+                                        <a title="Compare" href="#"><i class="pe-7s-shuffle"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Product Modal end -->
+    <!-- Mobile Menu start -->
+    <div class="off-canvas-active">
+        <a class="off-canvas-close"><i class=" ti-close "></i></a>
+        <div class="off-canvas-wrap">
+            <div class="welcome-text off-canvas-margin-padding">
+                <p>Default Welcome Msg! </p>
+            </div>
+            <div class="mobile-menu-wrap off-canvas-margin-padding-2">
+                <div id="mobile-menu" class="slinky-mobile-menu text-left">
+                    <ul>
+                        <li>
+                            <a href="#">HOME</a>
+                            <ul>
+                                <li><a href="index.html">Home version 1 </a></li>
+                                <li><a href="index-2.html">Home version 2</a></li>
+                                <li><a href="index-3.html">Home version 3</a></li>
+                                <li><a href="index-4.html">Home version 4</a></li>
+                                <li><a href="index-5.html">Home version 5</a></li>
+                                <li><a href="index-6.html">Home version 6</a></li>
+                                <li><a href="index-7.html">Home version 7</a></li>
+                                <li><a href="index-8.html">Home version 8</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">SHOP</a>
+                            <ul>
+                                <li>
+                                    <a href="#">Shop Layout</a>
+                                    <ul>
+                                        <li><a href="shop.html">Standard Style</a></li>
+                                        <li><a href="shop-sidebar.html">Shop Grid Sidebar</a></li>
+                                        <li><a href="shop-list.html">Shop List Style</a></li>
+                                        <li><a href="shop-list-sidebar.html">Shop List Sidebar</a></li>
+                                        <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
+                                        <li><a href="shop-location.html">Store Location</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Product Layout</a>
+                                    <ul>
+                                        <li><a href="product-details.html">Tab Style 1</a></li>
+                                        <li><a href="product-details-2.html">Tab Style 2</a></li>
+                                        <li><a href="product-details-gallery.html">Gallery style </a></li>
+                                        <li><a href="product-details-affiliate.html">Affiliate style</a></li>
+                                        <li><a href="product-details-group.html">Group Style</a></li>
+                                        <li><a href="product-details-fixed-img.html">Fixed Image Style </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">PAGES </a>
+                            <ul>
+                                <li><a href="about-us.html">About Us </a></li>
+                                <li><a href="cart.html">Cart Page</a></li>
+                                <li><a href="checkout.html">Checkout </a></li>
+                                <li><a href="my-account.html">My Account</a></li>
+                                <li><a href="wishlist.html">Wishlist </a></li>
+                                <li><a href="compare.html">Compare </a></li>
+                                <li><a href="contact-us.html">Contact us </a></li>
+                                <li><a href="login-register.html">Login / Register </a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">BLOG </a>
+                            <ul>
+                                <li><a href="blog.html">Blog Standard </a></li>
+                                <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
+                                <li><a href="blog-details.html">Blog Details</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="about-us.html">ABOUT US</a>
+                        </li>
+                        <li>
+                            <a href="contact-us.html">CONTACT US</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="language-currency-wrap language-currency-wrap-modify">
+                <div class="currency-wrap border-style">
+                    <a class="currency-active" href="#">$ Dollar (US) <i class=" ti-angle-down "></i></a>
+                    <div class="currency-dropdown">
+                        <ul>
+                            <li><a href="#">Taka (BDT) </a></li>
+                            <li><a href="#">Riyal (SAR) </a></li>
+                            <li><a href="#">Rupee (INR) </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="language-wrap">
+                    <a class="language-active" href="#"><img src="user/images/icon-img/flag.png" alt=""> English <i
+                            class=" ti-angle-down "></i></a>
+                    <div class="language-dropdown">
+                        <ul>
+                            <li><a href="#"><img src="user/images/icon-img/flag.png" alt="">English </a></li>
+                            <li><a href="#"><img src="user/images/icon-img/spanish.png" alt="">Spanish</a></li>
+                            <li><a href="#"><img src="user/images/icon-img/arabic.png" alt="">Arabic </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- All JS is here -->
+    <script src="user/js/vendor/modernizr-3.11.7.min.js"></script>
+    <script src="user/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="user/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <script src="user/js/vendor/popper.min.js"></script>
+    <script src="user/js/vendor/bootstrap.min.js"></script>
+    <script src="user/js/plugins/wow.js"></script>
+    <script src="user/js/plugins/scrollup.js"></script>
+    <script src="user/js/plugins/aos.js"></script>
+    <script src="user/js/plugins/magnific-popup.js"></script>
+    <script src="user/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="user/js/plugins/swiper.min.js"></script>
+    <script src="user/js/plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="user/js/plugins/isotope.pkgd.min.js"></script>
+    <script src="user/js/plugins/jquery-ui.js"></script>
+    <script src="user/js/plugins/jquery-ui-touch-punch.js"></script>
+    <script src="user/js/plugins/jquery.nice-select.min.js"></script>
+    <script src="user/js/plugins/waypoints.min.js"></script>
+    <script src="user/js/plugins/jquery.counterup.js"></script>
+    <script src="user/js/plugins/select2.min.js"></script>
+    <script src="user/js/plugins/easyzoom.js"></script>
+    <script src="user/js/plugins/slinky.min.js"></script>
+    <script src="user/js/plugins/ajax-mail.js"></script>
+    <!-- Main JS -->
+    <script src="user/js/main.js"></script>
+    <!-- $.toast plugins -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+    
+    
+    <!-- Animated icons--> <!--https://lordicon.com/icons/system/regular/28-info-->
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+    </body>
+
+
+    </html>

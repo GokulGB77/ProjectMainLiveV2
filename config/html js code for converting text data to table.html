@@ -1,0 +1,45 @@
+< !DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Data as Tables</title>
+  </head>
+
+  <body>
+    <div id="tablesContainer"></div>
+
+    <script>
+      // Assume textData is the text retrieved from the database
+      const textData = `Product Dimensions : 75D x 40W x 60H Centimeters
+                Colour : Brown & White
+                Brand : Wooden World
+                Table design : Console Table
+                Style : Modern
+                Finish Type : Polished
+                Recommended Uses For Product : Indoor
+                Frame Material : Engineered Wood
+                Age Range : Adult
+                Model Name : Console table`;
+
+      const rows = textData.split(/\n\s*\n/); // Split text into rows based on multiple spaces
+      let tablesHtml = '';
+      rows.forEach(row => {
+        const keyValues = row.split('\n').reduce((acc, line) => {
+          const [key, value] = line.split(':').map(str => str.trim()); // Split key-value pairs based on colon (:)
+          acc[key] = value;
+          return acc;
+        }, {});
+        tablesHtml += '<table border="1">';
+        Object.entries(keyValues).forEach(([key, value]) => {
+          tablesHtml += `<tr><td>${key}</td><td>${value}</td></tr>`;
+        });
+        tablesHtml += '</table>';
+      });
+
+      document.getElementById('tablesContainer').innerHTML = tablesHtml;
+    </script>
+  </body>
+
+  </html>

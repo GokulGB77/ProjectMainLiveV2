@@ -1,0 +1,96 @@
+<%- include('../layouts/header.ejs') %>
+
+    <body>
+
+
+        <main style="padding-left: 15%; padding-right: 15%;">
+            <div style="padding-top: 3%; padding-bottom: 3%; ">
+               <div style="border: 1px solid #b1b1b1; padding: 60px; border-radius: 10px; box-shadow: 0 0 10px rgba(92, 91, 91, 0.5);">
+                <strong style="color: #00bb64;font-size: xx-large;">&#x2705; Order Placed. Thank you !</strong>
+                <p>Your order has been successfully placed. Confirmation will be sent to your email</p>
+
+                <ul>
+                    <li><strong>Order ID: <%= orderDetails.orderId %></strong></li>
+                    <li><strong>Total Amount: ₹ <%= orderDetails.orderTotal %></strong></li>
+                    <li><strong>Date: <%= orderDetails.orderDate %></strong> </li>
+                    <hr>
+                    <li> <strong>Shipping to <%= orderDetails.address.name %></strong>,<%= orderDetails.address.house %>
+                            ,<%= orderDetails.address.street %>
+                                <%= orderDetails.address.state %>,<%= orderDetails.address.city %> - <%=
+                                            orderDetails.address.pincode %>
+                                            Mob:<%= orderDetails.address.mobile %>
+                    </li>
+                </ul>
+
+                <!-- Display shipping information -->
+
+
+                <hr>
+
+                <!-- Display ordered products -->
+                <h5>Ordered Products :</h5>
+                <% orderDetails.orderProducts.forEach(item=> { %>
+                    <div class="col-md-4 " >
+                        <div class="product row"  >
+                            <div class="col-md-4">
+                                    <img src="/productAssets/<%= item.product.images[0] %>" alt="Product Image" class="img-fluid" style="max-height: 100px;">
+                                                                
+
+                            </div>
+                            <div class="col-md-8">
+                                <h6 class="product-title">
+                                    <%= item.product.productName %>
+                                </h6>
+                                <span class="product-price">₹ <%= item.price.toFixed(2).toLocaleString() %> </span>- /
+                                <span class="Quantity">
+                                    <%= item.quantity %> units
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <% }); %>
+                        <br>
+                        <div class="button-container">
+                            <a href="shop"> <button class="continue-shopping-btn">Continue Shopping</button></a>
+                            <a href="profile#orders %>"><button class="review-orders-btn">Review or edit your recent orders</button></a>
+                        </div>
+               </div>
+            </div>
+            <style>
+                .button-container {
+                    text-align: center;
+                    margin-top: 20px; /* Adjust as needed */
+                }
+            
+                .continue-shopping-btn,
+                .review-orders-btn {
+                    background-color: #e97730;
+                    color: #fff;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    text-decoration: none;
+                    cursor: pointer;
+                    transition: background-color 0.3s; /* Smooth transition on hover */
+                }
+            
+                .continue-shopping-btn:hover,
+                .review-orders-btn:hover {
+                    background-color: #d16022; /* Darker shade of orange */
+                }
+            
+                /* Style the link inside the button */
+                .continue-shopping-btn a,
+                .review-orders-btn a {
+                    color: inherit; /* Inherit parent color */
+                    text-decoration: none;
+                }
+            </style>
+        </main>
+
+
+    </body>
+
+    <%- include('../layouts/footer.ejs',) %>

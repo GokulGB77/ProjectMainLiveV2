@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin Login</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/admin/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/admin/css/main.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <main>
+        
+        <section class="content-main mt-80 mb-80">
+            <div class="card mx-auto card-login">
+                <div class="card-body">
+                    <h4 class="card-title mb-4 text-center">Admin Log In</h4>
+                    <form id="loginForm" method="post">
+                        <div class="mb-3">
+                            <input class="form-control" placeholder="Email" type="text" name="email" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input class="form-control" placeholder="Password" type="password" name="password" id="password" required>
+                        </div>
+                        <% if (typeof message !== 'undefined') { %>
+                            <p style="text-align: center; color: red;">
+                                <%= message %>
+                            </p>
+                        <% }; %>
+                        <div class="mb-4">
+                            <button type="button" id="loginButton" class="btn btn-primary w-100"> Login </button>
+                        </div>
+                    </form>
+                    
+                    <script>
+                        document.getElementById('loginButton').addEventListener('click', async () => {
+                            const email = document.getElementById('email').value;
+                            const password = document.getElementById('password').value;
+                    
+                            try {
+                                const response = await fetch('/admin/dashboard', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ email, password })
+                                });
+                    
+                                if (response.ok) {
+                                    // Redirect to dashboard or handle success response
+                                    window.location.href = '/admin/dashboard';
+                                } else {
+                                    // Handle error response
+                                    const responseData = await response.json();
+                                    alert(responseData.error); // or display error message in the UI
+                                }
+                            } catch (error) {
+                                console.error('Login error:', error.message);
+                                // Handle network errors or other exceptions
+                            }
+                        });
+                    </script>
+                    
+                  
+
+                 
+     
+                </div>
+            </div>
+        </section>
+       
+    </main>
+    <script src="/admin/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/admin/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/vendors/jquery.fullscreen.min.js"></script>
+    <!-- Main Script -->
+    <script src="/admin/js/main.js" type="text/javascript"></script>
+
+</body>
+
+</html>

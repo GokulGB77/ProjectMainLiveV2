@@ -1,0 +1,714 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Products | Add Product</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/admin/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/admin/css/main.css" rel="stylesheet" type="text/css" />
+    <link href="/admin/cropperjs/cropper.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Cropper js -->
+    <!-- <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" /> -->
+
+    <style>
+        .preview-image {
+            width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: transparent;
+            border: none;
+            color: rgb(0, 0, 0);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .close-button {
+            border: 1px solid black;
+            /* padding: 3px; */
+            background-color: rgb(255, 254, 254);
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="#" class="brand-wrap">
+                <img src="/admin/imgs/theme/logo.png" class="logo" alt="Admin Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i>
+                </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/dashboard"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/sales-report"> <i class="icon material-icons md-assignment"></i>
+                        <span class="text">Sales Report</span>
+                    </a>
+                </li>
+                <li class="menu-item  ">
+                    <a class="menu-link" href="/admin/user-details?page=1"> <i class="icon material-icons md-person"></i>
+                        <span class="text">User Details</span>
+                    </a>
+                </li>
+
+                <li class="menu-item ">
+                    <a class="menu-link active" href="/admin/products"> <i
+                            class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/categories"> <i class="icon material-icons md-category"></i>
+                        <span class="text">Categories</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/orders"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/coupons?page=1"> <i
+                            class="icon material-icons material-icons md-card_giftcard"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/offers?page=1"> <i
+                            class="icon material-icons material-icons md-local_offer"></i>
+                        <span class="text">Offers</span>
+                    </a>
+
+                </li>
+                <!--                 
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-sellers-cards.html"> <i class="icon material-icons md-store"></i>
+                        <span class="text">Sales</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-sellers-cards.html">Sellers cards</a>
+                        <a href="page-sellers-list.html">Sellers list</a>
+                        <a href="page-seller-detail.html">Seller profile</a>
+                    </div>
+                </li>
+            
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Banners</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-form-product-1.html">Add product 1</a>
+                        <a href="page-form-product-2.html">Add product 2</a>
+                        <a href="page-form-product-3.html">Add product 3</a>
+                        <a href="page-form-product-4.html">Add product 4</a>
+                    </div>
+                </li>
+                  -->
+            </ul>
+            <hr>
+            <ul class="menu-aside">
+                <li class="menu-item ">
+                    <a class="menu-link" href="/admin/logout"> <i class="icon material-icons md-settings"></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <br>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+                <form class="searchform">
+                    <div class="input-group">
+                        <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+                        <button class="btn btn-light bg" type="button"> <i
+                                class="material-icons md-search"></i></button>
+                    </div>
+                    <datalist id="search_terms">
+                        <option value="Products">
+                        <option value="New orders">
+                        <option value="Apple iphone">
+                        <option value="Ahmed Hassan">
+                    </datalist>
+                </form>
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i
+                        class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i
+                                class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount"
+                            aria-expanded="false"> <img class="img-xs rounded-circle"
+                                src="/admin/imgs/people/avatar2.jpg" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account
+                                Settings</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i
+                                    class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <form action="/admin/products/add-product" method="post" enctype="multipart/form-data" id="productForm">
+            <section class="content-main">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="content-header">
+                            <h2 class="content-title">Add New Product</h2>
+                            <div>
+                                <button class="btn btn-md rounded font-sm hover-up" 
+                                    id="addProduct">Add Product</button>
+
+                            </div>
+
+                        </div>
+                        <p id="main-error" class="errorMessage" style="color: red;"></p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label for="productName" class="form-label">Product Name</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="productName"
+                                        name="productName" maxlength="100"  
+                                        required>
+                                    <p id="productNameError" class="error-message" style="color: red;"></p>
+
+                                </div>
+                                <div class="row gx-3">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="stock" class="form-label">Stock Quantity</label>
+                                        <input type="text" placeholder="Type here" class="form-control" maxlength="4"
+                                            id="stock" name="stock" pattern="[0-9]+"
+                                            title="Enter a valid Quantity (non-negative integer)" required>
+                                        <p id="productQuantityError" class="error-message" style="color: red;"></p>
+                                    </div>
+
+                                    <div class="col-md-6  mb-3">
+                                        <label class="form-label">Tags</label>
+                                        <input type="text" placeholder="Enter tags separated by commas"
+                                            name="productTags" id="productTags" class="form-control"
+                                            pattern="^[a-zA-Z,]+$" title="Only alphabets and commas are allowed"
+                                            required>
+                                        <p id="productTagsError" class="error-message" style="color: red;"></p>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> <!-- card end// -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div>
+                                    <label class="form-label">Description</label>
+                                    <textarea placeholder="Type here" class="form-control" id="productDetails"
+                                        name="productDetails" required rows="4"
+                                        pattern="^(?!^[^\w\s]+$)[A-Za-z0-9\s\-.:/+&%\(\)]+$"
+                                        title="Description should not start or end with spaces, contain only one space between words, and consist of alphabets, numbers, and special characters (-,.:/+&%\(){}). It cannot be composed solely of special characters or numbers."></textarea>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <label class="form-label">Info</label>
+                                    <textarea placeholder="Type here" class="form-control" id="productInfo"
+                                        name="productInfo" required rows="4"
+                                        pattern="^(?!^[^\w\s]+$)[A-Za-z0-9\s\-.:/+&%\(\)]+$"
+                                        title="Enter Valid Info"></textarea>
+                                </div>
+                            </div>
+                        </div> <!-- card end// -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div>
+                                    <label class="form-label">Images</label>
+                                    <input class="form-control" type="file" id="image-upload" accept="image/*"
+                                        name="productImage" multiple required>
+                                    <div class="spin error" id="image-error"></div>
+                                </div>
+
+                                <!-- <div id="imagePreview"></div> -->
+
+                                <br>
+                                <div id="cropper-container"></div>
+                                <!-- Buttons for controlling cropping -->
+                                <!-- <button type="button" id="crop-button">Crop Image</button>
+                                <button type="button" id="cancel-crop-button">Cancel</button> -->
+                                <!-- <input type="submit" name="cropped-image" id="cropped-image"> -->
+                            </div>
+                        </div> <!-- card end// -->
+                        <!-- <script>
+                            import Cropper from 'cropperjs';
+                            import 'cropperjs/dist/cropper.css';
+                            const imageInput = document.getElementById('imageUpload');
+                            const imagePreviewContainer = document.getElementById('imagePreview');
+                            const cropperContainer = document.getElementById('cropper');
+                            const cropperImage = document.getElementById('cropperImage');
+                            const cropButton = document.getElementById('cropButton');
+
+                            let cropper;
+
+                            imageInput.addEventListener('change', (event) => {
+                                const file = event.target.files[0];
+                                const imageUrl = URL.createObjectURL(file);
+
+                                cropperImage.src = imageUrl;
+                                cropperContainer.style.display = 'block';
+
+                                cropper = new Cropper(cropperImage, {
+                                    aspectRatio: 16 / 9,
+                                    guides: true,
+                                    viewMode: 2,
+                                });
+                            });
+
+                            cropButton.addEventListener('click', () => {
+                                const croppedCanvas = cropper.getCroppedCanvas();
+                                const croppedImage = croppedCanvas.toDataURL('image/jpeg');
+
+                                // Now, you can upload the cropped image to the server
+                                // or do whatever you need to do with the cropped image
+                                console.log(croppedImage);
+
+                                // Reset the cropper
+                                cropper.destroy();
+                                cropperContainer.style.display = 'none';
+                            });
+                        </script> -->
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label class="form-label">Price</label>
+                                    <input type="text" placeholder="Type here" class="form-control" id="productPrice"
+                                        name="productPrice" pattern="^(?!0+(\.0+)?$)\d+(\.\d{1,2})?$"
+                                        title="Please enter a valid price (e.g., 10 or 10.99)" required>
+                                    <p id="productPriceError" class="error-message" style="color: red;"></p>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Status</label>
+                                    <select class="form-select" name="status" id="status" required>
+                                        <option value="1">Published</option>
+                                        <option value="0">Draft</option>
+                                    </select>
+                                </div>
+
+                                <hr>
+                                <h5 class="mb-3">Categories</h5>
+                                <div class="mb-4">
+                                    <select class="form-select" name="productCategory" id="productCategory" required>
+                                        <% categories.forEach(category=> { %>
+                                            <option value="<%=category._id %>">
+                                                <%=category.categoryName %>
+                                            </option>
+                                            <% }); %>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div> <!-- card end// -->
+                    </div>
+                </div>
+            </section>
+        </form>
+
+        <script>
+            const form = document.getElementById("productForm")
+            let totalimages = 0;
+
+            function imageupload(event) {
+
+                const files = event.target.files;
+                const imagecontainer = document.getElementById("cropper-container");
+                const maximum = 4;
+
+                const totalupload = totalimages + files.length;
+                if (totalupload > maximum) {
+                    //   Swal.fire(Oops! Upload only ${maximum} files., "Sorry");
+                    event.target.value = "";
+                    return;
+                }
+
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const reader = new FileReader();
+                    if (!file.type.startsWith("image/")) {
+                        console.log("File is not an image.", file.type);
+                        continue;
+                    }
+
+                    const imgdiv = document.createElement("div");
+                    imgdiv.classList.add("image-div");
+
+                    const img = document.createElement("img");
+                    img.style.height = "300px";
+                    img.style.width = "350px";
+                    img.setAttribute("name", "image");
+                    img.classList.add("uploaded-image");
+
+                    const deletebutton = document.createElement("button");
+                    deletebutton.textContent = "Delete";
+                    deletebutton.classList.add("btn", "btn-danger", "m-2");
+
+                    deletebutton.addEventListener("click", function () {
+                        totalimages--;
+                        imgdiv.remove();
+                    });
+
+                    reader.onload = function (event) {
+                        img.src = event.target.result;
+
+                        const cropperdiv = document.createElement("div");
+                        cropperdiv.classList.add("cropper-container");
+                        cropperdiv.appendChild(img);
+
+                        imgdiv.appendChild(cropperdiv);
+                        const cropper = new Cropper(img, {
+                            dragMode: "move",
+                            aspectRatio: 1,
+                            autoCropArea: 0.8,
+                            restore: false,
+                            guides: false,
+                            center: false,
+                            responsive: true,
+                            highlight: false,
+                            cropBoxMovable: false,
+                            cropBoxResizable: false,
+                            toggleDragModeOnDblclick: false,
+                        });
+
+                        const cropbtn = document.createElement("button");
+                        cropbtn.classList.add("btn", "btn-primary", "m-2");
+                        cropbtn.textContent = "Crop";
+                        cropbtn.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            const croppedCanvas = cropper.getCroppedCanvas();
+
+                            img.src = croppedCanvas.toDataURL()
+
+                            croppedCanvas.toBlob((blob) => {
+                                const fileName = Date.now();
+                                const file = new File([blob], ` ${fileName}.jpg`, { type: 'image/jpeg' });
+
+                                if (window.FileList && window.DataTransfer) {
+                                    const dataTransfer = new DataTransfer();
+                                    dataTransfer.items.add(file);
+                                    const input = document.createElement('input');
+                                    input.type = 'file';
+                                    input.name = image$[i];
+                                    input.files = dataTransfer.files;
+                                    form.appendChild(input)
+                                    input.style.display = 'none'
+
+                                } else {
+                                    console.error('FileList and DataTransfer are not supported in this browser.');
+                                }
+                            })
+                            cropper.destroy();
+                            cropbtn.remove();
+
+
+                        });
+
+                        imgdiv.appendChild(cropbtn);
+                        imgdiv.appendChild(deletebutton);
+                    };
+
+                    reader.readAsDataURL(file);
+
+                    imagecontainer.appendChild(imgdiv);
+                }
+                totalimages = totalupload;
+            }
+
+            const imageInput = document.getElementById("image-upload");
+
+            imageInput.addEventListener("change", imageupload);
+
+            document.getElementById('addProduct').addEventListener("click", function (event) {
+                event.preventDefault()
+                const name = document.getElementById("productName").value.trim()
+                const stock = document.getElementById("stock").value.trim()
+                const tags = document.getElementById("productTags").value.trim()
+                const productDetails = document.getElementById("productDetails").value.trim()
+                const productInfo = document.getElementById("productInfo").value.trim()
+                const price = document.getElementById("productPrice").value.trim()
+                const status = document.getElementById("status").value
+                const productCategory = document.getElementById("productCategory")
+           
+
+
+                const nameError = document.getElementById("productNameError")
+                const priceError = document.getElementById("productPriceError")
+                const productTagsError = document.getElementById("productTagsError")
+                const stockError = document.getElementById("productQuantityError")
+             
+
+                nameError.textContent = "";
+                priceError.textContent = "";
+                productTagsError.textContent = "";
+                stockError.textContent = "";
+            
+
+                console.log(name);
+          
+                let isValid = true
+
+                if (name === '') {
+                    nameError.textContent = 'Name is required';
+                    isValid = false;
+
+                }
+                else if (/\d|-/.test(name)) {
+                    nameError.textContent = 'Name cannot contain digits or hyphens';
+                    isValid = false;
+
+                }
+                if (isNaN(price) || price === '' || parseFloat(price) === 0) {
+                    priceError.textContent = 'Please Enter a valid Price';
+                    isValid = false;
+
+                }
+                
+                
+                if (isNaN(stock) || stock === '' || parseFloat(stock) === 0) {
+                    stockError.textContent = 'Please Enter a valid stock';
+                    isValid = false;
+
+                }
+
+
+                const files = document.getElementById("image-upload").files;
+                const imageError = document.getElementById("image-error");
+                imageError.textContent = "";
+
+                if (files.length === 0) {
+                    imageError.textContent = "Please select at least one image";
+                    isValid = false;
+
+                } else {
+                    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+                    for (let i = 0; i < files.length; i++) {
+                        if (!allowedTypes.includes(files[i].type)) {
+                            imageError.textContent = "Please select only image files (JPEG, PNG, or GIF).";
+                            isValid = false;
+                            break;
+
+                        }
+                    }
+                }
+
+                if (isValid) {
+                    document.getElementById("productForm").submit()
+                }
+            })
+
+
+
+        </script>
+        <!-- <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const imageUpload = document.getElementById("imageUpload");
+                const imagePreview = document.getElementById("imagePreview");
+
+                imageUpload.addEventListener("change", function () {
+                    imagePreview.innerHTML = "";
+
+                    for (let i = 0; i < this.files.length; i++) {
+                        const file = this.files[i];
+                        const reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            const image = document.createElement("img");
+                            image.src = e.target.result;
+                            image.classList.add("preview-image");
+
+                            // Create close button
+                            const closeButton = document.createElement("button");
+                            closeButton.textContent = "X";
+                            closeButton.classList.add("close-button");
+                            closeButton.addEventListener("click", function () {
+                                // Remove both the image preview and the uploaded image
+                                imagePreview.removeChild(imageContainer);
+                                // Remove the uploaded image
+                                URL.revokeObjectURL(e.target.result);
+                            });
+
+                            const imageContainer = document.createElement("div");
+                            imageContainer.classList.add("image-container");
+                            imageContainer.appendChild(image);
+                            imageContainer.appendChild(closeButton);
+
+                            imagePreview.appendChild(imageContainer);
+                        };
+
+
+                        reader.readAsDataURL(file);
+                    }
+                });
+            });
+        </script> -->
+
+
+
+        <!-- <script>
+            function trim() {
+                let name = document.getElementById('productName').value;
+                const productNameError = document.getElementById('productNameError');
+                name = name.trim();
+            }
+            function validateName() {
+                let name = document.getElementById('productName').value;
+                const productNameError = document.getElementById('productNameError');
+                let value = false
+                // Remove leading and trailing spaces
+
+                // Condition: Should not be all spaces
+                if (name.length === 0) {
+                    event.preventDefault();
+                    productNameError.textContent = 'Name should not be empty or contain only spaces';
+
+                }
+                // Condition: Should contain only characters and not any special characters
+                else if (!/^[a-zA-Z\s]+$/.test(name)) {
+                    event.preventDefault();
+                    productNameError.textContent = 'Name should contain only letters';
+
+                }
+                // Condition: All characters shouldn't be the same
+                else if (/^(\w)\1+$/.test(name)) {
+                    event.preventDefault();
+                    productNameError.textContent = 'Name should not contain all same characters';
+
+                }
+                // Condition: Shouldn't contain multiple spaces between two words
+                else if (/\s{2,}/.test(name)) {
+                    event.preventDefault();
+                    productNameError.textContent = 'Name should not contain multiple spaces between words';
+
+                }
+                // Condition: Should be like "sasasasasasasa" or "ssaassaa" or any such pattern names
+                // else if (!/^(?:(\w)\1+)+$/.test(name)) {
+                //     productNameError.textContent = 'Name should follow a specific pattern';
+                // }
+                else {
+                    // Capitalize the first character and characters after space
+                    value = true
+                    name = name.replace(/\b\w/g, char => char.toUpperCase())
+                    document.getElementById('productName').value = name;
+                    productNameError.textContent = ''; // Remove the error message
+                }
+                return value
+            }
+            function validateQty() {
+                console.log("validating qty");
+                let quantity = document.getElementById('stock').value.trim(); // Remove leading and trailing spaces
+                const productQuantityError = document.getElementById('productQuantityError');
+                let value = false;
+
+                // Condition: Should be a non-negative number, contain only digits, and not contain "-"
+                if (!/^\d+$/.test(quantity) || quantity.includes("-")) {
+                    productQuantityError.textContent = 'Enter a valid Quantity';
+                    console.log("Validd qtyyyyyyyyyyyyyy");
+                } else {
+                    productQuantityError.textContent = ''; // Remove the error message
+                    console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+                    value = true;
+                }
+                return value;
+            }
+
+
+
+
+
+        </script> -->
+        <script>
+            //Add the same to the edit product page also
+            function submitForm() {
+
+                if (validateName()) {
+                    console.log("Hellddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddo");
+
+
+                    document.getElementById('addProduct').submit();
+
+                } else {
+                    console.log("Hellwwwwwwwwwwwwwwwwwwwwwwwwwwwwwo");
+
+                    document.getElementById("main-error").innerText = "Cannot Add Product"
+                }
+            }
+        </script>
+
+        <footer>
+
+        </footer>
+    </main>
+
+    <script src="/admin/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="/admin/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/vendors/select2.min.js"></script>
+    <script src="/admin/js/vendors/perfect-scrollbar.js"></script>
+    <script src="/admin/js/vendors/jquery.fullscreen.min.js"></script>
+    <script src="/admin/js/vendors/chart.js"></script>
+    <!-- Main Script -->
+    <script src="/admin/js/main.js" type="text/javascript"></script>
+    <script src="/admin/js/custom-chart.js" type="text/javascript"></script>
+
+    <script src="/admin/cropperjs/cropper.js"></script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/admin/imgs/theme/favicon.svg">
+  <!-- Template CSS -->
+  <link href="/admin/css/main.css" rel="stylesheet" type="text/css" />
+  <link href="/admin/css1/main.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+  <div class="screen-overlay"></div>
+  <aside class="navbar-aside" id="offcanvas_aside">
+    <div class="aside-top">
+      <a href="#" class="brand-wrap">
+        <img src="/admin/imgs/theme/logo.png" class="logo" alt="Admin Dashboard">
+      </a>
+      <div>
+        <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i>
+        </button>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu-aside">
+        <li class="menu-item ">
+          <a class="menu-link" href="/admin/dashboard"> <i class="icon material-icons md-home"></i>
+            <span class="text">Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item ">
+          <a class="menu-link" href="/admin/sales-report"> <i class="icon material-icons md-assignment"></i>
+              <span class="text">Sales Report</span>
+          </a>
+      </li>
+      <li class="menu-item  ">
+        <a class="menu-link" href="/admin/user-details?page=1"> <i class="icon material-icons md-person"></i>
+            <span class="text">User Details</span>
+        </a>
+    </li>
+        <li class="menu-item ">
+          <a class="menu-link" href="/admin/products"> <i class="icon material-icons md-shopping_bag"></i>
+            <span class="text">Products</span>
+          </a>
+
+        </li>
+
+        <li class="menu-item ">
+          <a class="menu-link" href="/admin/categories"> <i class="icon material-icons md-category"></i>
+            <span class="text">Categories</span>
+          </a>
+
+        </li>
+
+        <li class="menu-item ">
+          <a class="menu-link" href="/admin/orders"> <i class="icon material-icons md-shopping_cart"></i>
+            <span class="text">Orders</span>
+          </a>
+
+        </li>
+        <li class="menu-item ">
+          <a class="menu-link" href="/admin/coupons?page=1"> <i
+              class="icon material-icons material-icons md-card_giftcard"></i>
+            <span class="text">Coupons</span>
+          </a>
+
+        </li>
+        <li class="menu-item active">
+          <a class="menu-link" href="/admin/offers"> <i class="icon material-icons material-icons md-local_offer"></i>
+            <span class="text">Offers</span>
+          </a>
+
+        </li>
+        <!--                 
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-sellers-cards.html"> <i class="icon material-icons md-store"></i>
+                        <span class="text">Sales</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-sellers-cards.html">Sellers cards</a>
+                        <a href="page-sellers-list.html">Sellers list</a>
+                        <a href="page-seller-detail.html">Seller profile</a>
+                    </div>
+                </li>
+            
+                <li class="menu-item has-submenu">
+                    <a class="menu-link" href="page-form-product-1.html"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Banners</span>
+                    </a>
+                    <div class="submenu">
+                        <a href="page-form-product-1.html">Add product 1</a>
+                        <a href="page-form-product-2.html">Add product 2</a>
+                        <a href="page-form-product-3.html">Add product 3</a>
+                        <a href="page-form-product-4.html">Add product 4</a>
+                    </div>
+                </li>
+                  -->
+      </ul>
+      <hr>
+      <ul class="menu-aside">
+        <li class="menu-item ">
+          <a class="menu-link" href="/admin/logout"> <i class="icon material-icons md-settings"></i>
+            <span class="text">Logout</span>
+          </a>
+        </li>
+      </ul>
+      <br>
+      <br>
+    </nav>
+  </aside>
+  <main class="main-wrap">
+    <header class="main-header navbar">
+      <div class="col-search">
+        <form class="searchform">
+          <div class="input-group">
+            <input list="search_terms" type="text" class="form-control" placeholder="Search term">
+            <button class="btn btn-light bg" type="button"> <i class="material-icons md-search"></i></button>
+          </div>
+
+        </form>
+      </div>
+      <div class="col-nav">
+
+        <ul class="nav">
+
+          <li class="dropdown nav-item">
+            <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
+              <img class="img-xs rounded-circle" src="/admin-assets/imgs/people/User-logo.png" alt="User"></a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+              <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Profile</a>
+
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item text-danger" href="/admin/logout"><i
+                  class="material-icons md-exit_to_app"></i>Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <section class="content-main">
+
+      <div class="card mb-4">
+        <header class="card-header">
+          <div class="content-header">
+            <div>
+                <h2 class="content-title card-title">Create Product Offer</h2>
+            </div>
+            
+        </div>
+        </header>
+        <div class="card-body">
+
+          <div>
+            <form action="/admin/productOffer" method="post" onsubmit="return validateProductOfferForm()">
+              <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" style="max-width: 300px;" required>
+                <p id="title-error" class="error-message" style="color: red;"></p>
+              </div>
+  
+              <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <textarea class="form-control" id="description" name="description" style="max-width: 500px;"
+                  required></textarea>
+                <p id="description-error" class="error-message" style="color: red;"></p>
+              </div>
+  
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="startDate" class="form-label">Start Date:</label>
+                  <input type="date" class="form-control" id="startDate" name="startDate" required>
+                  <p id="startDate-error" class="error-message" style="color: red;"></p>
+                </div>
+                <div class="col-md-6">
+                  <label for="endDate" class="form-label">End Date:</label>
+                  <input type="date" class="form-control" id="endDate" name="endDate" required>
+                  <p id="endDate-error" class="error-message" style="color: red;"></p>
+                </div>
+              </div>
+  
+              <hr class="my-4">
+              <h2 class="mb-3">Product Offer Details</h2>
+  
+              <div class="mb-3">
+                <label for="selectedProducts" class="form-label">Select Products:</label>
+                <div class="selected-products-container">
+                  <div class="selected-products">
+                    <!-- Selected products will be displayed here -->
+                  </div>
+                </div>
+                <div class="product-list">
+                  <% products.forEach(product => { %>
+                    <div class="product-item">
+                      <input type="checkbox" id="<%= product._id %>" value="<%= product._id %>" name="selectedProducts[]">
+                      <label for="<%= product._id %>"><%= product.productName %></label>
+                    </div>
+                  <% }); %>
+                </div>
+                <p id="selectedProducts-error" class="error-message" style="color: red;"></p>
+              </div>
+  
+              
+              <div class="mb-3">
+                <label for="discountPercentage" class="form-label">Discount Percentage:</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" id="discountPercentage" name="discountPercentage"
+                    style="max-width: 150px;" required>
+                  <span class="input-group-text">%</span>
+                </div>
+                <p id="discountPercentage-error" class="error-message" style="color: red;"></p>
+              </div>
+  
+              <button type="submit" class="btn btn-primary">Create Product Offer</button>
+            </form>
+          </div>
+
+
+        </div>
+
+
+
+
+
+
+
+    </section>
+    <footer class="main-footer font-xs">
+      <div class="row pb-30 pt-15">
+        <div class="col-sm-6">
+          <script>
+            document.write(new Date().getFullYear())
+          </script> ©,
+        </div>
+        <div class="col-sm-6">
+          <div class="text-sm-end">
+            All rights reserved
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script src="/admin-assets/js/vendors/jquery-3.6.0.min.js"></script>
+  <script src="/admin-assets/js/vendors/bootstrap.bundle.min.js"></script>
+  <script src="/admin-assets/js/vendors/select2.min.js"></script>
+  <script src="/admin-assets/js/vendors/perfect-scrollbar.js"></script>
+  <script src="/admin-assets/js/vendors/jquery.fullscreen.min.js"></script>
+  <!-- Main Script -->
+  <script src="/admin-assets/js/main.js" type="text/javascript"></script>
+  <script src="/admin-assets/js/main.js" type="text/javascript"></script>
+
+  <script>
+    function validateProductOfferForm() {
+      const title = document.getElementById('title').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const startDate = document.getElementById('startDate').value;
+      const endDate = document.getElementById('endDate').value;
+      const selectedProducts = document.getElementById('selectedProducts');
+      const discountPercentage = document.getElementById('discountPercentage').value;
+      const startDateError = document.getElementById('startDate-error');
+      const endDateError = document.getElementById('endDate-error');
+
+      if (title === '') {
+        document.getElementById('title-error').textContent = 'Title cannot be empty.';
+        return false;
+      } else {
+        document.getElementById('title-error').textContent = '';
+      }
+
+      if (description === '') {
+        document.getElementById('description-error').textContent = 'Description cannot be empty.';
+        return false;
+      } else {
+        document.getElementById('description-error').textContent = '';
+      }
+
+      const today = new Date().toISOString().split('T')[0];
+      const nextDay = new Date();
+      nextDay.setDate(nextDay.getDate() + 1);
+      const nextDayString = nextDay.toISOString().split('T')[0];
+
+      if (startDate < today) {
+        startDateError.textContent = 'Start Date must be today or greater.';
+        return false;
+      } else {
+        startDateError.textContent = '';
+      }
+
+      if (endDate <= today || endDate <= startDate) {
+        endDateError.textContent = 'End Date must be greater than Start Date.';
+        return false;
+      } else {
+        endDateError.textContent = '';
+      }
+
+      if (selectedProducts.selectedOptions.length === 0) {
+        document.getElementById('selectedProducts-error').textContent = 'Please select at least one product.';
+        return false;
+      } else {
+        document.getElementById('selectedProducts-error').textContent = '';
+      }
+
+      if (parseFloat(discountPercentage) < 0 || isNaN(parseFloat(discountPercentage)) || parseFloat(discountPercentage) > 99) {
+        document.getElementById('discountPercentage-error').textContent = 'Discount Percentage must be between 0 and 99.';
+        return false;
+      } else {
+        document.getElementById('discountPercentage-error').textContent = '';
+      }
+
+      return true;
+    }
+  </script>
+
+</body>
+
+
+
+</html>

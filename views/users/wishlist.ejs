@@ -1,0 +1,309 @@
+<%- include('../layouts/header.ejs',{userId:userId}) %>
+
+    <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h2>Wishlist</h2>
+                <ul>
+                    <li><a href="index">Home</a></li>
+                    <li><i class="ti-angle-right"></i></li>
+                    <li>Wishlist</li>
+                </ul>
+            </div>
+        </div>
+        <div class="breadcrumb-img-1">
+            <img src="/user/images/banner/breadcrumb-1.png" alt="">
+        </div>
+        <div class="breadcrumb-img-2">
+            <img src="/user/images/banner/breadcrumb-2.png" alt="">
+        </div>
+    </div>
+    <div class="wishlist-area pb-100 pt-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#">
+                        <div class="wishlist-table-content">
+                            <div class="table-content table-responsive">
+                                <table>
+
+                                    <% if (!wishlist || wishlist.wishlistItems.length===0) { %>
+                                        <tr style="height: 300px;">
+                                            <td colspan="6" style="text-align: center;">
+                                                <h3>Your wishlist is empty.</h3>
+                                            </td>
+                                        </tr>
+                                        
+                                        <% } else { %>
+                                            <thead>
+                                                <tr>
+                                                    <th class="width-thumbnail"></th>
+                                                    <th class="width-name">Product</th>
+                                                    <th class="width-price"> Unit price </th>
+                                                    <th class="width-stock-status text-center"> Stock status </th>
+                                                    <th class="width-wishlist-cart text-center"></th>
+                                                    <th class="width-remove text-center"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <input type="text" name="wishlistId" id="wishlistId" hidden
+                                                    value="<%= wishlist._id %>">
+                                                <% wishlist.wishlistItems.forEach(item=> { %>
+                                                    <tr id="product_<%=item.product._id%>">
+                                                        <div id="'product_'+<%=item.product._id%>">
+
+                                                            <% if (item.product.images && item.product.images.length> 0)
+                                                                { %>
+                                                                <td class="product-thumbnail">
+                                                                    <a href="product-details">
+                                                                        <img src="/productAssets/<%= item.product.images[0] %>"
+                                                                            alt="<%= item.product.name %>">
+                                                                    </a>
+                                                                </td>
+                                                                <% } else { %>
+                                                                    <td class="product-thumbnail">
+                                                                        <a href="product-details">
+                                                                            <img src="/placeholder-image.jpg"
+                                                                                alt="Placeholder Image">
+                                                                        </a>
+                                                                    </td>
+                                                                    <% } %>
+
+                                                                        <input type="text" name="productId"
+                                                                            id="productId" hidden
+                                                                            value="<%= item._id %>">
+                                                                        <td class="product-name">
+                                                                            <h5><a href="product-details">
+                                                                                    <%= item.product.productName %>
+                                                                                </a></h5>
+                                                                        </td>
+                                                                        <td class="product-wishlist-price">
+                                                                            <% if(item.product.productOffer !==0 || item.product.categoryOffer !==0){ %>
+                                                                                <span class="amount">
+                                                                                    ₹ <%= item.product.offerPrice %>
+                                                                                </span>
+                                                                                <% } else { %>
+                                                                                    <span class="amount">
+                                                                                        ₹ <%= item.product.productPrice %>
+                                                                                    </span>
+                                                                                    <% } %>
+                                                                        </td>
+                                                                        <% if (item.product.stock>0) {%>
+                                                                            <td class="stock-status text-center">
+                                                                                <span class="badge bg-success"><i
+                                                                                        class="las la-check "></i> In
+                                                                                    Stock</span>
+                                                                            </td>
+                                                                            <% } else { %>
+                                                                                <td class="stock-status text-center">
+                                                                                    <span class="badge bg-danger"><i
+                                                                                            class="las la-check "></i>
+                                                                                        Out of
+                                                                                        Stock</span>
+                                                                                </td>
+                                                                                <% } %>
+                                                                                    <td class="wishlist-cart btn-hover add-to-cart-btn text-center"
+                                                                                        data-product-id="<%= item.product._id %>">
+                                                                                        <a>Add to Cart</a>
+                                                                                    </td>
+                                                                                    <td
+                                                                                        class="product-remove text-center">
+                                                                                        <a class="remove-btn"
+                                                                                            id="remove-btn-<%=item.product._id%>">x</a>
+                                                                                    </td>
+
+                                                        </div>
+
+                                                    </tr>
+                                                    <% }) %>
+
+                                                    
+
+
+                                            </tbody>
+                                            <% } %>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        window.onload = function () {
+            wishlist.wishlistItems.forEach(item => {
+                if (item.product.productOffer !== 0 || item.product.categoryOffer !== 0) {
+                    if (item.price !== item.product.offerPrice) {
+                        $.toast({
+                            heading: 'Alert',
+                            text: 'Some Products have new prices',
+                            icon: 'warning',
+                            allowToastClose: true,
+                            hideAfter: false,
+                            stack: 0,
+                            position: 'top-left'
+                        });
+                    }
+                } else {
+                    if (item.price !== item.product.productPrice) {
+                        $.toast({
+                            heading: 'Alert',
+                            text: 'Some Products have new prices',
+                            icon: 'warning',
+                            allowToastClose: true,
+                            hideAfter: false,
+                            stack: 0,
+                            position: 'top-left'
+                        });
+                    }
+                }
+            });
+        };
+
+    </script>
+    <script>
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const productId = this.getAttribute('id').split('-')[2];
+                removeProduct(productId, "<%= wishlist._id %>");
+            });
+        });
+
+        function removeProduct(productId, wishlistId) {
+            fetch('/remove-from-wishlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    productId: productId,
+                    wishlistId: wishlistId
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        // Product removed successfully
+                        $.toast({
+                            heading: 'Product Removed',
+                            text: 'Product Removed From Wishlist',
+                            position: 'top-center',
+                            showHideTransition: 'slide',
+                            icon: 'info'
+                        });
+                        const productRow = document.querySelector(`tr[id="product_${productId}"]`);
+                        if (productRow) {
+                            productRow.remove(); // Remove the entire row from the DOM
+                            response.json().then(data => {
+                                if (data.wishlistCount === 0) {
+                                    // let clearCartButton = document.querySelector('.cart-clear');
+                                    // if (clearCartButton) {
+                                    //     clearCartButton.click();
+                                    // }
+                                    window.location.reload();
+                                }
+                            })
+
+                        } else {
+                            console.warn(`Could not find product row with ID: product_${productId}`)
+                        }
+                    } else {
+                        $.toast({
+                            heading: 'Error',
+                            text: 'Failed to remove product',
+                            position: 'top-center',
+                            showHideTransition: 'slide',
+                            icon: 'error'
+                        });
+                    }
+                })
+                .catch(error => console.error('Error removing product:', error));
+        }
+    </script>
+    <script>
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = this.getAttribute('data-product-id');
+                addToCart(productId, this); // Pass the button element as a parameter
+            });
+        });
+
+        function addToCart(productId, button) {
+            // Here you can implement your logic to add the product to the cart
+            console.log('Adding product to cart:', productId);
+
+            fetch('/add-to-cart-from-wishlist?user=<%=userId%>', {
+                method: 'POST',
+                body: JSON.stringify({
+                    productId: productId,
+                    userId: "<%=userId%>"
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // Remove the product from the wishlist
+                    const wishlistItem = button.closest('tr');
+                    wishlistItem.remove();
+
+                    $.toast({
+                        heading: 'Success',
+                        text: 'Product added to cart successfully',
+                        position: 'top-center',
+                        showHideTransition: 'slide',
+                        icon: 'success'
+                    });
+                } else if (response.status === 401) {
+                    $.toast({
+                        heading: 'Error',
+                        text: 'Maximum Quantity Per Order Reached',
+                        showHideTransition: 'fade',
+                        position: 'top-center',
+                        icon: 'error'
+                    });
+                } else if (response.status === 405) {
+                    $.toast({
+                        heading: 'Error',
+                        text: 'Insufficient stock available',
+                        showHideTransition: 'fade',
+                        position: 'top-center',
+                        icon: 'error'
+                    });
+                } else {
+                    $.toast({
+                        heading: 'Error',
+                        text: 'Error adding product to cart',
+                        showHideTransition: 'fade',
+                        position: 'top-center',
+                        icon: 'error'
+                    });
+
+                    showToast("Error adding product to cart");
+                }
+            }).then(data => {
+                let cartQuantity = data.cartQty;
+                updateCartQuantity();
+            }).catch(error => {
+                console.error("Error adding product to cart:", error);
+                showToast("Error adding product to cart");
+                $.toast({
+                    heading: 'Error',
+                    text: 'Error adding product to cart',
+                    showHideTransition: 'fade',
+                    position: 'top-center',
+                    icon: 'error'
+                });
+            });
+        }
+
+        let cartQuantity = 0;
+
+        // Function to update the cart quantity element
+        function updateCartQuantity() {
+            document.getElementById('cartItemCount').textContent = cartQuantity;
+        }
+    </script>
+
+    <%- include('../layouts/footer.ejs') %>
