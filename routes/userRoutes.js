@@ -9,6 +9,7 @@ const cartController = require('../controllers/cartController');
 const ordersController = require('../controllers/ordersController');
 const wishlistController = require('../controllers/wishlistController');
 const auth = require('../middleware/auth');
+require('../services/passport');
 const adminAuth = require('../middleware/adminAuth');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -18,8 +19,6 @@ const bodyParser = require('body-parser');
 userRoute.use(cookieParser());
 userRoute.use(bodyParser.json());
 
-// const passport = require('passport'); 
-// require("../services/passport");
 
 userRoute.use(session({
   secret: uuidv4(),
@@ -28,8 +27,6 @@ userRoute.use(session({
   cookie: { secure: false }, 
 }));  
 
-// userRoute.use(passport.initialize());
-// userRoute.use(passport.session());
 
   userRoute.use((req, res, next) => {
     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
@@ -39,8 +36,38 @@ userRoute.use(session({
   });
 
 
+
 userRoute.set('view engine','ejs');
 userRoute.set('views','./views/users')
+
+
+const passport = require('passport');
+userRoute.use(passport.initialize());
+userRoute.use(passport.session());
+
+
+function isLoggedin(req, res, next) {
+    req.user ? next() : res.sendStatus(401);
+}
+
+// For cookie
+userRoute.use(cookieParser());
+
+userRoute.get('/auth/google',
+    passport.authenticate('google', { scope: ['email', 'profile'] })
+);
+
+userRoute.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/google-sign-in',
+        failureRedirect: '/auth/google/failure'
+    })
+);
+
+userRoute.get('/auth/google/failure', isLoggedin, (req, res) => {
+    console.log(session.user);
+    res.redirect('/login');
+})
 
 
 userRoute.get("*",auth.isUser)
@@ -51,6 +78,8 @@ userRoute.get('/',userController.loadHomePage);
 
 userRoute.get('/register', userController.loadRegister);
 userRoute.post('/register' ,userController.intialRegisterUser);
+userRoute.get("/google-sign-in", userController.googleSignIn);
+
 
 userRoute.post("/verify-otp",userController.registerUser)
 userRoute.get('/resend-otp' ,userController.resendOtp);

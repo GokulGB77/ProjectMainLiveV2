@@ -718,7 +718,60 @@ const logoutUser = async (req, res) => {
   }
 };
 
+const googleSignIn = async (req, res) => {
+  try {
+      const email = req.user.email;
+      let userData = await Userdb.findOne({ email: email });
+      console.log("userData:",userData);
 
+      if (userData) {
+        req.session.userId = userData._id; // Set userId in the session
+        if (userData.status === 1) {
+          res.locals.currentUser = userData;
+          res.locals.currentUserId = userData._id;
+          req.session.currentUser = userData;
+          req.session.currentUserId = userData._id;
+          req.session.save();
+        } else {
+          console.error("User is blocked");
+          return res.redirect('/login?error=blocked');
+        }
+      } else {
+        console.error("User not found");
+        res.locals.currentUser = null;
+      }
+      if (!userData) {
+          let nameFromG = req.user.name
+          const user = new Userdb({
+              name: nameFromG.givenName + nameFromG.familyName,
+              email: req.user.email,
+              is_admin: 0,
+              is_verified: 1,
+              is_google_auth:1,
+              status:1
+          })
+          userData = await user.save()
+
+      }
+
+      const userID = userData._id;
+      const token = auth.createToken(userID);
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        tokenExpiry: auth.tokenExpiry * 1000,
+      });
+
+      console.log("google sign in userId is :", userData._id);
+      console.log("google sign in token :", token);
+
+      // req.session.user_id = userData._id
+      // req.session.email = email;
+      // req.session.save();
+      res.redirect('/');
+  } catch (error) {
+      console.log(error.message);
+  }
+}
 
 
 
@@ -748,6 +801,7 @@ module.exports = {
   changePassword,
   loadAboutUs,
   loadContactUs,
+  googleSignIn
 
 }
 
@@ -807,56 +861,16 @@ module.exports = {
 //   }
 // }
 
-// const loadwishlist = async (req,res)=>{
-//   try {
-//     res.render("wishlist")
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// }
-
-// const loadContactUs = async (req,res)=>{
-//   try {
-//     res.render("contact-us")
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// }
-
-// const loadwishlist = async (req,res)=>{
-//   try {
-//     res.render("wishlist")
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// }
-
-// const loadContactUs = async (req,res)=>{
-//   try {
-//     res.render("contact-us")
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// }
-
-// const loadwishlist = async (req,res)=>{
-//   try {
-//     res.render("wishlist")
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// }
 
 
 
 
-// const loadwishlist = async (req,res)=>{
-//   try {
-//     res.render("wishlist")
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// }
+
+
+
+
+
+
 
 
 
