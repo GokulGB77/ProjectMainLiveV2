@@ -394,9 +394,9 @@
                       </a>
                       <div class="dropdown-menu">
                         ${product.status === 1 ? `
-                          <a class="dropdown-item text-danger" href="/admin/products/unarchive-product?id=${product._id}">Archive</a>
+                          <a class="dropdown-item text-danger" href="/admin/products/change-status?id=<%= products[i]._id %>&page=<%= currentPage %>&status=1}">Archive</a>
                         ` : `
-                          <a class="dropdown-item text-success" href="/admin/products/archive-product?id=${product._id}">Unarchive</a>
+                          <a class="dropdown-item text-success" href="/admin/products/change-status?id=<%= products[i]._id %>&page=<%= currentPage %>&status=0">Unarchive</a>
                         `}
                         <div class="dropdown-divider"></div>
                       </div> 

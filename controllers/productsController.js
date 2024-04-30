@@ -190,6 +190,11 @@ const updateProduct = async (req, res) => {
     const id = req.query.id;
     const exstingData = await Productsdb.findById(id)
     // console.log("Existing dattaa.............",exstingData);
+    const removedImagesString = req.body.removedImages;
+    
+    // Parse the JSON string back into an array
+    const removedImages = JSON.parse(removedImagesString);
+        console.log("removedImages:",removedImages)
     const updatedProductDetails = {
       productName: req.body.productName,
       stock: req.body.stock,
@@ -266,7 +271,8 @@ const loadShop = async (req, res) => {
     const filterByOutOfStock = req.query.outOfStock === 'true'; // Check if 'outOfStock' is true
 
     // Construct filter object based on filter criteria
-    const filter = {};
+    
+    const filter = {status: 1};
     if (filterByCategories) {
       filter["category"] = { $in: filterByCategories };
     }
@@ -285,6 +291,7 @@ const loadShop = async (req, res) => {
         { productName: { $regex: new RegExp(searchQuery, 'i') } },
         { productDescription: { $regex: new RegExp(searchQuery, 'i') } },
         { "category.categoryName": { $regex: new RegExp(searchQuery, 'i') } },
+        { "status":1 },
       ];
     }
 
