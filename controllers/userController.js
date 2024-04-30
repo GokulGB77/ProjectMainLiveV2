@@ -764,6 +764,9 @@ const googleSignIn = async (req, res) => {
       console.log("google sign in userId is :", userData._id);
       console.log("google sign in token :", token);
 
+      req.session.user_id = userData._id
+      req.session.email = email;
+      req.session.save();
       res.redirect('/');
   } catch (error) {
       console.log(error.message);

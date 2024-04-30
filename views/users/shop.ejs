@@ -155,7 +155,7 @@
                                     </li>
                                     <hr>
 
-                                    <!-- <h6 class="text-left">Price</h6>
+                                    <h6 class="text-left">Price</h6>
                                     <div class="box border-bottom">
 
                                         <div class="" id="price">
@@ -178,7 +178,7 @@
                                                 <div> ₹ <span id="amount-right" class=""></span></div>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
 
                                     <button id="applyFiltersBtn" class="applybtn btn-primary">Apply Filters</button>
                         </ul>
@@ -413,6 +413,8 @@
                     'Content-Type': 'application/json',
                 }
             }).then(response => {
+                console.log("Reposne:",response)
+
                 if (response.ok) {
                     $.toast({
                         heading: 'Success',
@@ -447,14 +449,14 @@
                         icon: 'error'
                     })
 
-                    showToast("Error adding product to cart");
                 }
+                return response.json()
             }).then(data => {
+                console.log("Reposne2:",data)
                 let cartQuantity = data.cartQty;
                 updateCartQuantity()
             }).catch(error => {
                 console.error("Error adding product to cart:", error);
-                showToast("Error adding product to cart");
                 $.toast({
                     heading: 'Error',
                     text: 'Error adding product to cart',

@@ -215,7 +215,8 @@ const updateProduct = async (req, res) => {
     const UpdatedDetails = await Productsdb.findByIdAndUpdate(id, updatedProductDetails).populate("category");
     console.log(UpdatedDetails.category.categoryName);
     console.log("Product details updated..........");
-    res.redirect("/admin/products");
+    // res.redirect("/admin/products");
+    res.status(200).json({message:"Updated Success"})
   } catch (error) {
     console.log(error);
     res.status(500).send("Update Product Details Failed.......");

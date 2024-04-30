@@ -14,7 +14,7 @@
                                             <h3 class="animated">Up To 40% Off</h3>
                                             <h1 class="font-inc animated">Summer <br>Collection</h1>
                                             <div class="slider-btn-2 btn-hover">
-                                                <a href="product-details"
+                                                <a href="/shop?category=65dc407df0db50312e2938f9"
                                                     class="btn hover-border-radius theme-color animated">
                                                     Shop Now
                                                 </a>
@@ -31,7 +31,7 @@
                                             <h3 class="animated">Up To 40% Off</h3>
                                             <h1 class="font-inc animated">Summer <br>Collection</h1>
                                             <div class="slider-btn-2 btn-hover">
-                                                <a href="product-details"
+                                                <a href="/shop?category=65dc407df0db50312e2938f9"
                                                     class="btn hover-border-radius theme-color animated">
                                                     Shop Now
                                                 </a>
@@ -47,13 +47,13 @@
                 </div>
                 <div class="col-lg-4 col-md-5">
                     <div class="banner-wrap banner-wrap-margin">
-                        <a href="product-details"><img src="/user/images/banner/banner-10.png" alt=""></a>
+                        <a href="/product-details?id=65df3e1b7cf421b13489746f"><img src="/user/images/banner/banner-10.png" alt=""></a>
                         <div class="banner-content-7">
                             <h2>Exceptional</h2>
                             <span>Indoor Chair</span>
                         </div>
                         <div class="btn-style-4">
-                            <a class="btn" href="product-details">Shop Now</a>
+                            <a class="btn" href="/product-details?id=65df3e1b7cf421b13489746f">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -68,36 +68,36 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                        <a href="product-details"><img src="/user/images/banner/banner-1.png" alt=""></a>
+                        <a href="/shop?category=65dc407df0db50312e2938f9"><img src="/user/images/banner/banner-1.png" alt=""></a>
                         <div class="banner-content-1">
                             <h5>new arrival</h5>
                             <h3>Indoor Furniture</h3>
                             <div class="banner-btn">
-                                <a href="product-details">Shop Now</a>
+                                <a href="/shop?category=65dc407df0db50312e2938f9">Shop Now</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="400">
-                        <a href="product-details"><img src="/user/images/banner/banner-2.png" alt=""></a>
+                        <a href="/shop?category=65d6fbc6080601eb25d1e8a4"><img src="/user/images/banner/banner-2.png" alt=""></a>
                         <div class="banner-content-1">
                             <h5>new arrival</h5>
                             <h3>Outdoor Furniture</h3>
                             <div class="banner-btn">
-                                <a href="product-details">Shop Now</a>
+                                <a href="/shop?category=65d6fbc6080601eb25d1e8a4">Shop Now</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="600">
-                        <a href="product-details"><img src="/user/images/banner/banner-3.png" alt=""></a>
+                        <a href="/shop?category=65dc8545a24c1e8a6f7c7b63"><img src="/user/images/banner/banner-3.png" alt=""></a>
                         <div class="banner-content-1">
                             <h5>new arrival</h5>
                             <h3>Bedroom Furniture</h3>
                             <div class="banner-btn">
-                                <a href="product-details">Shop Now</a>
+                                <a href="/shop?category=65dc8545a24c1e8a6f7c7b63">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -131,16 +131,19 @@
                                                 <span><%= product.productPrice %></span>
                                             </div> -->
                                         <div class="product-action-wrap">
-                                            <button class="product-action-btn-1" title="Wishlist"><i
+                                            <button class="product-action-btn-1 add-to-wishlist-btn"
+                                                data-product-id="<%= product._id %>" title="Wishlist"><i
                                                     class="pe-7s-like"></i></button>
-                                            <button class="product-action-btn-1" title="Quick View"
+                                            <!-- <button class="product-action-btn-1" title="Quick View"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                 <i class="pe-7s-look"></i>
-                                            </button>
+                                            </button> -->
                                         </div>
                                         <div class="product-action-2-wrap">
-                                            <button class="product-action-btn-2" title="Add To Cart"><i
-                                                    class="pe-7s-cart"></i> Add to cart</button>
+                                            <button class="product-action-btn-2 add-to-cart-btn"
+                                                data-product-id="<%= product._id %>" title="Add To Cart">
+                                                <i class="pe-7s-cart"></i> Add to cart
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="product-content">
@@ -174,16 +177,19 @@
                                             <span><%= product.productPrice %></span>
                                         </div> -->
                                         <div class="product-action-wrap">
-                                            <button class="product-action-btn-1" title="Wishlist"><i
+                                            <button class="product-action-btn-1 add-to-wishlist-btn"
+                                                data-product-id="<%= product._id %>" title="Wishlist"><i
                                                     class="pe-7s-like"></i></button>
-                                            <button class="product-action-btn-1" title="Quick View"
+                                            <!-- <button class="product-action-btn-1" title="Quick View"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                 <i class="pe-7s-look"></i>
-                                            </button>
+                                            </button> -->
                                         </div>
                                         <div class="product-action-2-wrap">
-                                            <button class="product-action-btn-2" title="Add To Cart"><i
-                                                    class="pe-7s-cart"></i> Add to cart</button>
+                                            <button class="product-action-btn-2 add-to-cart-btn"
+                                                data-product-id="<%= product._id %>" title="Add To Cart">
+                                                <i class="pe-7s-cart"></i> Add to cart
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="product-content">
@@ -216,16 +222,19 @@
                                             <span><%= product.productPrice %></span>
                                         </div> -->
                                         <div class="product-action-wrap">
-                                            <button class="product-action-btn-1" title="Wishlist"><i
+                                            <button class="product-action-btn-1 add-to-wishlist-btn"
+                                                data-product-id="<%= product._id %>" title="Wishlist"><i
                                                     class="pe-7s-like"></i></button>
-                                            <button class="product-action-btn-1" title="Quick View"
+                                            <!-- <button class="product-action-btn-1" title="Quick View"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                 <i class="pe-7s-look"></i>
-                                            </button>
+                                            </button> -->
                                         </div>
                                         <div class="product-action-2-wrap">
-                                            <button class="product-action-btn-2" title="Add To Cart"><i
-                                                    class="pe-7s-cart"></i> Add to cart</button>
+                                            <button class="product-action-btn-2 add-to-cart-btn"
+                                                data-product-id="<%= product._id %>" title="Add To Cart">
+                                                <i class="pe-7s-cart"></i> Add to cart
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="product-content">
@@ -258,16 +267,19 @@
                                             <span><%= product.productPrice %></span>
                                         </div> -->
                                         <div class="product-action-wrap">
-                                            <button class="product-action-btn-1" title="Wishlist"><i
+                                            <button class="product-action-btn-1 add-to-wishlist-btn"
+                                                data-product-id="<%= product._id %>" title="Wishlist"><i
                                                     class="pe-7s-like"></i></button>
-                                            <button class="product-action-btn-1" title="Quick View"
+                                            <!-- <button class="product-action-btn-1" title="Quick View"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                 <i class="pe-7s-look"></i>
-                                            </button>
+                                            </button> -->
                                         </div>
                                         <div class="product-action-2-wrap">
-                                            <button class="product-action-btn-2" title="Add To Cart"><i
-                                                    class="pe-7s-cart"></i> Add to cart</button>
+                                            <button class="product-action-btn-2 add-to-cart-btn"
+                                                data-product-id="<%= product._id %>" title="Add To Cart">
+                                                <i class="pe-7s-cart"></i> Add to cart
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="product-content">
@@ -440,18 +452,21 @@
                                         <img src="/productAssets/<%= product.images[0] %>"
                                             alt="<%= product.productName %>">
                                     </a>
-                                   
+
                                     <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i
+                                        <button class="product-action-btn-1 add-to-wishlist-btn"
+                                            data-product-id="<%= product._id %>" title="Wishlist"><i
                                                 class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal"
+                                        <!-- <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal">
                                             <i class="pe-7s-look"></i>
-                                        </button>
+                                        </button> -->
                                     </div>
                                     <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i
-                                                class="pe-7s-cart"></i> Add to cart</button>
+                                        <button class="product-action-btn-2 add-to-cart-btn"
+                                            data-product-id="<%= product._id %>" title="Add To Cart">
+                                            <i class="pe-7s-cart"></i> Add to cart
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="product-content">
@@ -692,7 +707,146 @@
         </div>
     </div>
     <!-- Product Modal end -->
-    
+
     </div>
     <!-- All JS is here -->
+    <script>
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = this.getAttribute('data-product-id');
+                addToCart(productId);
+            });
+        });
+
+        function addToCart(productId) {
+            // Here you can implement your logic to add the product to the cart
+            console.log('Adding product to cart:', productId);
+
+            fetch('/add-to-cart', {
+                method: 'POST',
+                body: JSON.stringify({
+                    productId: productId,
+                    
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }).then(response => {
+                if (response.ok) {
+                    $.toast({
+                        heading: 'Success',
+                        text: 'Product added to cart successfully',
+                        position: 'top-center',
+                        showHideTransition: 'slide',
+                        icon: 'success'
+                    })
+                } else if (response.status === 401) {
+                    $.toast({
+                        heading: 'Error',
+                        text: 'Maximum Quantity Per Order Reached',
+                        showHideTransition: 'fade',
+                        position: 'top-center',
+                        icon: 'error'
+                    })
+
+                } else if (response.status === 405) {
+                    $.toast({
+                        heading: 'Error',
+                        text: 'Insufficient stock available',
+                        showHideTransition: 'fade',
+                        position: 'top-center',
+                        icon: 'error'
+                    })
+                } else {
+                    $.toast({
+                        heading: 'Error',
+                        text: 'Error adding product to cart',
+                        showHideTransition: 'fade',
+                        position: 'top-center',
+                        icon: 'error'
+                    })
+
+                }
+                return response.json()
+
+            }).then(data => {
+                let cartQuantity = data.cartQty;
+                updateCartQuantity()
+            }).catch(error => {
+                console.error("Error adding product to cart:", error);
+                $.toast({
+                    heading: 'Error',
+                    text: 'Error adding product to cart',
+                    showHideTransition: 'fade',
+                    position: 'top-center',
+                    icon: 'error'
+                })
+            });
+        }
+        let cartQuantity = 0;
+
+        // Function to update the cart quantity element
+        function updateCartQuantity() {
+            document.getElementById('cartItemCount').textContent = cartQuantity;
+        }
+    </script>
+    <script>
+        document.querySelectorAll('.add-to-wishlist-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = this.getAttribute('data-product-id');
+                addToWishlist(productId);
+            });
+        });
+
+        function addToWishlist(productId) {
+            // Here you can implement your logic to add the product to the wishlist
+            console.log('Adding product to wishlist:', productId);
+
+            fetch('/add-to-wishlist', {
+                method: 'POST',
+                body: JSON.stringify({
+                    productId: productId
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        $.toast({
+                            heading: 'Added Successfully',
+                            text: 'Product added to wishlist',
+                            position: 'top-center',
+                            showHideTransition: 'slide',
+                            icon: 'success'
+                        });
+                    } else {
+                        return response.json().then(data => {
+                            if (data.message && data.message === "Product already exists in the wishlist") {
+                                $.toast({
+                                    heading: 'Failed to Add ',
+                                    text: 'Product already exists in the wishlist',
+                                    position: 'top-center',
+                                    showHideTransition: 'slide',
+                                    icon: 'error'
+                                });
+                            } else {
+                                throw new Error('Failed to add product to wishlist');
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error adding product to wishlist:", error);
+                    $.toast({
+                        heading: 'Error',
+                        text: 'Error adding product to wishlist',
+                        showHideTransition: 'fade',
+                        position: 'top-center',
+                        icon: 'error'
+                    });
+                });
+        }
+
+    </script>
     <%- include('../layouts/footer.ejs') %>

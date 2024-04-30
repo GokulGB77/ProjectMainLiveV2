@@ -48,6 +48,7 @@ const isAdmin = async (req, res, next) => {
       const token = req.cookies.adminjwt;
 
       if (!token) {
+         res.redirect("/admin/login");
           return res.status(401).json({ message: 'Unauthorized' });
       }
 
@@ -57,6 +58,7 @@ const isAdmin = async (req, res, next) => {
 
       // Check if the decoded token contains necessary data
       if (!decoded) {
+        res.redirect("/admin/login");
           return res.status(401).json({ message: 'Unauthorized' });
       }
 
@@ -64,6 +66,7 @@ const isAdmin = async (req, res, next) => {
       const user = await Admindb.findById(decoded.id);
       console.log("user:",user)
       if (!user || user.is_admin !== 1) {
+        res.redirect("/admin/login");
           return res.status(403).json({ message: 'Forbidden' });
       }
 
@@ -71,6 +74,7 @@ const isAdmin = async (req, res, next) => {
       next();
   } catch (error) {
       console.error('Token verification failed:', error.message);
+      res.redirect("/admin/login");
       return res.status(401).json({ message: 'Unauthorized' });
   }
 };

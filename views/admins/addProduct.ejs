@@ -322,6 +322,8 @@
         <script>
             const form = document.getElementById("productForm")
             let totalimages = 0;
+            let dataTransfer = new DataTransfer();
+
 
             function imageupload(event) {
 
@@ -417,6 +419,7 @@
                         });
 
                         const cropbtn = document.createElement("button");
+
                         cropbtn.classList.add("btn", "btn-primary", "m-2");
                         cropbtn.textContent = "Crop";
                         cropbtn.addEventListener("click", function (event) {
@@ -430,7 +433,6 @@
                                 const file = new File([blob], ` ${fileName}.jpg`, { type: 'image/jpeg' });
 
                                 if (window.FileList && window.DataTransfer) {
-                                    const dataTransfer = new DataTransfer();
                                     dataTransfer.items.add(file);
                                     const input = document.createElement('input');
                                     input.type = 'file';
@@ -496,6 +498,8 @@
 
             document.getElementById('addProduct').addEventListener("click", function (event) {
                 event.preventDefault()
+                dataTransfer = new DataTransfer(); // Reset the dataTransfer object
+
                 const name = document.getElementById("productName").value.trim()
                 const stock = document.getElementById("stock").value.trim()
                 const tags = document.getElementById("productTags").value.trim()
