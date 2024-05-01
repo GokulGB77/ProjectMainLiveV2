@@ -1,6 +1,7 @@
 const Userdb = require("../models/userModel")
 const Productsdb = require("../models/productsModel")
 const Addressdb = require("../models/addressModel")
+const Wishlistdb = require("../models/wishlistModel")
 const Ordersdb = require("../models/ordersModel")
 const Walletdb = require("../models/walletModel")
 const Cartdb = require("../models/cartModel")
@@ -753,6 +754,7 @@ const googleSignIn = async (req, res) => {
           userData = await user.save()
 
       }
+     
 
       const userID = userData._id;
       const token = auth.createToken(userID);
@@ -760,6 +762,15 @@ const googleSignIn = async (req, res) => {
         httpOnly: true,
         tokenExpiry: auth.tokenExpiry * 1000,
       });
+      let wishlist = await Wishlistdb.findOne({ user: userID });
+      console.log("Wishlist Found");
+      if (!wishlist) {
+        // If wishlist doesn't exist, create a new one
+        wishlist = await Wishlistdb.create({
+          user: userID,
+          wishlistItems: [],       
+        });
+      }
 
       console.log("google sign in userId is :", userData._id);
       console.log("google sign in token :", token);
