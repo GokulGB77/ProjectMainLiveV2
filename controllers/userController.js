@@ -523,7 +523,7 @@ const loadProfile = async (req, res) => {
     const startIndex = (currentPage - 1) * ordersPerPage;
     const endIndex = startIndex + ordersPerPage;
     const orderDetails = await Ordersdb.find({ user: userId })
-      .sort({ orderDate: -1 })
+      .sort({ createdAt: -1 })
       .skip(startIndex)
       .limit(ordersPerPage);
 
@@ -577,7 +577,7 @@ const loadProfile1 = async (req, res) => {
     const startIndex = (currentPage - 1) * ordersPerPage;
     const endIndex = startIndex + ordersPerPage;
     const orderDetails = await Ordersdb.find({ user: userId })
-      .sort({ orderDate: -1 })
+      .sort({ createdAt: -1 })
       .skip(startIndex)
       .limit(ordersPerPage);
 
@@ -619,7 +619,7 @@ const loadOrders = async (req, res) => {
     const userId = currentUser._id
 
 
-    const allOrders = await Ordersdb.find({ user: userId }).sort({ orderDate: -1, orderTime: -1 })
+    const allOrders = await Ordersdb.find({ user: userId }).sort({ createdAt: -1})
     console.log("orderDetails", allOrders);
 
     const user = await Userdb.findOne({ _id: currentUser._id }).populate('addresses');
