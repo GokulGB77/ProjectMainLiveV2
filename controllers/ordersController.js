@@ -115,7 +115,7 @@ const paymentOption = async (req, res) => {
 
     const userDetails = await Userdb.findById(userId);
     const { selectedAddress, selectedPaymentMethod, deliveryNotes, cartId } = req.body;
-
+console.log("selectedAddress:",selectedAddress)
     const cart = await Cartdb.findOne({ _id: cartId, user: userId }).populate("cartProducts.product");
     if (!cart) {
       return res.status(408).json({ error: 'Cart not found for the user' });
